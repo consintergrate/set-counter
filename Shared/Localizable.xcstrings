@@ -75,6 +75,22 @@
         }
       }
     },
+    "%@ / %@kcal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ / %2$@ kcal"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ / %2$@kcal"
+          }
+        }
+      }
+    },
     "%@ kcal": {
       "localizations": {
         "en": {
@@ -149,18 +165,28 @@
         }
       }
     },
-    "%@ – %@": {
+    "%@ → %@": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ – %2$@"
+            "value": "%1$@ → %2$@"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "new",
-            "value": "%1$@ – %2$@"
+            "value": "%1$@ → %2$@"
+          }
+        }
+      }
+    },
+    "%@ 내 루틴": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My %@ Routine"
           }
         }
       }
@@ -185,12 +211,38 @@
         }
       }
     },
+    "%@ 신기록 %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ record %2$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ 신기록 %2$@"
+          }
+        }
+      }
+    },
     "%@ 신기록!": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "New %@ record!"
+          }
+        }
+      }
+    },
+    "%@ 운동": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Exercises"
           }
         }
       }
@@ -227,6 +279,22 @@
           "stringUnit": {
             "state": "new",
             "value": "%1$@%2$@"
+          }
+        }
+      }
+    },
+    "%@%@kcal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@%2$@ kcal"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@%2$@kcal"
           }
         }
       }
@@ -315,6 +383,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld bpm"
+          }
+        }
+      }
+    },
+    "%lld.%lldk": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld.%2$lldk"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld.%2$lldk"
           }
         }
       }
@@ -661,6 +745,16 @@
         }
       }
     },
+    "'편집'을 눌러 이 날 할 운동을 골라 보세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap Edit to choose the exercises for this day."
+          }
+        }
+      }
+    },
     "+": {
       "localizations": {
         "en": {
@@ -807,12 +901,12 @@
         }
       }
     },
-    "AirPods Pro 3·Powerbeats Pro 2는 착용만 하면 돼요. Apple Watch는 워치에서 '근력 운동'을 같이 켜두면 심박수가 자주 들어와요. 마친 운동은 건강 앱에도 저장돼요.": {
+    "AB 롤아웃": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "AirPods Pro 3 and Powerbeats Pro 2 just need to be worn. On Apple Watch, start a Strength Training workout too for frequent readings. Finished workouts are also saved to the Health app."
+            "value": "Ab Rollout"
           }
         }
       }
@@ -833,6 +927,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Apple Watch · AirPods Heart Rate"
+          }
+        }
+      }
+    },
+    "Apple Watch 앱으로 실시간 측정": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live Heart Rate from the Watch App"
+          }
+        }
+      }
+    },
+    "Apple Watch 연결됨": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch connected"
           }
         }
       }
@@ -1053,12 +1167,42 @@
         }
       }
     },
+    "–": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "–"
+          }
+        }
+      }
+    },
+    "‘%@’ 추가": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add ‘%@’"
+          }
+        }
+      }
+    },
     "−": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "−"
+          }
+        }
+      }
+    },
+    "☰를 끌어 순서를 바꾸고, 빨간 버튼으로 뺄 수 있어요. 무게와 횟수는 지난 기록을 보고 자동으로 잡아요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drag ☰ to reorder and use the red button to remove. Weight and reps are set from your history."
           }
         }
       }
@@ -1099,6 +1243,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Chest · Triceps"
+          }
+        }
+      }
+    },
+    "감량 (%@kg/주)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight loss (%@ kg/week)"
           }
         }
       }
@@ -1273,6 +1427,16 @@
         }
       }
     },
+    "건강 하한까지 올림": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Raised to the healthy minimum"
+          }
+        }
+      }
+    },
     "건너뛰기": {
       "localizations": {
         "en": {
@@ -1413,6 +1577,16 @@
         }
       }
     },
+    "근력 운동 시간": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Strength Time"
+          }
+        }
+      }
+    },
     "근력·유산소·식단·체중을 한눈에 확인해 보세요.": {
       "localizations": {
         "en": {
@@ -1539,6 +1713,56 @@
         }
       }
     },
+    "기본 목표": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Base Goal"
+          }
+        }
+      }
+    },
+    "기초대사량": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMR"
+          }
+        }
+      }
+    },
+    "기초대사량 (BMR)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Basal Metabolic Rate (BMR)"
+          }
+        }
+      }
+    },
+    "기초대사량(키·체중·나이·성별)에서 감량 속도만큼 빼서 잡아요(1kg ≈ 7,700kcal). 걷기와 운동으로 쓴 칼로리는 건강 앱에 기록된 만큼 그날 더 먹을 수 있는 양에 더해져요. 건강을 위해 남성 1,500kcal, 여성 1,200kcal 아래로는 잡지 않아요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your BMR (from height, weight, age, and sex) minus your weekly loss (1 kg ≈ 7,700 kcal). Calories burned walking and exercising, as recorded in Health, are added to what you can eat that day. For safety, the goal never goes below 1,500 kcal for men or 1,200 kcal for women."
+          }
+        }
+      }
+    },
+    "기초대사량은 키·체중·나이·성별로 계산한 Mifflin-St Jeor 공식이에요. 걷기와 운동으로 쓴 칼로리는 건강 앱에 기록된 만큼 그날 더해져요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "BMR uses the Mifflin-St Jeor formula with your height, weight, age, and sex. Calories burned walking and exercising are added as recorded in Health."
+          }
+        }
+      }
+    },
     "기타": {
       "localizations": {
         "en": {
@@ -1575,6 +1799,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Nike Run"
+          }
+        }
+      }
+    },
+    "나이키 런 클럽, 피트니스 등에서 건강 앱에 저장한 운동이 여기에 모여요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workouts saved to Health by Nike Run Club, Fitness, and others show up here."
           }
         }
       }
@@ -1625,6 +1859,36 @@
         }
       }
     },
+    "남은 칼로리": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calories Left"
+          }
+        }
+      }
+    },
+    "남은 칼로리와 이번 주 유산소를 보여줘요. 앱을 열 때마다 새로 고쳐져요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows calories left and this week's cardio. Updates whenever you open the app."
+          }
+        }
+      }
+    },
+    "내 운동": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My Exercises"
+          }
+        }
+      }
+    },
     "내 정보": {
       "localizations": {
         "en": {
@@ -1635,12 +1899,32 @@
         }
       }
     },
+    "내가 고른 운동이에요. 무게와 횟수는 지난 기록에 맞춰 올려 잡았어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercises you picked. Weight and reps are set up from your history."
+          }
+        }
+      }
+    },
     "너무 적게 먹으면 근육이 빠질 수 있어요. 단백질 위주로 챙겨 드세요.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Eating too little can cost you muscle. Get some protein in."
+          }
+        }
+      }
+    },
+    "다른 앱 운동": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workouts from Other Apps"
           }
         }
       }
@@ -1761,6 +2045,66 @@
         }
       }
     },
+    "덤벨 로우": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dumbbell Row"
+          }
+        }
+      }
+    },
+    "덤벨 벤치프레스": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dumbbell Bench Press"
+          }
+        }
+      }
+    },
+    "덤벨 숄더 프레스": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dumbbell Shoulder Press"
+          }
+        }
+      }
+    },
+    "덤벨 컬": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dumbbell Curl"
+          }
+        }
+      }
+    },
+    "덤벨 킥백": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dumbbell Kickback"
+          }
+        }
+      }
+    },
+    "데드리프트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deadlift"
+          }
+        }
+      }
+    },
     "데이터": {
       "localizations": {
         "en": {
@@ -1807,6 +2151,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Back · Biceps"
+          }
+        }
+      }
+    },
+    "딥스": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dips"
           }
         }
       }
@@ -1871,6 +2225,36 @@
         }
       }
     },
+    "러시안 트위스트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Russian Twist"
+          }
+        }
+      }
+    },
+    "런지": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lunge"
+          }
+        }
+      }
+    },
+    "레그 익스텐션": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Leg Extension"
+          }
+        }
+      }
+    },
     "레그 컬": {
       "localizations": {
         "en": {
@@ -1927,6 +2311,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Routine Day"
+          }
+        }
+      }
+    },
+    "루틴 편집": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit Routine"
           }
         }
       }
@@ -2001,6 +2395,16 @@
         }
       }
     },
+    "먹은 칼로리": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calories Eaten"
+          }
+        }
+      }
+    },
     "먹은 칼로리를 기록해 보면 원인을 찾기 쉬워요.": {
       "localizations": {
         "en": {
@@ -2061,6 +2465,26 @@
         }
       }
     },
+    "목록에 없는 운동은 이렇게 추가해 두면 다음부터 '내 운동'에 나와요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercises added this way appear under My Exercises from then on."
+          }
+        }
+      }
+    },
+    "목록에서 선택": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose from List"
+          }
+        }
+      }
+    },
     "목표": {
       "localizations": {
         "en": {
@@ -2077,6 +2501,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Goal %@"
+          }
+        }
+      }
+    },
+    "목표 %@kcal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal %@ kcal"
+          }
+        }
+      }
+    },
+    "목표 %@보": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal %@ steps"
           }
         }
       }
@@ -2163,12 +2607,12 @@
         }
       }
     },
-    "목표 체중을 눌러 바꿀 수 있어요. 감량 속도에 맞춰 하루 권장 섭취가 %@kcal로 잡혀 있어요.": {
+    "목표 체중을 눌러 바꿀 수 있어요. 감량 속도에 맞춰 하루 기본 목표가 %@kcal로 잡혀 있고, 활동 칼로리는 그날 따로 더해져요.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Tap Goal Weight to change it. Based on your weekly loss, your daily target is set to %@ kcal."
+            "value": "Tap Goal Weight to change it. Your base daily goal is %@ kcal for this weekly loss, and each day's activity is added on top."
           }
         }
       }
@@ -2513,6 +2957,16 @@
         }
       }
     },
+    "부위마다 주 10세트 이상이면 초록색이에요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Green means 10+ sets for that muscle this week."
+          }
+        }
+      }
+    },
     "부족": {
       "localizations": {
         "en": {
@@ -2579,6 +3033,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pink"
+          }
+        }
+      }
+    },
+    "불가리안 스플릿 스쿼트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bulgarian Split Squat"
           }
         }
       }
@@ -2789,6 +3253,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Set Counter"
+          }
+        }
+      }
+    },
+    "세트 카운터 기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "From Set Counter"
           }
         }
       }
@@ -3013,6 +3487,26 @@
         }
       }
     },
+    "식단 · 체중": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Food & Weight"
+          }
+        }
+      }
+    },
+    "식사 기록한 날": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days Logged"
+          }
+        }
+      }
+    },
     "식사 추가": {
       "localizations": {
         "en": {
@@ -3093,12 +3587,32 @@
         }
       }
     },
+    "심박수 없음 · 기본 강도로 칼로리를 계산해요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No heart rate · calories use a typical intensity"
+          }
+        }
+      }
+    },
     "심박수 연결과 칼로리 계산": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Heart rate and calorie estimates"
+          }
+        }
+      }
+    },
+    "아래 '운동 추가'로 루틴을 채워 보세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fill the routine with Add Exercise below."
           }
         }
       }
@@ -3253,6 +3767,16 @@
         }
       }
     },
+    "어제": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yesterday"
+          }
+        }
+      }
+    },
     "어제보다 한 걸음 더! 화이팅 🙌": {
       "localizations": {
         "en": {
@@ -3363,6 +3887,16 @@
         }
       }
     },
+    "오늘": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        }
+      }
+    },
     "오늘 %lld개 운동 · %lld세트 완료": {
       "localizations": {
         "en": {
@@ -3383,12 +3917,32 @@
         }
       }
     },
+    "오늘 리포트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today's Report"
+          }
+        }
+      }
+    },
     "오늘 먹은 양: %@kcal": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Eaten today: %@ kcal"
+          }
+        }
+      }
+    },
+    "오늘 먹을 수 있는 양": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You Can Eat Today"
           }
         }
       }
@@ -3403,12 +3957,32 @@
         }
       }
     },
+    "오늘 운동, 걸음, 칼로리를 한 번에 확인해 보세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See today's workouts, steps, and calories at a glance."
+          }
+        }
+      }
+    },
     "오늘 할 부위와 이번 주 목표 진행도를 보여줘요.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Shows today's body part and this week's goal progress."
+          }
+        }
+      }
+    },
+    "오늘 활동 칼로리 (건강 앱)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today's active energy (Health)"
           }
         }
       }
@@ -3509,6 +4083,16 @@
         }
       }
     },
+    "오버헤드 트라이셉 익스텐션": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Overhead Triceps Extension"
+          }
+        }
+      }
+    },
     "오버헤드 프레스": {
       "localizations": {
         "en": {
@@ -3559,12 +4143,32 @@
         }
       }
     },
+    "요일별 활동": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activity by Day"
+          }
+        }
+      }
+    },
     "운동": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Workout"
+          }
+        }
+      }
+    },
+    "운동 검색 또는 새 이름": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search or enter a new name"
           }
         }
       }
@@ -3605,6 +4209,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pick from your exercises"
+          }
+        }
+      }
+    },
+    "운동 선택": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose Exercise"
           }
         }
       }
@@ -3679,16 +4293,6 @@
         }
       }
     },
-    "운동 이름 (예: 벤치프레스)": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Exercise (e.g. Bench Press)"
-          }
-        }
-      }
-    },
     "운동 이름 관리": {
       "localizations": {
         "en": {
@@ -3729,6 +4333,16 @@
         }
       }
     },
+    "운동 추가": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Exercise"
+          }
+        }
+      }
+    },
     "운동 화면": {
       "localizations": {
         "en": {
@@ -3765,6 +4379,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Moves to the next day after each workout. Tap a name to rename it."
+          }
+        }
+      }
+    },
+    "운동을 시작하면 Apple Watch의 세트 카운터 앱이 함께 켜져 몇 초마다 심박수를 보내고, 휴식이 끝나면 손목을 톡 쳐서 알려줘요. 워치에서 운동을 따로 켤 필요는 없어요. AirPods Pro 3·Powerbeats Pro 2는 착용만 하면 돼요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "When you start a workout, Set Counter on your Apple Watch opens too, sends your heart rate every few seconds, and taps your wrist when rest is over. No need to start a Watch workout yourself. AirPods Pro 3 and Powerbeats Pro 2 just need to be worn."
           }
         }
       }
@@ -3879,6 +4503,22 @@
         }
       }
     },
+    "유산소 %lld/%lld분": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cardio %1$lld/%2$lld min"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "유산소 %1$lld/%2$lld분"
+          }
+        }
+      }
+    },
     "유지": {
       "localizations": {
         "en": {
@@ -3919,12 +4559,42 @@
         }
       }
     },
+    "이 날은 근력 운동 기록이 없어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No strength training on this day."
+          }
+        }
+      }
+    },
+    "이 날은 식사 기록이 없어요. 홈의 '식사 추가'로 기록하면 더 정확해져요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No meals logged on this day. Logging with Add Meal on Home makes this more accurate."
+          }
+        }
+      }
+    },
     "이 날은 운동 기록이 없어요": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "No workouts on this day"
+          }
+        }
+      }
+    },
+    "이 주에는 근력 운동 기록이 없어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No strength training this week."
           }
         }
       }
@@ -4095,6 +4765,16 @@
         }
       }
     },
+    "이번 주 유산소는 아직이에요. 아래 앱으로 러닝이나 걷기를 시작해 보세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No cardio yet this week. Start a run or walk with one of the apps below."
+          }
+        }
+      }
+    },
     "이번 주 첫 운동을 시작해보세요": {
       "localizations": {
         "en": {
@@ -4115,6 +4795,16 @@
         }
       }
     },
+    "이전": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previous"
+          }
+        }
+      }
+    },
     "이제 감량 속도를 '유지'로 바꾸면 유지 칼로리로 안내해 드려요.": {
       "localizations": {
         "en": {
@@ -4131,6 +4821,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Incline Dumbbell Press"
+          }
+        }
+      }
+    },
+    "인클라인 벤치프레스": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Incline Bench Press"
           }
         }
       }
@@ -4215,6 +4915,16 @@
         }
       }
     },
+    "전체": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All"
+          }
+        }
+      }
+    },
     "전체 %lld개 운동 보기": {
       "localizations": {
         "en": {
@@ -4291,16 +5001,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Good Evening"
-          }
-        }
-      }
-    },
-    "주": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Week"
           }
         }
       }
@@ -4617,6 +5317,16 @@
         }
       }
     },
+    "체스트 프레스 머신": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chest Press Machine"
+          }
+        }
+      }
+    },
     "체중": {
       "localizations": {
         "en": {
@@ -4657,12 +5367,12 @@
         }
       }
     },
-    "체중 변화": {
+    "초과한 칼로리": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Weight Change"
+            "value": "Calories Over"
           }
         }
       }
@@ -4733,6 +5443,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Best weight %@"
+          }
+        }
+      }
+    },
+    "최근": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Recent"
           }
         }
       }
@@ -4859,6 +5579,16 @@
         }
       }
     },
+    "추천 루틴으로 되돌리기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reset to Suggested Routine"
+          }
+        }
+      }
+    },
     "취소": {
       "localizations": {
         "en": {
@@ -4909,12 +5639,32 @@
         }
       }
     },
+    "칼로리 초과": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calories Over"
+          }
+        }
+      }
+    },
     "칼로리는 심박수가 있으면 심박수·몸무게·나이·성별로, 없으면 근력 운동 평균 강도로 추정해요. 건강 앱에 체중이 기록되면 최신 체중으로 자동으로 바뀌어요.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Calories are estimated from heart rate, weight, age, and sex when heart rate is available, otherwise from typical strength-training intensity. When Health has a newer weight, it's used automatically."
+          }
+        }
+      }
+    },
+    "케이블 컬": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cable Curl"
           }
         }
       }
@@ -4979,22 +5729,22 @@
         }
       }
     },
+    "클로즈그립 벤치프레스": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Close-Grip Bench Press"
+          }
+        }
+      }
+    },
     "키": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Height"
-          }
-        }
-      }
-    },
-    "키·체중·나이·성별로 기초대사량을 계산하고, 감량 속도만큼 덜 먹도록 잡아요(1kg ≈ 7,700kcal). 운동으로 쓴 칼로리는 그날 더 먹을 수 있는 양에 더해져요. 건강을 위해 남성 1,500kcal, 여성 1,200kcal 아래로는 잡지 않아요.": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Your resting burn is worked out from height, weight, age, and sex, minus a deficit for your weekly loss (1 kg ≈ 7,700 kcal). Calories burned exercising are added to what you can eat that day. For safety, the target never goes below 1,500 kcal for men or 1,200 kcal for women."
           }
         }
       }
@@ -5019,6 +5769,16 @@
         }
       }
     },
+    "티바 로우": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "T-Bar Row"
+          }
+        }
+      }
+    },
     "파랑": {
       "localizations": {
         "en": {
@@ -5035,6 +5795,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Arms"
+          }
+        }
+      }
+    },
+    "페이스 풀": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Face Pull"
+          }
+        }
+      }
+    },
+    "펙덱 플라이": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pec Deck Fly"
+          }
+        }
+      }
+    },
+    "편집": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit"
           }
         }
       }
@@ -5059,12 +5849,12 @@
         }
       }
     },
-    "평균 섭취": {
+    "평균 섭취는 식사를 기록한 날만 계산해요.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Avg. Intake"
+            "value": "The intake average only counts days you logged meals."
           }
         }
       }
@@ -5119,6 +5909,26 @@
         }
       }
     },
+    "프론트 레이즈": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Front Raise"
+          }
+        }
+      }
+    },
+    "프리처 컬": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preacher Curl"
+          }
+        }
+      }
+    },
     "피드백 보내기": {
       "localizations": {
         "en": {
@@ -5139,22 +5949,42 @@
         }
       }
     },
-    "하루 권장 섭취": {
+    "하루 기본 목표": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Daily Target"
+            "value": "Base Daily Goal"
           }
         }
       }
     },
-    "하루 권장 섭취는 %@kcal예요. 섭취 평균은 기록한 날만 계산해요.": {
+    "하루 리포트": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your daily target is %@ kcal. The intake average only counts days you logged."
+            "value": "Daily Report"
+          }
+        }
+      }
+    },
+    "하루 리포트 알림 (저녁 9시)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily Report Notification (9 p.m.)"
+          }
+        }
+      }
+    },
+    "하루 평균 섭취": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avg. Daily Intake"
           }
         }
       }
@@ -5225,6 +6055,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Hammer Curl"
+          }
+        }
+      }
+    },
+    "행잉 레그 레이즈": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hanging Leg Raise"
           }
         }
       }
@@ -5329,22 +6169,22 @@
         }
       }
     },
-    "활동 · 식단": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Activity & Food"
-          }
-        }
-      }
-    },
     "활동 칼로리": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Active Energy"
+          }
+        }
+      }
+    },
+    "활동 칼로리 (건강 앱)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active energy (Health)"
           }
         }
       }
@@ -5439,6 +6279,32 @@
         }
       }
     },
+    "힙 쓰러스트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hip Thrust"
+          }
+        }
+      }
+    },
+    "🍔 %@kcal 먹어서 %@kcal 넘었어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🍔 Ate %1$@ kcal, %2$@ kcal over."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "🍔 %1$@kcal 먹어서 %2$@kcal 넘었어요."
+          }
+        }
+      }
+    },
     "🍔 하루 평균 %@kcal, 목표보다 %@kcal 많아요.": {
       "localizations": {
         "en": {
@@ -5481,6 +6347,22 @@
         }
       }
     },
+    "🏆 %@ 신기록 %@!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🏆 New %1$@ record: %2$@!"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "🏆 %1$@ 신기록 %2$@!"
+          }
+        }
+      }
+    },
     "🏆 신기록 %lld개!": {
       "localizations": {
         "en": {
@@ -5499,6 +6381,58 @@
                 }
               }
             }
+          }
+        }
+      }
+    },
+    "👟 %@보, 걸음 목표를 채웠어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "👟 %@ steps. Step goal reached."
+          }
+        }
+      }
+    },
+    "👟 %@보, 목표까지 %@보 남았어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "👟 %1$@ steps, %2$@ to go."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "👟 %1$@보, 목표까지 %2$@보 남았어요."
+          }
+        }
+      }
+    },
+    "💪 %@ 운동 %lld개, %lld세트를 했어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "💪 %1$@: %2$lld exercises, %3$lld sets."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "💪 %1$@ 운동 %2$lld개, %3$lld세트를 했어요."
+          }
+        }
+      }
+    },
+    "💪 근력 운동 %lld세트를 했어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "💪 %lld sets of strength training."
           }
         }
       }
@@ -5529,6 +6463,16 @@
         }
       }
     },
+    "💪 근력 운동은 쉬었어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "💪 A rest day from strength training."
+          }
+        }
+      }
+    },
     "💪 오늘은 %@ 데이": {
       "localizations": {
         "en": {
@@ -5545,6 +6489,32 @@
           "stringUnit": {
             "state": "translated",
             "value": "📊 Your weekly report is ready"
+          }
+        }
+      }
+    },
+    "📝 오늘 하루 리포트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "📝 Your daily report"
+          }
+        }
+      }
+    },
+    "🥗 %@kcal 먹고 %@kcal 남겼어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "🥗 Ate %1$@ kcal with %2$@ kcal to spare."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "🥗 %1$@kcal 먹고 %2$@kcal 남겼어요."
           }
         }
       }

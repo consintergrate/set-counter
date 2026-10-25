@@ -67,6 +67,9 @@ struct RootView: View {
         .sheet(isPresented: $router.showingWeeklyReport) {
             WeeklyReportView()
         }
+        .sheet(isPresented: $router.showingDailyReport) {
+            DailyReportView()
+        }
         .fullScreenCover(isPresented: $showingOnboarding) {
             OnboardingView {
                 onboardingDone = true

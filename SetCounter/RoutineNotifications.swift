@@ -6,8 +6,10 @@ import UserNotifications
 @MainActor
 enum RoutineNotifications {
     private static let prefix = "routine-"
-    static let weeklyReportID = "weekly-report"
-    static let weeklyReportKey = "weeklyReportOn"
+    nonisolated static let weeklyReportID = "weekly-report"
+    nonisolated static let weeklyReportKey = "weeklyReportOn"
+    nonisolated static let dailyReportID = "daily-report"
+    nonisolated static let dailyReportKey = "dailyReportOn"
     private static let horizonDays = 21
     private static let maxScheduled = 14
 
@@ -49,9 +51,24 @@ enum RoutineNotifications {
         try? await center.add(UNNotificationRequest(identifier: weeklyReportID, content: content, trigger: trigger))
     }
 
+    /// 9 p.m. every day: a nudge to look back at the day. Off until turned on.
+    static func scheduleDailyReport() async {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [dailyReportID])
+        guard UserDefaults.standard.bool(forKey: dailyReportKey),
+              await center.notificationSettings().authorizationStatus == .authorized else { return }
+        let content = UNMutableNotificationContent()
+        content.title = String(localized: "📝 오늘 하루 리포트")
+        content.body = String(localized: "오늘 운동, 걸음, 칼로리를 한 번에 확인해 보세요.")
+        content.sound = .default
+        let trigger = UNCalendarNotificationTrigger(dateMatching: DateComponents(hour: 21, minute: 0), repeats: true)
+        try? await center.add(UNNotificationRequest(identifier: dailyReportID, content: content, trigger: trigger))
+    }
+
     /// `records` must be newest first.
     static func reschedule(records: [WorkoutRecord], now: Date = Date()) async {
         await scheduleWeeklyReport()
+        await scheduleDailyReport()
         let center = UNUserNotificationCenter.current()
         let old = await center.pendingNotificationRequests().map(\.identifier).filter { $0.hasPrefix(prefix) }
         center.removePendingNotificationRequests(withIdentifiers: old)

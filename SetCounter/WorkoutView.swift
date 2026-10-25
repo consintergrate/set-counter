@@ -114,16 +114,30 @@ struct WorkoutView: View {
     }
 
     private var metrics: some View {
-        HStack(spacing: 24) {
-            Label(session.heartRate.map { "\($0)" } ?? "--", systemImage: "heart.fill")
-                .foregroundStyle(isAlarming ? .white : .red)
-                .symbolEffect(.pulse, isActive: session.heartRate != nil)
-            Label("\(Int(session.calories).formatted()) kcal", systemImage: "flame.fill")
-                .foregroundStyle(isAlarming ? .white : .orange)
+        VStack(spacing: 4) {
+            HStack(spacing: 24) {
+                Label(session.heartRate.map { "\($0)" } ?? "--", systemImage: "heart.fill")
+                    .foregroundStyle(isAlarming ? .white : .red)
+                    .symbolEffect(.pulse, isActive: session.heartRate != nil)
+                Label("\(Int(session.calories).formatted()) kcal", systemImage: "flame.fill")
+                    .foregroundStyle(isAlarming ? .white : .orange)
+            }
+            .font(.title3.bold())
+            .monospacedDigit()
+            .contentTransition(.numericText())
+            // Where the heart rate comes from, so a missing Watch or strap is obvious.
+            Group {
+                if HealthWorkout.shared.isWatchConnected {
+                    Label("Apple Watch 연결됨", systemImage: "applewatch")
+                } else if session.heartRate != nil, let source = HeartRateMonitor.shared.source {
+                    Text(source)
+                } else {
+                    Text("심박수 없음 · 기본 강도로 칼로리를 계산해요")
+                }
+            }
+            .font(.caption)
+            .foregroundStyle(isAlarming ? Color.white.opacity(0.85) : Color.secondary)
         }
-        .font(.title3.bold())
-        .monospacedDigit()
-        .contentTransition(.numericText())
     }
 
     @ViewBuilder

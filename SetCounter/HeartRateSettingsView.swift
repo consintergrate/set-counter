@@ -3,6 +3,7 @@ import SwiftUI
 
 struct HeartRateSettingsView: View {
     @AppStorage("useHealthKit") private var useHealthKit = true
+    @AppStorage(HealthWorkout.useWatchKey) private var useWatch = true
 
     private let bluetooth = BluetoothHeartRate.shared
     private let monitor = HeartRateMonitor.shared
@@ -29,10 +30,13 @@ struct HeartRateSettingsView: View {
                     .onChange(of: useHealthKit) { _, isOn in
                         if isOn { Task { await HealthWorkout.shared.requestAuthorization() } }
                     }
+                if useHealthKit {
+                    Toggle("Apple Watch 앱으로 실시간 측정", isOn: $useWatch)
+                }
             } header: {
                 Text("Apple 기기")
             } footer: {
-                Text("AirPods Pro 3·Powerbeats Pro 2는 착용만 하면 돼요. Apple Watch는 워치에서 '근력 운동'을 같이 켜두면 심박수가 자주 들어와요. 마친 운동은 건강 앱에도 저장돼요.")
+                Text("운동을 시작하면 Apple Watch의 세트 카운터 앱이 함께 켜져 몇 초마다 심박수를 보내고, 휴식이 끝나면 손목을 톡 쳐서 알려줘요. 워치에서 운동을 따로 켤 필요는 없어요. AirPods Pro 3·Powerbeats Pro 2는 착용만 하면 돼요.")
             }
 
             Section {

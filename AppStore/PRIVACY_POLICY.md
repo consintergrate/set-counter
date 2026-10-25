@@ -20,8 +20,8 @@
 
 HealthKit 데이터는 광고, 마케팅, 데이터 판매에 사용하지 않으며, iCloud나 외부 서버에 저장하지 않습니다. 권한은 언제든지 iPhone 설정 → 건강 → 데이터 접근 및 기기에서 해제할 수 있습니다.
 
-## 3. 블루투스
-블루투스 심박 센서(가슴 스트랩 등)에서 심박수를 받기 위해서만 블루투스를 사용합니다. 받은 심박수는 기기 안에서만 처리됩니다.
+## 3. 블루투스와 Apple Watch
+블루투스 심박 센서(가슴 스트랩 등)에서 심박수를 받기 위해서만 블루투스를 사용합니다. Apple Watch 앱은 운동 중 심박수와 세트 진행 상황을 사용자의 iPhone과 직접 주고받으며, 워치에서 잰 근력 운동을 건강 앱에 저장합니다. 이 정보는 사용자의 기기 사이에서만 오가고 외부로 전송되지 않습니다.
 
 ## 4. 알림과 알람
 운동 알림과 휴식 종료 알람은 iPhone 안에서 예약·실행되며, 외부로 전송되는 정보는 없습니다.
@@ -54,7 +54,7 @@ Set Counter ("the app") does not collect personal information or send it to any 
 
 **Health (HealthKit).** Only if you allow it, the app reads heart rate, steps, active energy, exercise time, walking/running/cycling/swimming distance, body weight, dietary energy, and workouts saved by other apps (such as Nike Run Club or Fitness). It uses them only on the device to estimate workout calories and to show daily calories, activity goals, cardio history, coaching tips, and the weekly report. It writes finished strength workouts and calories, plus the body weight and meals you log, to the Health app. HealthKit data is never used for advertising or marketing, never sold, and never stored in iCloud or on any server. You can revoke access anytime in Settings → Health → Data Access & Devices.
 
-**Bluetooth** is used only to receive heart rate from a Bluetooth heart rate sensor; readings are processed on the device.
+**Bluetooth and Apple Watch.** Bluetooth is used only to receive heart rate from a Bluetooth heart rate sensor. The Apple Watch app exchanges workout heart rate and set progress directly with your iPhone and saves the strength workout it measures to the Health app. This stays between your own devices and is never sent anywhere else.
 
 **Notifications and alarms** are scheduled and delivered on the device.
 

@@ -195,6 +195,9 @@ final class WorkoutSession: Identifiable {
             calories += profile.caloriesPerMinute(heartRate: bpm) * now.timeIntervalSince(lastTick) / 60
         }
         lastTick = now
+        var restEnd: Date?
+        if case .resting(let end) = phase { restEnd = end }
+        HealthWorkout.shared.syncWatch(exercise: exercise, setsDone: completedSets, setsTotal: totalSets, restEnd: restEnd)
     }
 
     func scenePhaseChanged(_ scenePhase: ScenePhase) {

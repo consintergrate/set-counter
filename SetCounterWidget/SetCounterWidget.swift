@@ -145,6 +145,7 @@ struct RoutineWidget: Widget {
 struct SetCounterWidgetBundle: WidgetBundle {
     var body: some Widget {
         RoutineWidget()
+        DietWidget()
     }
 }
 

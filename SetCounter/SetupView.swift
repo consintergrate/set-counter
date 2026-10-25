@@ -18,6 +18,7 @@ struct SetupView: View {
     @AppStorage("routineOverrideIndex") private var overrideIndex = 0
 
     @Query(sort: \WorkoutRecord.date, order: .reverse) private var records: [WorkoutRecord]
+    @State private var showingPicker = false
 
     private let restPresets = [30, 60, 90, 120, 180]
 
@@ -39,12 +40,24 @@ struct SetupView: View {
         return ordered.map(\.exercise).filter { !$0.isEmpty && seen.insert($0).inserted }.prefix(6).map { $0 }
     }
 
-    /// Lift weight in the display unit, snapped to the unit's plate step; stored in kg.
+    /// Wheel steps: 0.5kg or 1lb, enough for dumbbells and small plates.
+    private var weightStep: Double { unit == .kg ? 0.5 : 1 }
+
+    private var weightValues: [Double] {
+        Array(stride(from: 0, through: unit == .kg ? 300 : 660, by: weightStep))
+    }
+
+    /// Lift weight in the display unit, snapped to the wheel's step; stored in kg.
     private var displayWeight: Binding<Double> {
         Binding(
-            get: { (unit.fromKg(weight) / unit.step).rounded() * unit.step },
+            get: { min((unit.fromKg(weight) / weightStep).rounded() * weightStep, weightValues.last ?? 0) },
             set: { weight = unit.toKg($0) }
         )
+    }
+
+    /// Snapped to the wheel's 10-second steps.
+    private var restBinding: Binding<Int> {
+        Binding(get: { min(max((restSeconds + 5) / 10 * 10, 10), 600) }, set: { restSeconds = $0 })
     }
 
     var body: some View {
@@ -57,7 +70,19 @@ struct SetupView: View {
                 }
 
                 Section("운동") {
-                    TextField("운동 이름 (예: 벤치프레스)", text: $exercise)
+                    Button {
+                        showingPicker = true
+                    } label: {
+                        LabeledContent("운동") {
+                            HStack(spacing: 4) {
+                                Text(exercise.isEmpty ? String(localized: "목록에서 선택") : exercise)
+                                    .bold()
+                                    .foregroundStyle(.tint)
+                                Image(systemName: "chevron.right").font(.caption.bold()).foregroundStyle(.tertiary)
+                            }
+                        }
+                    }
+                    .foregroundStyle(.primary)
                     if !recentExercises.isEmpty {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
@@ -70,31 +95,26 @@ struct SetupView: View {
                             }
                         }
                     }
-                    Stepper(value: displayWeight, in: 0...unit.fromKg(500), step: unit.step) {
-                        LabeledContent("무게") {
-                            Text(formatWeight(weight, unit: unit)).monospacedDigit().bold()
-                        }
+                    WheelPickerRow(title: "무게", values: weightValues, selection: displayWeight) {
+                        formatWeight(unit.toKg($0), unit: unit)
                     }
-                    Stepper(value: $reps, in: 1...100) {
-                        LabeledContent("반복") {
-                            Text("\(reps)회").monospacedDigit().bold()
-                        }
+                    WheelPickerRow(title: "반복", values: Array(1...100), selection: $reps) {
+                        String(localized: "\($0)회")
                     }
+                }
+                .sheet(isPresented: $showingPicker) {
+                    ExercisePickerView(preferred: Coach.muscles(in: todayName)) { pick($0) }
                 }
 
                 Section("세트") {
-                    Stepper(value: $totalSets, in: 1...30) {
-                        LabeledContent("세트 수") {
-                            Text("\(totalSets)세트").monospacedDigit().bold()
-                        }
+                    WheelPickerRow(title: "세트 수", values: Array(1...30), selection: $totalSets) {
+                        String(localized: "\($0)세트")
                     }
                 }
 
                 Section("쉬는 시간") {
-                    Stepper(value: $restSeconds, in: 10...600, step: 10) {
-                        LabeledContent("쉬는 시간") {
-                            Text(formatDuration(restSeconds)).monospacedDigit().bold()
-                        }
+                    WheelPickerRow(title: "쉬는 시간", values: Array(stride(from: 10, through: 600, by: 10)), selection: restBinding) {
+                        formatDuration($0)
                     }
                     HStack(spacing: 6) {
                         ForEach(restPresets, id: \.self) { seconds in
@@ -146,13 +166,18 @@ struct SetupView: View {
         }
     }
 
-    /// Picking a recent exercise also restores the weight and reps used last time.
+    /// Picking an exercise restores the weight and reps used last time, or a light
+    /// starting weight for a listed exercise never done before.
     private func pick(_ name: String) {
         exercise = name
-        guard let last = records.first(where: { $0.exercise == name }) else { return }
-        weight = last.weight
-        reps = last.reps
-        totalSets = last.sets
+        if let last = records.first(where: { $0.exercise == name }) {
+            weight = last.weight
+            reps = last.reps
+            totalSets = last.sets
+        } else if let listed = ExerciseLibrary.find(name) {
+            weight = listed.startWeight
+            reps = 10
+        }
     }
 }
 

@@ -1,0 +1,122 @@
+{
+  "sourceLanguage": "ko",
+  "strings": {
+    "%lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
+          }
+        }
+      }
+    },
+    "%lld / %lld 세트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set %1$lld / %2$lld"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld / %2$lld 세트"
+          }
+        }
+      }
+    },
+    "--": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "--"
+          }
+        }
+      }
+    },
+    "bpm": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "bpm"
+          }
+        }
+      }
+    },
+    "iPhone에서 운동을 시작하면 여기서 심박수를 재서 보내고, 휴식이 끝나면 손목을 톡 쳐서 알려줘요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start a workout on your iPhone and this Watch measures your heart rate and taps your wrist when rest is over."
+          }
+        }
+      }
+    },
+    "iPhone의 세트 카운트는 그대로 이어져요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set counting on your iPhone keeps going."
+          }
+        }
+      }
+    },
+    "끝내기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End"
+          }
+        }
+      }
+    },
+    "세트 카운터": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Counter"
+          }
+        }
+      }
+    },
+    "워치 측정을 끝낼까요?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop measuring on the Watch?"
+          }
+        }
+      }
+    },
+    "측정 끝내기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stop Measuring"
+          }
+        }
+      }
+    },
+    "휴식 %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest %@"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

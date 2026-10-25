@@ -142,8 +142,9 @@ enum Muscle: String, CaseIterable, Identifiable, Codable {
         return table.first { _, keywords in keywords.contains { text.contains($0) } }?.0 ?? .other
     }
 
+    /// The user's own assignment wins, then the built-in exercise list, then the keyword guess.
     static func lookup(_ name: String, in profiles: [ExerciseProfile]) -> Muscle {
-        profiles.first { $0.name == name }?.muscle ?? guess(for: name)
+        profiles.first { $0.name == name }?.muscle ?? ExerciseLibrary.find(name)?.muscle ?? guess(for: name)
     }
 }
 

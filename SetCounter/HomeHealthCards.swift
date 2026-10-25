@@ -58,14 +58,12 @@ struct HealthConnectCard: View {
 /// The assistant's few lines for today.
 struct CoachCard: View {
     let tips: [CoachTip]
-    let onReport: () -> Void
+    let onDailyReport: () -> Void
+    let onWeeklyReport: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 14) {
-            CardHeader(title: "오늘의 코치", systemImage: "sparkles") {
-                Button("주간 리포트", action: onReport)
-                    .font(.subheadline)
-            }
+            CardHeader(title: "오늘의 코치", systemImage: "sparkles")
             ForEach(tips) { tip in
                 HStack(alignment: .top, spacing: 12) {
                     Image(systemName: tip.icon)
@@ -83,8 +81,24 @@ struct CoachCard: View {
                 }
                 .accessibilityElement(children: .combine)
             }
+            HStack(spacing: 8) {
+                reportButton("오늘 리포트", systemImage: "doc.text.fill", action: onDailyReport)
+                reportButton("주간 리포트", systemImage: "chart.bar.doc.horizontal.fill", action: onWeeklyReport)
+            }
         }
         .homeCard()
+    }
+
+    private func reportButton(_ title: LocalizedStringKey, systemImage: String, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Label(title, systemImage: systemImage)
+                .font(.subheadline.weight(.semibold))
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .background(Color(.tertiarySystemGroupedBackground), in: Capsule())
+        }
+        .buttonStyle(.plain)
+        .foregroundStyle(.tint)
     }
 }
 
@@ -92,12 +106,24 @@ struct CoachCard: View {
 struct RecommendedRoutineCard: View {
     let part: String
     let suggestions: [RoutineSuggestion]
+    /// The user arranged this part's exercises in the editor.
+    let isCustom: Bool
     let onSelect: (RoutineSuggestion) -> Void
+    let onEdit: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
-            CardHeader(title: "\(part) 추천 루틴", systemImage: "list.bullet.clipboard")
-                .padding(.bottom, 6)
+            CardHeader(title: isCustom ? "\(part) 내 루틴" : "\(part) 추천 루틴", systemImage: "list.bullet.clipboard") {
+                Button("편집", systemImage: "pencil", action: onEdit)
+                    .font(.subheadline.weight(.semibold))
+            }
+            .padding(.bottom, 6)
+            if suggestions.isEmpty {
+                Text("'편집'을 눌러 이 날 할 운동을 골라 보세요.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .padding(.vertical, 8)
+            }
             ForEach(suggestions) { item in
                 Button {
                     onSelect(item)
@@ -129,7 +155,9 @@ struct RecommendedRoutineCard: View {
                 }
                 .buttonStyle(.plain)
             }
-            Text("지난 기록에서 12회를 채운 운동은 무게를, 8회 이상이면 횟수를 하나씩 올려 잡았어요.")
+            Text(isCustom
+                 ? "내가 고른 운동이에요. 무게와 횟수는 지난 기록에 맞춰 올려 잡았어요."
+                 : "지난 기록에서 12회를 채운 운동은 무게를, 8회 이상이면 횟수를 하나씩 올려 잡았어요.")
                 .font(.caption)
                 .foregroundStyle(.secondary)
                 .padding(.top, 4)
@@ -163,11 +191,12 @@ struct ActivityRingsCard: View {
     }
 
     var body: some View {
-        let rings = rings
+        // Without an Apple Watch the exercise ring would sit at zero forever.
+        let rings = rings.filter { $0.id != 1 || health.hasExerciseMinutes }
         HStack(spacing: 20) {
             ZStack {
-                ForEach(rings) { ring in
-                    let size = 108 - CGFloat(ring.id) * 30
+                ForEach(Array(rings.enumerated()), id: \.element.id) { index, ring in
+                    let size = 108 - CGFloat(index) * 30
                     Circle()
                         .stroke(ring.color.opacity(0.18), lineWidth: 12)
                         .frame(width: size, height: size)
@@ -203,8 +232,11 @@ struct CalorieCard: View {
     let profile: BodyProfile
     let onAddFood: () -> Void
 
+    @State private var showingMath = false
+
     var body: some View {
         let budget = CalorieBudget(goals: goals, profile: profile, health: health)
+        let breakdown = goals.intakeBreakdown(profile: profile)
         let allowance = budget.target + budget.exercise
         VStack(alignment: .leading, spacing: 14) {
             CardHeader(title: "오늘의 칼로리", systemImage: "flame.fill") {
@@ -230,7 +262,46 @@ struct CalorieCard: View {
                 Text("−").foregroundStyle(.secondary)
                 term("음식", budget.eaten)
                 Text("+").foregroundStyle(.secondary)
-                term("운동", budget.exercise)
+                term("활동", budget.exercise)
+            }
+
+            // BMR, and on tap how it turns into the daily target.
+            Button {
+                withAnimation(.snappy) { showingMath.toggle() }
+            } label: {
+                HStack {
+                    Text("기초대사량 (BMR)").font(.subheadline)
+                    Spacer()
+                    Text("\(Int(breakdown.bmr).formatted())kcal").font(.subheadline.bold()).monospacedDigit()
+                    Image(systemName: showingMath ? "chevron.up" : "chevron.down")
+                        .font(.caption.bold())
+                        .foregroundStyle(.tertiary)
+                }
+                .contentShape(Rectangle())
+            }
+            .buttonStyle(.plain)
+
+            if showingMath {
+                VStack(spacing: 6) {
+                    mathRow("기초대사량", breakdown.bmr, sign: "")
+                    if breakdown.deficit > 0 {
+                        mathRow("감량 (\(goals.weeklyLoss.formatted())kg/주)", breakdown.deficit, sign: "−")
+                    }
+                    if breakdown.floorApplied {
+                        mathRow("건강 하한까지 올림", breakdown.floor - breakdown.unclamped, sign: "+")
+                    }
+                    Divider()
+                    mathRow("기본 목표", breakdown.target, sign: "=", bold: true)
+                    mathRow("오늘 활동 칼로리 (건강 앱)", budget.exercise, sign: "+")
+                    mathRow("오늘 먹을 수 있는 양", breakdown.target + budget.exercise, sign: "=", bold: true)
+                    Text("기초대사량은 키·체중·나이·성별로 계산한 Mifflin-St Jeor 공식이에요. 걷기와 운동으로 쓴 칼로리는 건강 앱에 기록된 만큼 그날 더해져요.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .padding(12)
+                .background(Color(.tertiarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12))
+                .transition(.opacity.combined(with: .move(edge: .top)))
             }
 
             NavigationLink {
@@ -264,6 +335,16 @@ struct CalorieCard: View {
             .buttonStyle(.plain)
         }
         .homeCard()
+    }
+
+    private func mathRow(_ title: LocalizedStringKey, _ value: Double, sign: String, bold: Bool = false) -> some View {
+        HStack {
+            Text(title).font(.caption).foregroundStyle(bold ? .primary : .secondary)
+            Spacer()
+            Text("\(sign)\(Int(value.rounded()).formatted())")
+                .font(bold ? .subheadline.bold() : .caption)
+                .monospacedDigit()
+        }
     }
 
     private func term(_ title: LocalizedStringKey, _ value: Double) -> some View {
@@ -326,10 +407,16 @@ struct CardioCard: View {
             }
             ProgressView(value: Double(min(minutes, goal)), total: Double(goal))
                 .tint(minutes >= goal ? .green : .teal)
-            HStack(spacing: 0) {
-                MiniStat(title: "횟수", value: String(localized: "cardio.sessions", defaultValue: "\(week.count)회"))
-                MiniStat(title: "거리", value: formatDistance(distance))
-                MiniStat(title: "칼로리", value: "\(Int(week.reduce(0) { $0 + $1.energy }).formatted())kcal")
+            if week.isEmpty {
+                Text("이번 주 유산소는 아직이에요. 아래 앱으로 러닝이나 걷기를 시작해 보세요.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+            } else {
+                HStack(spacing: 0) {
+                    MiniStat(title: "횟수", value: String(localized: "cardio.sessions", defaultValue: "\(week.count)회"))
+                    MiniStat(title: "거리", value: formatDistance(distance))
+                    MiniStat(title: "칼로리", value: "\(Int(week.reduce(0) { $0 + $1.energy }).formatted())kcal")
+                }
             }
 
             if let last = health.cardio.first(where: \.isCardio) {

@@ -95,6 +95,7 @@ final class HealthData {
     private(set) var dailySteps: [Date: Double] = [:]
     private(set) var dailyActive: [Date: Double] = [:]
     private(set) var dailyEaten: [Date: Double] = [:]
+    private(set) var dailyExercise: [Date: Double] = [:]
     private(set) var needsAuthorization = false
     private(set) var lastRefresh: Date?
 
@@ -102,6 +103,8 @@ final class HealthData {
     @ObservationIgnored private var refreshing = false
 
     var isAvailable: Bool { HKHealthStore.isHealthDataAvailable() }
+    /// Exercise minutes come from Apple Watch; without one they stay at zero.
+    var hasExerciseMinutes: Bool { dailyExercise.values.contains { $0 > 0 } }
     var latestWeight: WeightEntry? { weights.last }
 
     private static let readTypes: Set<HKObjectType> = [
@@ -163,7 +166,7 @@ final class HealthData {
         async let steps = dailySums(.stepCount, unit: .count(), since: fourWeeksAgo, anchor: today)
         async let active = dailySums(.activeEnergyBurned, unit: .kilocalorie(), since: fourWeeksAgo, anchor: today)
         async let eaten = dailySums(.dietaryEnergyConsumed, unit: .kilocalorie(), since: fourWeeksAgo, anchor: today)
-        async let exercise = dailySums(.appleExerciseTime, unit: .minute(), since: today, anchor: today)
+        async let exercise = dailySums(.appleExerciseTime, unit: .minute(), since: fourWeeksAgo, anchor: today)
 
         self.cardio = await cardio
         self.weights = await weights
@@ -173,13 +176,15 @@ final class HealthData {
         todaySteps = dailySteps[today] ?? 0
         todayActive = dailyActive[today] ?? 0
         todayEaten = dailyEaten[today] ?? 0
-        todayExerciseMinutes = (await exercise)[today] ?? 0
+        dailyExercise = await exercise
+        todayExerciseMinutes = dailyExercise[today] ?? 0
         lastRefresh = now
 
         // Keep the calorie estimates on the latest measured weight.
         if let latest = self.weights.last {
             UserDefaults.standard.set(latest.kg, forKey: "bodyWeight")
         }
+        DietSnapshot.write(health: self, now: now)
     }
 
     func saveWeight(_ kg: Double, at date: Date = Date()) async throws {
@@ -222,14 +227,15 @@ final class HealthData {
             limit: 1000
         )
         guard let workouts = try? await descriptor.result(for: store) else { return [] }
-        let ownBundle = Bundle.main.bundleIdentifier
+        // The iPhone app and its Watch app ("….watchkitapp") share this prefix.
+        let ownBundle = Bundle.main.bundleIdentifier ?? "com.andykim.SetCounter"
         let distanceTypes: [HKQuantityType] = [
             HKQuantityType(.distanceWalkingRunning), HKQuantityType(.distanceCycling), HKQuantityType(.distanceSwimming),
         ]
         let bpm = HKUnit.count().unitDivided(by: .minute())
         return workouts
             // Our own strength workouts are already in the app's records.
-            .filter { !($0.sourceRevision.source.bundleIdentifier == ownBundle && $0.workoutActivityType == .traditionalStrengthTraining) }
+            .filter { !($0.sourceRevision.source.bundleIdentifier.hasPrefix(ownBundle) && $0.workoutActivityType == .traditionalStrengthTraining) }
             .map { workout in
                 let distance = distanceTypes.lazy
                     .compactMap { workout.statistics(for: $0)?.sumQuantity()?.doubleValue(for: .meter()) }

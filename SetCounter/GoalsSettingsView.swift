@@ -19,13 +19,13 @@ struct GoalsSettingsView: View {
             Section {
                 GoalWeightRow()
                 WeeklyLossPicker()
-                LabeledContent("하루 권장 섭취") {
+                LabeledContent("하루 기본 목표") {
                     Text("\(Int(target).formatted()) kcal").bold().monospacedDigit()
                 }
             } header: {
                 Text("체중")
             } footer: {
-                Text("키·체중·나이·성별로 기초대사량을 계산하고, 감량 속도만큼 덜 먹도록 잡아요(1kg ≈ 7,700kcal). 운동으로 쓴 칼로리는 그날 더 먹을 수 있는 양에 더해져요. 건강을 위해 남성 1,500kcal, 여성 1,200kcal 아래로는 잡지 않아요.")
+                Text("기초대사량(키·체중·나이·성별)에서 감량 속도만큼 빼서 잡아요(1kg ≈ 7,700kcal). 걷기와 운동으로 쓴 칼로리는 건강 앱에 기록된 만큼 그날 더 먹을 수 있는 양에 더해져요. 건강을 위해 남성 1,500kcal, 여성 1,200kcal 아래로는 잡지 않아요.")
             }
 
             Section("하루 활동 목표") {
@@ -59,6 +59,7 @@ struct GoalsSettingsView: View {
             }
         }
         .navigationTitle("다이어트 · 활동 목표")
+        .onDisappear { DietSnapshot.write() }
     }
 }
 

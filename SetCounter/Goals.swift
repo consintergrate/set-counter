@@ -40,23 +40,46 @@ struct Goals: Equatable {
         10 * weight + 6.25 * heightCm - 5 * Double(age) + (isMale ? 5 : -161)
     }
 
-    /// Daily intake target: lightly active maintenance (BMR × 1.2) minus the deficit
-    /// for the planned weekly loss (7,700 kcal per kg), never below a safe floor.
+    /// Base daily intake: resting burn (BMR) minus the deficit for the planned weekly
+    /// loss (7,700 kcal per kg), never below a safe floor. The day's actual activity
+    /// from Health is added on top (see `CalorieBudget`), so everyday movement is
+    /// counted once, as measured, instead of also being assumed as a multiplier.
     func intakeTarget(profile: BodyProfile) -> Double {
-        let maintenance = Goals.basalMetabolicRate(weight: profile.weight, heightCm: heightCm, age: profile.age, isMale: profile.isMale) * 1.2
-        let deficit = weeklyLoss * 7700 / 7
-        let floor: Double = profile.isMale ? 1500 : 1200
-        return max(maintenance - deficit, floor)
+        intakeBreakdown(profile: profile).target
+    }
+
+    func intakeBreakdown(profile: BodyProfile) -> IntakeBreakdown {
+        let bmr = Goals.basalMetabolicRate(weight: profile.weight, heightCm: heightCm, age: profile.age, isMale: profile.isMale)
+        return IntakeBreakdown(bmr: bmr, deficit: weeklyLoss * 7700 / 7, floor: profile.isMale ? 1500 : 1200)
     }
 }
 
-/// Today's calories in the familiar diet-app form: goal − food + exercise = remaining.
+/// The steps behind the base daily target, for showing the math.
+struct IntakeBreakdown {
+    /// Resting burn (Mifflin–St Jeor).
+    let bmr: Double
+    let deficit: Double
+    let floor: Double
+
+    var unclamped: Double { bmr - deficit }
+    var target: Double { max(unclamped, floor) }
+    var floorApplied: Bool { unclamped < floor }
+}
+
+/// Today's calories in the familiar diet-app form: goal − food + activity = remaining.
 struct CalorieBudget {
     let target: Double
     let eaten: Double
+    /// Active energy Health recorded today (workouts and everyday movement).
     let exercise: Double
 
     var remaining: Double { target - eaten + exercise }
+
+    init(target: Double, eaten: Double, exercise: Double) {
+        self.target = target
+        self.eaten = eaten
+        self.exercise = exercise
+    }
 
     @MainActor
     init(goals: Goals = .saved, profile: BodyProfile = .saved, health: HealthData) {

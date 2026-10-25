@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C1000000000000000000000A /* SetCounterWatch.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C10000000000000000000001 /* SetCounterWatch.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		B1000000000000000000000C /* SetCounterWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = B10000000000000000000001 /* SetCounterWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
@@ -17,6 +18,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = B10000000000000000000004;
 			remoteInfo = SetCounterWidgetExtension;
+		};
+		C1000000000000000000000C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A10000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C10000000000000000000003;
+			remoteInfo = SetCounterWatch;
+		};
+		D1000000000000000000000B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A10000000000000000000001 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A10000000000000000000006;
+			remoteInfo = SetCounter;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -32,6 +47,17 @@
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C1000000000000000000000B /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				C1000000000000000000000A /* SetCounterWatch.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +65,9 @@
 		A10000000000000000000010 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B10000000000000000000001 /* SetCounterWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SetCounterWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1000000000000000000000F /* Widget-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Widget-Info.plist"; sourceTree = "<group>"; };
+		C10000000000000000000001 /* SetCounterWatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SetCounterWatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1000000000000000000000E /* Watch-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Watch-Info.plist"; sourceTree = "<group>"; };
+		D10000000000000000000001 /* SetCounterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SetCounterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -55,6 +84,16 @@
 		B10000000000000000000003 /* Shared */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		C10000000000000000000002 /* SetCounterWatch */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SetCounterWatch;
+			sourceTree = "<group>";
+		};
+		D10000000000000000000002 /* SetCounterTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SetCounterTests;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -74,6 +113,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C10000000000000000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D10000000000000000000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -83,6 +136,8 @@
 				A10000000000000000000005 /* SetCounter */,
 				B10000000000000000000002 /* SetCounterWidget */,
 				B10000000000000000000003 /* Shared */,
+				C10000000000000000000002 /* SetCounterWatch */,
+				D10000000000000000000002 /* SetCounterTests */,
 				A10000000000000000000011 /* Config */,
 				A10000000000000000000003 /* Products */,
 			);
@@ -93,6 +148,8 @@
 			children = (
 				A10000000000000000000004 /* SetCounter.app */,
 				B10000000000000000000001 /* SetCounterWidgetExtension.appex */,
+				C10000000000000000000001 /* SetCounterWatch.app */,
+				D10000000000000000000001 /* SetCounterTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,6 +159,7 @@
 			children = (
 				A10000000000000000000010 /* Info.plist */,
 				B1000000000000000000000F /* Widget-Info.plist */,
+				C1000000000000000000000E /* Watch-Info.plist */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -117,11 +175,13 @@
 				A10000000000000000000008 /* Frameworks */,
 				A10000000000000000000009 /* Resources */,
 				B1000000000000000000000B /* Embed Foundation Extensions */,
+				C1000000000000000000000B /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 				B1000000000000000000000E /* PBXTargetDependency */,
+				C1000000000000000000000D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
 				A10000000000000000000005 /* SetCounter */,
@@ -157,6 +217,51 @@
 			productReference = B10000000000000000000001 /* SetCounterWidgetExtension.appex */;
 			productType = "com.apple.product-type.app-extension";
 		};
+		C10000000000000000000003 /* SetCounterWatch */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C10000000000000000000007 /* Build configuration list for PBXNativeTarget "SetCounterWatch" */;
+			buildPhases = (
+				C10000000000000000000004 /* Sources */,
+				C10000000000000000000005 /* Frameworks */,
+				C10000000000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C10000000000000000000002 /* SetCounterWatch */,
+			);
+			name = SetCounterWatch;
+			packageProductDependencies = (
+			);
+			productName = SetCounterWatch;
+			productReference = C10000000000000000000001 /* SetCounterWatch.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D10000000000000000000003 /* SetCounterTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D10000000000000000000007 /* Build configuration list for PBXNativeTarget "SetCounterTests" */;
+			buildPhases = (
+				D10000000000000000000004 /* Sources */,
+				D10000000000000000000005 /* Frameworks */,
+				D10000000000000000000006 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D1000000000000000000000C /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				D10000000000000000000002 /* SetCounterTests */,
+			);
+			name = SetCounterTests;
+			packageProductDependencies = (
+			);
+			productName = SetCounterTests;
+			productReference = D10000000000000000000001 /* SetCounterTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -172,6 +277,13 @@
 					};
 					B10000000000000000000004 = {
 						CreatedOnToolsVersion = 27.1;
+					};
+					C10000000000000000000003 = {
+						CreatedOnToolsVersion = 27.1;
+					};
+					D10000000000000000000003 = {
+						CreatedOnToolsVersion = 27.1;
+						TestTargetID = A10000000000000000000006;
 					};
 				};
 			};
@@ -192,6 +304,8 @@
 			targets = (
 				A10000000000000000000006 /* SetCounter */,
 				B10000000000000000000004 /* SetCounterWidgetExtension */,
+				C10000000000000000000003 /* SetCounterWatch */,
+				D10000000000000000000003 /* SetCounterTests */,
 			);
 		};
 /* End PBXProject section */
@@ -205,6 +319,20 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		B10000000000000000000007 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C10000000000000000000006 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D10000000000000000000006 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -228,6 +356,20 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C10000000000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D10000000000000000000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -235,6 +377,16 @@
 			isa = PBXTargetDependency;
 			target = B10000000000000000000004 /* SetCounterWidgetExtension */;
 			targetProxy = B1000000000000000000000D /* PBXContainerItemProxy */;
+		};
+		C1000000000000000000000D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C10000000000000000000003 /* SetCounterWatch */;
+			targetProxy = C1000000000000000000000C /* PBXContainerItemProxy */;
+		};
+		D1000000000000000000000C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A10000000000000000000006 /* SetCounter */;
+			targetProxy = D1000000000000000000000B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -391,6 +543,100 @@
 			};
 			name = Release;
 		};
+		C10000000000000000000008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/SetCounterWatch.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XXUXAKH87X;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/Watch-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "세트 카운터";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.andykim.SetCounter;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andykim.SetCounter.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Debug;
+		};
+		C10000000000000000000009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Config/SetCounterWatch.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XXUXAKH87X;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "Config/Watch-Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "세트 카운터";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = com.andykim.SetCounter;
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = NO;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andykim.SetCounter.watchkitapp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
+			};
+			name = Release;
+		};
+		D10000000000000000000008 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XXUXAKH87X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andykim.SetCounterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SetCounter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SetCounter";
+			};
+			name = Debug;
+		};
+		D10000000000000000000009 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = XXUXAKH87X;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.andykim.SetCounterTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SetCounter.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SetCounter";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -417,6 +663,24 @@
 			buildConfigurations = (
 				B10000000000000000000009 /* Debug */,
 				B1000000000000000000000A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C10000000000000000000007 /* Build configuration list for PBXNativeTarget "SetCounterWatch" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C10000000000000000000008 /* Debug */,
+				C10000000000000000000009 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D10000000000000000000007 /* Build configuration list for PBXNativeTarget "SetCounterTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D10000000000000000000008 /* Debug */,
+				D10000000000000000000009 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

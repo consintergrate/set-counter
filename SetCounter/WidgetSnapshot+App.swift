@@ -26,3 +26,24 @@ extension WidgetSnapshot {
         WidgetCenter.shared.reloadAllTimelines()
     }
 }
+
+extension DietSnapshot {
+    /// Saves today's calories and this week's cardio for the diet widget.
+    @MainActor
+    static func write(health: HealthData? = nil, now: Date = Date()) {
+        let health = health ?? .shared
+        guard health.lastRefresh != nil, !health.needsAuthorization else { return }
+        let goals = Goals.saved
+        DietSnapshot(
+            date: now,
+            target: goals.intakeTarget(profile: .saved),
+            eaten: health.todayEaten,
+            active: health.todayActive,
+            weekStart: Calendar.current.dateInterval(of: .weekOfYear, for: now)?.start ?? now,
+            cardioMinutes: Int(health.cardioMinutes(inWeekOf: now)),
+            cardioGoal: goals.cardioWeeklyMinutes,
+            accent: UserDefaults.standard.string(forKey: "accent") ?? "blue"
+        ).save()
+        WidgetCenter.shared.reloadTimelines(ofKind: "DietWidget")
+    }
+}

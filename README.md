@@ -6,7 +6,7 @@
 
 <p align="center">
   세트를 마칠 때 한 번 누르면 카운트가 오르고 휴식 타이머가 시작되는 iPhone 운동 앱<br>
-  SwiftUI · SwiftData · HealthKit · Core Bluetooth · AlarmKit · WidgetKit
+  SwiftUI · SwiftData · HealthKit · watchOS · Core Bluetooth · AlarmKit · WidgetKit · Swift Testing
 </p>
 
 <p align="center">
@@ -25,11 +25,13 @@
 - **분할 루틴**: 1~6분할, 운동을 마칠 때마다 다음 부위로 자동 순환, 운동하는 날 아침 알림
 - **기록과 통계**: 월간 캘린더, 주간·월간 운동일/볼륨, 부위별 세트, 운동별 무게 변화와 추정 1RM
 - **심박수와 칼로리**: Apple Watch · AirPods Pro 3 · 블루투스 심박 스트랩 연결, 심박 기반 칼로리 추정
+- **Apple Watch 앱**: 운동을 시작하면 워치 앱이 함께 켜져 몇 초마다 심박수를 보내고, 세트 수와 휴식 시간을 보여주며, 휴식이 끝나면 손목을 톡 침
+- **운동 목록과 내 루틴**: 부위별 기본 운동 47개와 내 운동을 검색해 고르고, 추천 루틴을 직접 편집(추가·삭제·순서·세트 수)
 - **오늘의 코치**: 휴식일, 칼로리 초과, 유산소 진도, 부위 불균형, 체중 추세를 보고 하루 3줄 안내. 지난 기록으로 다음 무게·횟수를 잡아주는 추천 루틴
-- **다이어트**: 기초대사량 기반 하루 권장 섭취, 목표 − 음식 + 운동 = 남은 칼로리, 식사 빠른 추가, 체중 추세와 목표선, 활동 링(활동 칼로리·운동 시간·걸음)
+- **다이어트**: 기초대사량(BMR) − 감량분 = 기본 목표, 기본 목표 − 음식 + 활동 칼로리 = 남은 칼로리, 계산 과정 펼쳐보기, 식사 빠른 추가, 체중 추세와 목표선, 활동 링
 - **다른 러닝 앱 연동**: 나이키 런 클럽 · 피트니스 · 스트라바가 건강 앱에 저장한 러닝·걷기·사이클을 주간 유산소 목표와 캘린더에 합산, 앱 바로 열기
-- **주간 리포트**: 근력·유산소·식단·체중을 지난주와 비교, 한 주의 마지막 날 저녁 알림
-- **위젯**: 홈 화면(소·중), 잠금 화면(직사각형·원형)
+- **하루·주간 리포트**: 하루 리포트(운동·활동·칼로리·신기록, 4주 전까지)와 주간 리포트(지난주 대비 증감, 요일별 활동, 부위별 세트), 저녁 9시·주말 저녁 알림
+- **위젯**: 오늘의 루틴, 오늘의 칼로리(남은 칼로리·주간 유산소) — 홈 화면(소·중), 잠금 화면(직사각형·원형)
 - **그 밖에**: 한국어/English, 라이트·다크 테마와 강조 색, kg/lb, CSV 내보내기
 
 ## 구현하면서 해결한 문제
@@ -46,13 +48,17 @@
 | App Group 추가 후 기존 기록이 사라짐 | SwiftData 기본 저장 위치가 그룹 컨테이너로 바뀌는 문제를 `groupContainer: .none`으로 고정 ([SetCounterApp.swift](SetCounter/SetCounterApp.swift)) |
 | "1세트"와 "5세트"의 영어 번역이 다름 ("Set 1" / "5 sets") | String Catalog에 별도 키와 복수형(plural) 변형 사용 |
 | 다른 앱의 러닝을 가져오되 내 근력 운동은 중복 없이 | HealthKit 운동 중 이 앱이 저장한 근력 운동만 제외하고, 걸음·활동·섭취는 `HKStatisticsCollectionQueryDescriptor`로 일별 합계 ([HealthData.swift](SetCounter/HealthData.swift)) |
+| Apple Watch 심박수가 건강 앱 동기화를 거쳐 1분 넘게 늦게 옴 | 워치 앱이 `HKWorkoutSession`을 돌리고 `startMirroringToCompanionDevice`로 아이폰에 몇 초마다 직접 전송. 워치가 늦게 연결돼도 이미 끝난 운동이면 바로 종료 ([HealthWorkout.swift](SetCounter/HealthWorkout.swift), [WatchWorkout.swift](SetCounterWatch/WatchWorkout.swift)) |
+| 걷는 칼로리가 두 번 더해져 감량 목표가 느슨해짐 | 하루 목표에서 활동 계수(BMR × 1.2)를 빼고, 건강 앱의 실제 활동 칼로리만 그날 더하도록 변경. 단위 테스트로 고정 ([Goals.swift](SetCounter/Goals.swift)) |
 | 한국은 주가 일요일에 시작해 "일요일 리포트"가 하루짜리 주가 됨 | 지역 설정의 주 시작 요일로 한 주의 마지막 날을 계산해 알림 예약 ([RoutineNotifications.swift](SetCounter/RoutineNotifications.swift)) |
 
 ## 구조
 
 ```
 SetCounter/          앱 (SwiftUI 화면, 세션·알람·심박·HealthKit 로직)
+SetCounterWatch/     Apple Watch 앱 (워크아웃 세션, 실시간 심박수 전송)
 SetCounterWidget/    위젯 확장
+SetCounterTests/     단위 테스트 (칼로리 계산, 추천 루틴, 운동 분류, 위젯·워치 데이터)
 Shared/              앱과 위젯이 함께 쓰는 코드, 다국어 String Catalog
 Config/              Info.plist, entitlements
 AppStore/            스크린샷, 아이콘 생성 스크립트, 개인정보 처리방침, 배포 체크리스트
@@ -68,7 +74,8 @@ AppStore/            스크린샷, 아이콘 생성 스크립트, 개인정보 �
 - Xcode 27 이상, iOS 26.1 이상 (AlarmKit, iPhone용 HKWorkoutSession)
 - `SetCounter.xcodeproj`를 열고 Signing & Capabilities에서 Team을 내 계정으로 바꾼 뒤 실행
 - 번들 ID와 App Group(`group.com.andykim.SetCounter`)이 겹치면 내 것으로 바꿔주세요
-- 심박수 센서가 없는 시뮬레이터에서는 Debug 빌드 실행 인자 `-demoHeartRate 126`으로 가짜 심박수를 넣을 수 있어요
+- 심박수 센서가 없는 시뮬레이터에서는 Debug 빌드 실행 인자 `-demoHeartRate 126`으로 가짜 심박수를, `-seedHealth YES`로 4주치 샘플 건강 데이터를 넣을 수 있어요
+- 테스트: `xcodebuild test -scheme SetCounter -destination 'platform=iOS Simulator,name=iPhone 17 Pro'`
 
 ## 앱 아이콘
 

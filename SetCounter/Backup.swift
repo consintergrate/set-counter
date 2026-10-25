@@ -52,6 +52,9 @@ enum Backup {
         "exercise", "weight", "reps", "totalSets", "restSeconds", WeightUnit.key, Routine.namesKey, "weeklyGoal",
         "notifyTime", "notifyWeekdays", "theme", "accent", "keepScreenOn", "showMetrics", "showElapsed", "hapticsOn",
         "alarmVolume", "vibrationOn", AlarmSound.key, "alarmDuration", "bodyWeight", "age", "isMale", "useHealthKit",
+        Goals.heightKey, Goals.goalWeightKey, Goals.weeklyLossKey, Goals.stepKey, Goals.activeKey, Goals.exerciseKey,
+        Goals.cardioKey, RoutinePlans.key, RoutineNotifications.weeklyReportKey, RoutineNotifications.dailyReportKey,
+        HealthWorkout.useWatchKey,
     ]
 
     private static var encoder: JSONEncoder {

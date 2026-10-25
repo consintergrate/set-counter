@@ -19,6 +19,9 @@ struct HomeView: View {
     @State private var session: WorkoutSession?
     @State private var showingFood = false
     @State private var showingGuide = false
+    @State private var editingRoutine = false
+    // Read so the routine card refreshes after the editor saves.
+    @AppStorage(RoutinePlans.key) private var plansRaw = ""
     // Snapshots of the settings, refreshed whenever a default changes (goals, body weight…).
     @State private var goals = Goals.saved
     @State private var profile = BodyProfile.saved
@@ -51,7 +54,8 @@ struct HomeView: View {
                     CoachCard(
                         tips: Coach.tips(records: records, profiles: profiles, health: health, todayPart: todayName,
                                          goals: goals, profile: profile),
-                        onReport: { AppRouter.shared.showingWeeklyReport = true }
+                        onDailyReport: { AppRouter.shared.showingDailyReport = true },
+                        onWeeklyReport: { AppRouter.shared.showingWeeklyReport = true }
                     )
                     TodayCard(
                         splitLabel: routineNames.count == 1
@@ -69,10 +73,14 @@ struct HomeView: View {
                         onStart: { showingSetup = true },
                         onGuide: { showingGuide = true }
                     )
-                    let suggestions = Coach.recommendedRoutine(for: todayName, records: records, profiles: profiles)
-                    if !suggestions.isEmpty {
-                        RecommendedRoutineCard(part: todayName, suggestions: suggestions, onSelect: prefill)
-                    }
+                    let _ = plansRaw
+                    RecommendedRoutineCard(
+                        part: todayName,
+                        suggestions: Coach.recommendedRoutine(for: todayName, records: records, profiles: profiles),
+                        isCustom: RoutinePlans.plan(for: todayName) != nil,
+                        onSelect: prefill,
+                        onEdit: { editingRoutine = true }
+                    )
                     if hasHealth {
                         ActivityRingsCard(health: health, goals: goals)
                         CalorieCard(health: health, goals: goals, profile: profile) { showingFood = true }
@@ -105,6 +113,12 @@ struct HomeView: View {
             }
             .sheet(isPresented: $showingGuide) {
                 OnboardingView { showingGuide = false }
+            }
+            .sheet(isPresented: $editingRoutine) {
+                RoutinePlanEditor(
+                    part: todayName,
+                    suggestions: Coach.recommendedRoutine(for: todayName, records: records, profiles: profiles)
+                )
             }
             .refreshable { await health.refresh() }
             .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)) { _ in

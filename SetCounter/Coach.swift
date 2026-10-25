@@ -40,9 +40,9 @@ enum Coach {
         let strengthToday = records.contains { calendar.isDate($0.date, inSameDayAs: now) }
         var tips: [CoachTip] = []
 
-        // Days since anything was done, counting other apps' cardio too.
+        // Days since anything was done, counting other apps' workouts too.
         let lastStrength = records.first?.date
-        let lastCardio = health.cardio.first(where: \.isCardio)?.start
+        let lastCardio = health.cardio.first?.start
         if let last = [lastStrength, lastCardio].compactMap({ $0 }).max(),
            let days = calendar.dateComponents([.day], from: calendar.startOfDay(for: last), to: calendar.startOfDay(for: now)).day,
            days >= 3 {
@@ -177,27 +177,9 @@ enum Coach {
         return found.sorted { $0.position < $1.position }.flatMap(\.muscles).filter { seen.insert($0).inserted }
     }
 
-    private static func normalized(_ name: String) -> String {
-        name.lowercased().filter { !$0.isWhitespace && $0 != "-" }
-    }
-
     /// Starter exercises with a light first weight (kg) for parts without history.
     private static func library(for muscle: Muscle) -> [(name: String, weight: Double)] {
-        switch muscle {
-        case .chest: [(String(localized: "벤치프레스"), 20), (String(localized: "인클라인 덤벨 프레스"), 10),
-                      (String(localized: "케이블 플라이"), 10), (String(localized: "푸시업"), 0)]
-        case .back: [(String(localized: "랫풀다운"), 30), (String(localized: "바벨 로우"), 30),
-                     (String(localized: "시티드 케이블 로우"), 30), (String(localized: "풀업"), 0)]
-        case .shoulders: [(String(localized: "오버헤드 프레스"), 20), (String(localized: "사이드 레터럴 레이즈"), 5),
-                          (String(localized: "리어 델트 레이즈"), 5)]
-        case .biceps: [(String(localized: "바벨 컬"), 15), (String(localized: "해머 컬"), 8)]
-        case .triceps: [(String(localized: "케이블 푸시다운"), 15), (String(localized: "라잉 트라이셉 익스텐션"), 15)]
-        case .legs: [(String(localized: "스쿼트"), 30), (String(localized: "레그 프레스"), 60),
-                     (String(localized: "루마니안 데드리프트"), 30), (String(localized: "레그 컬"), 20),
-                     (String(localized: "카프 레이즈"), 30)]
-        case .core: [(String(localized: "크런치"), 0), (String(localized: "케이블 크런치"), 20), (String(localized: "리버스 크런치"), 0)]
-        case .other: []
-        }
+        ExerciseLibrary.exercises(for: muscle).filter(\.starter).map { ($0.name, $0.startWeight) }
     }
 
     /// Up to six exercises for `part`: the user's own most frequent lifts for those
@@ -205,6 +187,16 @@ enum Coach {
     static func recommendedRoutine(for part: String, records: [WorkoutRecord], profiles: [ExerciseProfile],
                                    unit: WeightUnit = .current, now: Date = Date()) -> [RoutineSuggestion] {
         let calendar = Calendar.current
+        // A routine the user arranged wins; only the numbers are worked out here.
+        if let plan = RoutinePlans.plan(for: part) {
+            let doneToday = Set(records.filter { calendar.isDate($0.date, inSameDayAs: now) }.map(\.exercise))
+            return plan.map { item in
+                let next = progression(for: item.name, muscle: Muscle.lookup(item.name, in: profiles),
+                                       records: records, unit: unit, doneToday: doneToday)
+                return RoutineSuggestion(exercise: next.exercise, muscle: next.muscle, weight: next.weight, reps: next.reps,
+                                         sets: item.sets, note: next.note, isNew: next.isNew, doneToday: next.doneToday)
+            }
+        }
         let muscles = muscles(in: part)
         let since = calendar.date(byAdding: .day, value: -90, to: now) ?? now
         let recent = records.filter { $0.date >= since && !$0.exercise.isEmpty }
@@ -214,7 +206,7 @@ enum Coach {
         var score: [String: Int] = [:]
         for record in recent { score[record.exercise, default: 0] += record.routineName == part ? 3 : 1 }
         // Starter lifts the user already logs under another spelling ("덤벨프레스" vs "덤벨 프레스") are skipped.
-        let known = Set(records.map { normalized($0.exercise) })
+        let known = Set(records.map { ExerciseLibrary.normalized($0.exercise) })
 
         var queues: [[RoutineSuggestion]]
         if muscles.isEmpty {
@@ -229,7 +221,7 @@ enum Coach {
                     .sorted { score[$0, default: 0] > score[$1, default: 0] }
                 let ownSuggestions = own.map { progression(for: $0, muscle: muscle, records: records, unit: unit, doneToday: doneToday) }
                 let starters = library(for: muscle)
-                    .filter { name, _ in !known.contains(normalized(name)) }
+                    .filter { name, _ in !known.contains(ExerciseLibrary.normalized(name)) }
                     .map { name, weight in
                         RoutineSuggestion(exercise: name, muscle: muscle, weight: weight, reps: 10, sets: 3,
                                           note: String(localized: "처음이면 가볍게 시작해요"), isNew: true,
@@ -256,7 +248,8 @@ enum Coach {
     private static func progression(for exercise: String, muscle: Muscle, records: [WorkoutRecord],
                                     unit: WeightUnit, doneToday: Set<String>) -> RoutineSuggestion {
         guard let last = records.first(where: { $0.exercise == exercise }) else {
-            return RoutineSuggestion(exercise: exercise, muscle: muscle, weight: 0, reps: 10, sets: 3, note: "",
+            return RoutineSuggestion(exercise: exercise, muscle: muscle, weight: ExerciseLibrary.find(exercise)?.startWeight ?? 0,
+                                     reps: 10, sets: 3, note: String(localized: "처음이면 가볍게 시작해요"),
                                      isNew: true, doneToday: doneToday.contains(exercise))
         }
         let values = last.setValues

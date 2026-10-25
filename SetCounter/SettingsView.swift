@@ -7,6 +7,7 @@ struct SettingsView: View {
     @AppStorage(WeightUnit.key) private var unitRaw = WeightUnit.kg.rawValue
     @AppStorage("notifyOn") private var notifyOn = false
     @AppStorage(RoutineNotifications.weeklyReportKey) private var weeklyReportOn = true
+    @AppStorage(RoutineNotifications.dailyReportKey) private var dailyReportOn = false
     @AppStorage(Routine.namesKey) private var routineRaw = Routine.defaultRaw
     @AppStorage("weeklyGoal") private var weeklyGoal = 4
     @AppStorage("notifyTime") private var notifyTime = RoutineNotifications.defaultTime
@@ -20,7 +21,7 @@ struct SettingsView: View {
 
     /// Everything reminders and the widget depend on that can change from these screens.
     private var scheduleKey: String {
-        "\(routineRaw)|\(weeklyGoal)|\(notifyOn)|\(notifyTime)|\(notifyWeekdaysRaw)|\(unitRaw)|\(weeklyReportOn)"
+        "\(routineRaw)|\(weeklyGoal)|\(notifyOn)|\(notifyTime)|\(notifyWeekdaysRaw)|\(unitRaw)|\(weeklyReportOn)|\(dailyReportOn)"
     }
 
     var body: some View {
@@ -79,6 +80,9 @@ struct SettingsView: View {
                     if notifyOn {
                         NavigationLink("알림 시간 · 요일") { NotificationSettingsView() }
                     }
+                    Toggle(isOn: $dailyReportOn) {
+                        SettingsLabel("하루 리포트 알림 (저녁 9시)", systemImage: "doc.text.fill", color: .teal)
+                    }
                     Toggle(isOn: $weeklyReportOn) {
                         SettingsLabel("주간 리포트 알림", systemImage: "chart.bar.doc.horizontal.fill", color: .mint)
                     }
@@ -126,6 +130,14 @@ struct SettingsView: View {
                 let granted = await RoutineNotifications.requestAuthorization()
                 notificationsDenied = !granted
                 if !granted { notifyOn = false }
+            }
+        }
+        .onChange(of: dailyReportOn) { _, isOn in
+            guard isOn else { return }
+            Task {
+                let granted = await RoutineNotifications.requestAuthorization()
+                notificationsDenied = !granted
+                if !granted { dailyReportOn = false }
             }
         }
         .onChange(of: weeklyReportOn) { _, isOn in

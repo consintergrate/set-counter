@@ -11,13 +11,16 @@ struct HistoryView: View {
     private let health = HealthData.shared
     private var calendar: Calendar { .current }
 
+    /// Strength days: this app's records plus strength workouts from other apps
+    /// (an Apple Watch "근력 운동", for example).
     private var workoutDays: Set<Date> {
         Set(records.map { calendar.startOfDay(for: $0.date) })
+            .union(health.cardio.filter { !$0.isCardio }.map { calendar.startOfDay(for: $0.start) })
     }
 
-    /// Workouts other apps saved to Health (runs, walks, rides…).
+    /// Runs, walks, rides and other cardio that other apps saved to Health.
     private var cardioDays: Set<Date> {
-        Set(health.cardio.map { calendar.startOfDay(for: $0.start) })
+        Set(health.cardio.filter(\.isCardio).map { calendar.startOfDay(for: $0.start) })
     }
 
     private var dayCardio: [CardioWorkout] {
@@ -227,12 +230,15 @@ struct RecordRow: View {
 struct CardioRow: View {
     let workout: CardioWorkout
 
+    /// Teal for cardio, orange like this app's own records for strength.
+    private var color: Color { workout.isCardio ? .teal : .orange }
+
     var body: some View {
         HStack(spacing: 12) {
             Image(systemName: workout.systemImage)
-                .foregroundStyle(.teal)
+                .foregroundStyle(color)
                 .frame(width: 32, height: 32)
-                .background(Color.teal.opacity(0.12), in: Circle())
+                .background(color.opacity(0.12), in: Circle())
             VStack(alignment: .leading, spacing: 3) {
                 HStack {
                     Text(workout.title).font(.headline)
@@ -240,8 +246,8 @@ struct CardioRow: View {
                         .font(.caption2.bold())
                         .padding(.horizontal, 6)
                         .padding(.vertical, 2)
-                        .background(Color.teal.opacity(0.15), in: Capsule())
-                        .foregroundStyle(.teal)
+                        .background(color.opacity(0.15), in: Capsule())
+                        .foregroundStyle(color)
                     Spacer()
                     Text(workout.start.formatted(date: .omitted, time: .shortened))
                         .font(.caption)

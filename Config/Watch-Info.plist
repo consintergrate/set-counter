@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>NSHealthShareUsageDescription</key>
+	<string>운동 중 심박수를 재서 iPhone의 세트 카운터로 보내기 위해 필요해요.</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>워치에서 잰 근력 운동과 소모 칼로리를 건강 앱에 저장하기 위해 필요해요.</string>
+	<key>WKApplication</key>
+	<true/>
+	<key>WKBackgroundModes</key>
+	<array>
+		<string>workout-processing</string>
+	</array>
+</dict>
+</plist>

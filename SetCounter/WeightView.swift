@@ -54,7 +54,7 @@ struct WeightView: View {
                 Text("목표")
             } footer: {
                 let _ = (goalWeight, weeklyLoss)
-                Text("목표 체중을 눌러 바꿀 수 있어요. 감량 속도에 맞춰 하루 권장 섭취가 \(Int(Goals.saved.intakeTarget(profile: .saved)).formatted())kcal로 잡혀 있어요.")
+                Text("목표 체중을 눌러 바꿀 수 있어요. 감량 속도에 맞춰 하루 기본 목표가 \(Int(Goals.saved.intakeTarget(profile: .saved)).formatted())kcal로 잡혀 있고, 활동 칼로리는 그날 따로 더해져요.")
             }
 
             Section {
