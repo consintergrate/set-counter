@@ -1,0 +1,17 @@
+# Xcode build output
+build/
+DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Per-user Xcode state
+xcuserdata/
+*.xcuserstate
+*.xcscmblueprint
+
+# macOS
+.DS_Store
+
+# Local Claude Code settings
+.claude/settings.local.json

@@ -1,0 +1,2452 @@
+{
+  "sourceLanguage": "ko",
+  "strings": {
+    " ": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": " "
+          }
+        }
+      }
+    },
+    "%@ kcal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ kcal"
+          }
+        }
+      }
+    },
+    "%@ × %lld회": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ × %2$lld reps"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ × %2$lld회"
+          }
+        }
+      }
+    },
+    "%@ × %lld회 × %lld세트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ × %2$lld reps × %3$lld sets"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ × %2$lld회 × %3$lld세트"
+          }
+        }
+      }
+    },
+    "%@ 주": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week of %@"
+          }
+        }
+      }
+    },
+    "%@%lld%%": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@%2$lld%%"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@%2$lld%%"
+          }
+        }
+      }
+    },
+    "%lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
+          }
+        }
+      }
+    },
+    "%lld / %lld 완료": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld / %2$lld done"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld / %2$lld 완료"
+          }
+        }
+      }
+    },
+    "%lld / %lld일": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld / %2$lld days"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld / %2$lld일"
+          }
+        }
+      }
+    },
+    "%lld bpm": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld bpm"
+          }
+        }
+      }
+    },
+    "%lld kcal": {
+      "extractionState": "stale",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld kcal"
+          }
+        }
+      }
+    },
+    "%lldkcal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld kcal"
+          }
+        }
+      }
+    },
+    "%lld개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld"
+          }
+        }
+      }
+    },
+    "%lld개 기록 삭제": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete %lld Records"
+          }
+        }
+      }
+    },
+    "%lld분": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min"
+          }
+        }
+      }
+    },
+    "%lld분 %lld초": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld min %2$lld s"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld분 %2$lld초"
+          }
+        }
+      }
+    },
+    "%lld분할": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld-Day Split"
+          }
+        }
+      }
+    },
+    "%lld분할 · %lld일차": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld-Day Split · Day %2$lld"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld분할 · %2$lld일차"
+          }
+        }
+      }
+    },
+    "%lld세": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld yrs"
+          }
+        }
+      }
+    },
+    "%lld세트": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld set"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld sets"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld세트 시작 · 탭해서 끄기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start set %lld · Tap to dismiss"
+          }
+        }
+      }
+    },
+    "%lld일": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld day"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld days"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "%lld일차": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day %lld"
+          }
+        }
+      }
+    },
+    "%lld일차 · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Day %1$lld · %2$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld일차 · %2$@"
+          }
+        }
+      }
+    },
+    "%lld초": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld s"
+          }
+        }
+      }
+    },
+    "%lld회": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld rep"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld reps"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "'세트 카운터'를 찾아 크기를 고르세요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find 'Set Counter' and pick a size"
+          }
+        }
+      }
+    },
+    "+15초": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "+15s"
+          }
+        }
+      }
+    },
+    "--": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "--"
+          }
+        }
+      }
+    },
+    "AirPods Pro 3·Powerbeats Pro 2는 착용만 하면 돼요. Apple Watch는 워치에서 '근력 운동'을 같이 켜두면 심박수가 자주 들어와요. 마친 운동은 건강 앱에도 저장돼요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPods Pro 3 and Powerbeats Pro 2 just need to be worn. On Apple Watch, start a Strength Training workout too for frequent readings. Finished workouts are also saved to the Health app."
+          }
+        }
+      }
+    },
+    "AirPods·Apple 기기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "AirPods · Apple device"
+          }
+        }
+      }
+    },
+    "Apple Watch · AirPods 심박수": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch · AirPods Heart Rate"
+          }
+        }
+      }
+    },
+    "Apple 기기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Devices"
+          }
+        }
+      }
+    },
+    "CSV 파일은 엑셀·Numbers·구글 시트에서 열 수 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the CSV file in Excel, Numbers, or Google Sheets."
+          }
+        }
+      }
+    },
+    "CSV로 내보내기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Export as CSV"
+          }
+        }
+      }
+    },
+    "English": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "English"
+          }
+        }
+      }
+    },
+    "Polar·Garmin 같은 가슴 스트랩이나 심박 방송 기능이 있는 기기를 연결할 수 있어요. 한 번 연결하면 다음부터 자동으로 연결돼요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect a chest strap like Polar or Garmin, or any device that broadcasts heart rate. Once paired, it reconnects automatically."
+          }
+        }
+      }
+    },
+    "[세트 카운터] 문의": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Set Counter] Question"
+          }
+        }
+      }
+    },
+    "[세트 카운터] 피드백": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "[Set Counter] Feedback"
+          }
+        }
+      }
+    },
+    "iPhone 설정에서 변경": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change in iPhone Settings"
+          }
+        }
+      }
+    },
+    "v%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "v%@"
+          }
+        }
+      }
+    },
+    "workout.currentSet": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set %lld"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%lld세트"
+          }
+        }
+      }
+    },
+    "가슴": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chest"
+          }
+        }
+      }
+    },
+    "가슴·삼두": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chest · Triceps"
+          }
+        }
+      }
+    },
+    "값": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Value"
+          }
+        }
+      }
+    },
+    "강조 색상": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Accent Color"
+          }
+        }
+      }
+    },
+    "개인정보": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy"
+          }
+        }
+      }
+    },
+    "개인정보 처리방침": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Privacy Policy"
+          }
+        }
+      }
+    },
+    "건강 앱에서 운동 보기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View Workouts in Health"
+          }
+        }
+      }
+    },
+    "건너뛰기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Skip"
+          }
+        }
+      }
+    },
+    "기간": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Period"
+          }
+        }
+      }
+    },
+    "기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History"
+          }
+        }
+      }
+    },
+    "기타": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Other"
+          }
+        }
+      }
+    },
+    "나이": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Age"
+          }
+        }
+      }
+    },
+    "날짜": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Date"
+          }
+        }
+      }
+    },
+    "남성": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Male"
+          }
+        }
+      }
+    },
+    "내 정보": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About Me"
+          }
+        }
+      }
+    },
+    "다음: %lld세트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next: Set %lld"
+          }
+        }
+      }
+    },
+    "다크": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dark"
+          }
+        }
+      }
+    },
+    "데이터 관리": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data"
+          }
+        }
+      }
+    },
+    "두 번 이상 기록하면 무게 변화 그래프가 보여요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Log it twice or more to see your weight trend"
+          }
+        }
+      }
+    },
+    "등": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back"
+          }
+        }
+      }
+    },
+    "등·이두": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Back · Biceps"
+          }
+        }
+      }
+    },
+    "라이트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Light"
+          }
+        }
+      }
+    },
+    "루틴 · 목표": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routine · Goal"
+          }
+        }
+      }
+    },
+    "마지막 신호": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last Signal"
+          }
+        }
+      }
+    },
+    "맨몸": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bodyweight"
+          }
+        }
+      }
+    },
+    "맨몸 운동은 무게 그래프 대신 세트 수로 기록돼요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bodyweight exercises are tracked by sets, not a weight chart"
+          }
+        }
+      }
+    },
+    "메일 앱이 열리고 앱 버전과 기기 정보가 자동으로 들어가요.\n%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Opens Mail with the app version and device info filled in.\n%@"
+          }
+        }
+      }
+    },
+    "모든 기록 삭제": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete All Records"
+          }
+        }
+      }
+    },
+    "모든 운동 기록은 이 iPhone에만 저장돼요. 건강 앱 저장은 직접 허용한 경우에만 해요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All workout records stay on this iPhone. Workouts are saved to Health only if you allow it."
+          }
+        }
+      }
+    },
+    "모든 운동 기록을 삭제할까요?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete all workout records?"
+          }
+        }
+      }
+    },
+    "목표": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal"
+          }
+        }
+      }
+    },
+    "목표 %lld일": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Goal %lld day"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Goal %lld days"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "목표 달성! 🎉": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal reached! 🎉"
+          }
+        }
+      }
+    },
+    "몸무게": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body Weight"
+          }
+        }
+      }
+    },
+    "무게": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight"
+          }
+        }
+      }
+    },
+    "무게 단위": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weight Unit"
+          }
+        }
+      }
+    },
+    "무분할": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full Body"
+          }
+        }
+      }
+    },
+    "무분할 루틴": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full-Body Routine"
+          }
+        }
+      }
+    },
+    "문의하기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Contact Us"
+          }
+        }
+      }
+    },
+    "바꾸기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Change"
+          }
+        }
+      }
+    },
+    "반복": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reps"
+          }
+        }
+      }
+    },
+    "버전": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version"
+          }
+        }
+      }
+    },
+    "버전 %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Version %@"
+          }
+        }
+      }
+    },
+    "버튼 햅틱": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Button Haptics"
+          }
+        }
+      }
+    },
+    "벨": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bell"
+          }
+        }
+      }
+    },
+    "보라": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purple"
+          }
+        }
+      }
+    },
+    "복근·유산소": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Abs · Cardio"
+          }
+        }
+      }
+    },
+    "볼륨": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Volume"
+          }
+        }
+      }
+    },
+    "부드러운 알림": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gentle"
+          }
+        }
+      }
+    },
+    "부위": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Body part"
+          }
+        }
+      }
+    },
+    "부위별 세트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sets by Body Part"
+          }
+        }
+      }
+    },
+    "분할": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split"
+          }
+        }
+      }
+    },
+    "분할 루틴": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Routine"
+          }
+        }
+      }
+    },
+    "분할 루틴 · 주간 목표": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split Routine · Weekly Goal"
+          }
+        }
+      }
+    },
+    "분할 루틴, 주간 목표, 운동 알림": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Split routines, weekly goals, workout reminders"
+          }
+        }
+      }
+    },
+    "분홍": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pink"
+          }
+        }
+      }
+    },
+    "블루투스 심박 센서": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth Heart Rate Sensor"
+          }
+        }
+      }
+    },
+    "빌드": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Build"
+          }
+        }
+      }
+    },
+    "빨강": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Red"
+          }
+        }
+      }
+    },
+    "삐삐삐": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beeps"
+          }
+        }
+      }
+    },
+    "삭제한 기록은 되돌릴 수 없어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deleted records can't be restored."
+          }
+        }
+      }
+    },
+    "상체": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Upper Body"
+          }
+        }
+      }
+    },
+    "설정": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Settings"
+          }
+        }
+      }
+    },
+    "성별": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sex"
+          }
+        }
+      }
+    },
+    "세트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sets"
+          }
+        }
+      }
+    },
+    "세트 수": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sets"
+          }
+        }
+      }
+    },
+    "세트 완료": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Done"
+          }
+        }
+      }
+    },
+    "세트 카운터와 휴식 타이머": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set counter and rest timer"
+          }
+        }
+      }
+    },
+    "소리": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sound"
+          }
+        }
+      }
+    },
+    "소리 미리 듣기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Preview Sound"
+          }
+        }
+      }
+    },
+    "쉬는 시간": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest"
+          }
+        }
+      }
+    },
+    "시스템 설정": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "System"
+          }
+        }
+      }
+    },
+    "시작": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start"
+          }
+        }
+      }
+    },
+    "시작이 반이에요. 가볍게 출발해요 🏃": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Starting is half the battle. Ease into it 🏃"
+          }
+        }
+      }
+    },
+    "신호 없음": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No signal"
+          }
+        }
+      }
+    },
+    "심박 센서": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate sensor"
+          }
+        }
+      }
+    },
+    "심박 센서 찾기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Find Heart Rate Sensor"
+          }
+        }
+      }
+    },
+    "심박수 (블루투스 연결)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart Rate (Bluetooth)"
+          }
+        }
+      }
+    },
+    "심박수 · 칼로리": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart Rate · Calories"
+          }
+        }
+      }
+    },
+    "심박수 · 칼로리 표시": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Heart Rate · Calories"
+          }
+        }
+      }
+    },
+    "심박수 연결과 칼로리 계산": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Heart rate and calorie estimates"
+          }
+        }
+      }
+    },
+    "아직 통계가 없어요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Stats Yet"
+          }
+        }
+      }
+    },
+    "알람이 울리는 동안만 음악이 일시정지되고, 끝나면 다시 재생돼요. 화면이 잠겨 있으면 시스템 알람으로 울려요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Music pauses only while the alarm rings, then resumes. When the screen is locked, a system alarm rings instead."
+          }
+        }
+      }
+    },
+    "알림 권한이 꺼져 있어요. 설정 앱 → 세트 카운터 → 알림에서 켜주세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Notifications are off. Turn them on in Settings → Set Counter → Notifications."
+          }
+        }
+      }
+    },
+    "알림 시간": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time"
+          }
+        }
+      }
+    },
+    "알림 시간 · 요일": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Time · Days"
+          }
+        }
+      }
+    },
+    "알림음": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Alarm Sound"
+          }
+        }
+      }
+    },
+    "앱 리뷰 남기기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rate the App"
+          }
+        }
+      }
+    },
+    "앱 안의 운동 기록만 지워져요. 건강 앱에 저장된 운동은 그대로 남아요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only records in this app are deleted. Workouts saved in Health stay."
+          }
+        }
+      }
+    },
+    "앱을 다시 열면 새 언어로 보여요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reopen the app to see the new language."
+          }
+        }
+      }
+    },
+    "앱을 완전히 종료했다가 다시 열면 적용돼요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Applies after you fully close and reopen the app."
+          }
+        }
+      }
+    },
+    "어깨": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shoulders"
+          }
+        }
+      }
+    },
+    "어제보다 한 걸음 더! 화이팅 🙌": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One step further than yesterday! 🙌"
+          }
+        }
+      }
+    },
+    "언어": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language"
+          }
+        }
+      }
+    },
+    "언어를 바꿨어요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Language Changed"
+          }
+        }
+      }
+    },
+    "여성": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Female"
+          }
+        }
+      }
+    },
+    "연결 취소": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "연결 해제": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Disconnect"
+          }
+        }
+      }
+    },
+    "연결됨": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connected"
+          }
+        }
+      }
+    },
+    "예: %@\n그날 이미 운동했다면 알림이 오지 않아요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "e.g. %@\nNo reminder on days you've already worked out."
+          }
+        }
+      }
+    },
+    "오늘 할 부위와 이번 주 목표 진행도를 보여줘요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Shows today's body part and this week's goal progress."
+          }
+        }
+      }
+    },
+    "오늘도 한 세트씩 쌓아봐요 🔥": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stack it up one set at a time 🔥"
+          }
+        }
+      }
+    },
+    "오늘은": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today"
+          }
+        }
+      }
+    },
+    "오늘은 %@ 하는 날": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today is %@ day"
+          }
+        }
+      }
+    },
+    "오늘은 %@ 하는 날이에요. %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today is %1$@ day. %2$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "오늘은 %1$@ 하는 날이에요. %2$@"
+          }
+        }
+      }
+    },
+    "오늘의 루틴": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Today's Routine"
+          }
+        }
+      }
+    },
+    "완료한 %lld세트는 기록에 저장돼요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The %lld completed sets will be saved."
+          }
+        }
+      }
+    },
+    "왼쪽 위 '편집' → '위젯 추가'를 누르세요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap Edit at the top left → Add Widget"
+          }
+        }
+      }
+    },
+    "운동": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        }
+      }
+    },
+    "운동 관리": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        }
+      }
+    },
+    "운동 기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "History"
+          }
+        }
+      }
+    },
+    "운동 기록, 캘린더, 통계": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout history, calendar, stats"
+          }
+        }
+      }
+    },
+    "운동 설정": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout"
+          }
+        }
+      }
+    },
+    "운동 시간": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duration"
+          }
+        }
+      }
+    },
+    "운동 시간 표시": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Show Duration"
+          }
+        }
+      }
+    },
+    "운동 알림 받기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout Reminders"
+          }
+        }
+      }
+    },
+    "운동 완료!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout Done!"
+          }
+        }
+      }
+    },
+    "운동 이름 (예: 벤치프레스)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercise (e.g. Bench Press)"
+          }
+        }
+      }
+    },
+    "운동 준비": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get Ready"
+          }
+        }
+      }
+    },
+    "운동 중": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Working out"
+          }
+        }
+      }
+    },
+    "운동 중 화면 켜두기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Keep Screen On During Workout"
+          }
+        }
+      }
+    },
+    "운동 화면": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout Screen"
+          }
+        }
+      }
+    },
+    "운동별 기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "By Exercise"
+          }
+        }
+      }
+    },
+    "운동을 기록하면 여기에 통계가 쌓여요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your stats build up here as you log workouts."
+          }
+        }
+      }
+    },
+    "운동을 마칠 때마다 다음 일차로 넘어가요. 부위 이름은 눌러서 바꿀 수 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Moves to the next day after each workout. Tap a name to rename it."
+          }
+        }
+      }
+    },
+    "운동을 종료할까요?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End workout?"
+          }
+        }
+      }
+    },
+    "운동하는 날 아침에 \"오늘은 OO 하는 날이에요\" 알림을 보내드려요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get a morning reminder like \"Today is chest day\" on workout days."
+          }
+        }
+      }
+    },
+    "운동한 날": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout Days"
+          }
+        }
+      }
+    },
+    "울리는 시간": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Duration"
+          }
+        }
+      }
+    },
+    "월간": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monthly"
+          }
+        }
+      }
+    },
+    "위젯": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widgets"
+          }
+        }
+      }
+    },
+    "위젯 새로고침": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refresh Widgets"
+          }
+        }
+      }
+    },
+    "위젯 추가 방법": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How to Add"
+          }
+        }
+      }
+    },
+    "위젯은 오늘의 루틴과 이번 주 목표 진행도를 보여줘요. 운동을 마치면 자동으로 갱신돼요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The widget shows today's routine and weekly goal progress. It updates when you finish a workout."
+          }
+        }
+      }
+    },
+    "이 기간에는 기록이 없어요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No records in this period"
+          }
+        }
+      }
+    },
+    "이 날은 운동 기록이 없어요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No workouts on this day"
+          }
+        }
+      }
+    },
+    "이름 없는 센서": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unnamed sensor"
+          }
+        }
+      }
+    },
+    "이번 달": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This Month"
+          }
+        }
+      }
+    },
+    "이번 달 %lld일 운동 · %lld개 기록 · %lld kcal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld workout days · %2$lld records · %3$lld kcal this month"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "이번 달 %1$lld일 운동 · %2$lld개 기록 · %3$lld kcal"
+          }
+        }
+      }
+    },
+    "이번 주": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This Week"
+          }
+        }
+      }
+    },
+    "이번 주 %lld/%lld일": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week %1$lld/%2$lld days"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "이번 주 %1$lld/%2$lld일"
+          }
+        }
+      }
+    },
+    "이번 주 목표까지 %lld일 남았어요.": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld more day to this week's goal."
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld more days to this week's goal."
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "이번 주 목표는 이미 달성했어요. 보너스 운동!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This week's goal is already met. Bonus workout!"
+          }
+        }
+      }
+    },
+    "저장된 데이터": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stored Data"
+          }
+        }
+      }
+    },
+    "전신": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full Body"
+          }
+        }
+      }
+    },
+    "정보": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About"
+          }
+        }
+      }
+    },
+    "종료": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "End"
+          }
+        }
+      }
+    },
+    "주 %lld일": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld day/week"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld days/week"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "주간": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly"
+          }
+        }
+      }
+    },
+    "주간 목표": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Weekly Goal"
+          }
+        }
+      }
+    },
+    "주황": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orange"
+          }
+        }
+      }
+    },
+    "준비되면 시작을 눌러요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap Start when you're ready"
+          }
+        }
+      }
+    },
+    "지원 및 피드백": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Support & Feedback"
+          }
+        }
+      }
+    },
+    "진동": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vibration"
+          }
+        }
+      }
+    },
+    "찾는 중…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Searching…"
+          }
+        }
+      }
+    },
+    "처음으로": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
+          }
+        }
+      }
+    },
+    "첫 기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First Record"
+          }
+        }
+      }
+    },
+    "초록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Green"
+          }
+        }
+      }
+    },
+    "총 볼륨": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total Volume"
+          }
+        }
+      }
+    },
+    "총 세트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total Sets"
+          }
+        }
+      }
+    },
+    "최고 무게": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best Weight"
+          }
+        }
+      }
+    },
+    "추정 1RM": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Est. 1RM"
+          }
+        }
+      }
+    },
+    "취소": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel"
+          }
+        }
+      }
+    },
+    "칼로리": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calories"
+          }
+        }
+      }
+    },
+    "칼로리 (추정)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calories (est.)"
+          }
+        }
+      }
+    },
+    "칼로리는 심박수가 있으면 심박수·몸무게·나이·성별로, 없으면 근력 운동 평균 강도로 추정해요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calories are estimated from heart rate, weight, age, and sex when heart rate is available, otherwise from typical strength-training intensity."
+          }
+        }
+      }
+    },
+    "켜두면 운동 화면에서 자동 잠금이 되지 않아요. 배터리를 더 사용해요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Prevents auto-lock on the workout screen. Uses more battery."
+          }
+        }
+      }
+    },
+    "테마": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Theme"
+          }
+        }
+      }
+    },
+    "통계": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Stats"
+          }
+        }
+      }
+    },
+    "파랑": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Blue"
+          }
+        }
+      }
+    },
+    "팔": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Arms"
+          }
+        }
+      }
+    },
+    "평균 / 최대 심박": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Avg / Max HR"
+          }
+        }
+      }
+    },
+    "표시": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Display"
+          }
+        }
+      }
+    },
+    "피드백 보내기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Send Feedback"
+          }
+        }
+      }
+    },
+    "하체": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legs"
+          }
+        }
+      }
+    },
+    "하체·어깨": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Legs · Shoulders"
+          }
+        }
+      }
+    },
+    "한국어": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "한국어"
+          }
+        }
+      }
+    },
+    "현재 심박수": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Current Heart Rate"
+          }
+        }
+      }
+    },
+    "홈 화면 위젯": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Home Screen widget"
+          }
+        }
+      }
+    },
+    "홈 화면의 빈 곳을 길게 누르세요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Touch and hold an empty area of the Home Screen"
+          }
+        }
+      }
+    },
+    "화면 모드": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Appearance"
+          }
+        }
+      }
+    },
+    "화이팅 해보아요! 💪": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You've got this! 💪"
+          }
+        }
+      }
+    },
+    "확인": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "OK"
+          }
+        }
+      }
+    },
+    "휴식 끝!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest Over!"
+          }
+        }
+      }
+    },
+    "휴식 끝! %lld세트 시작": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest over! Start set %lld"
+          }
+        }
+      }
+    },
+    "휴식 알림": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest Alarm"
+          }
+        }
+      }
+    },
+    "휴식 알림 (알림음·진동)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest Alarm (Sound · Vibration)"
+          }
+        }
+      }
+    },
+    "💪 오늘은 %@ 데이": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "💪 Today is %@ day"
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}

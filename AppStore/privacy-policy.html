@@ -1,0 +1,273 @@
+<title>세트 카운터 개인정보 처리방침</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="세트 카운터 앱의 개인정보 처리방침 / Set Counter privacy policy">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+  /* Layout: one readable column, Korean policy first, English below; app-icon blue with the rest-timer orange as the only accent. */
+  :root {
+    --bg: #f6f7fb;
+    --surface: #ffffff;
+    --fg: #1b2033;
+    --muted: #5d6478;
+    --line: #e2e5ef;
+    --brand: #2f5fe0;
+    --accent: #e46a12;
+    --font: "IBM Plex Sans KR", "Apple SD Gothic Neo", "Noto Sans KR", system-ui, sans-serif;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #11131b; --surface: #191c27; --fg: #e9ebf3; --muted: #a2a8bb;
+      --line: #2a2f3e; --brand: #7c9dff; --accent: #ff9a4d; color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #11131b; --surface: #191c27; --fg: #e9ebf3; --muted: #a2a8bb;
+    --line: #2a2f3e; --brand: #7c9dff; --accent: #ff9a4d; color-scheme: dark;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: var(--font);
+    font-size: 16px;
+    line-height: 1.75;
+    word-break: keep-all;
+  }
+  .page {
+    max-width: 42rem;
+    margin: 0 auto;
+    padding-block: 48px 72px;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    display: grid;
+    gap: 40px;
+  }
+
+  header { display: grid; gap: 14px; }
+  .app { display: flex; align-items: center; gap: 12px; }
+  .app svg { width: 44px; height: 44px; flex: none; border-radius: 11px; }
+  .app span { font-weight: 600; color: var(--muted); font-size: 0.95rem; }
+  h1 { margin: 0; font-size: clamp(1.7rem, 5vw, 2.2rem); line-height: 1.3; text-wrap: balance; letter-spacing: -0.01em; }
+  .meta { margin: 0; color: var(--muted); font-size: 0.9rem; }
+  .lang { display: flex; gap: 8px; flex-wrap: wrap; }
+  .lang a {
+    color: var(--brand); text-decoration: none; font-weight: 500; font-size: 0.9rem;
+    border: 1px solid var(--line); border-radius: 999px; padding: 4px 14px; background: var(--surface);
+  }
+  .lang a:focus-visible, .copy:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+  .summary {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-left: 4px solid var(--accent);
+    border-radius: 10px;
+    padding: 18px 20px;
+    font-weight: 500;
+  }
+  .summary p { margin: 0; }
+
+  section { display: grid; gap: 28px; }
+  article { display: grid; gap: 6px; }
+  h2 {
+    margin: 0;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h3 { margin: 0; font-size: 1.15rem; line-height: 1.4; text-wrap: balance; }
+  p, ul { margin: 0; }
+  ul { padding-left: 1.2em; display: grid; gap: 4px; }
+  strong { font-weight: 600; }
+  .lang-block { display: grid; gap: 28px; padding-top: 8px; border-top: 1px solid var(--line); }
+  .lang-block:first-of-type { border-top: 0; padding-top: 0; }
+
+  .contact { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .email {
+    font-weight: 600; user-select: all; background: var(--surface);
+    border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px;
+  }
+  .copy {
+    font: inherit; font-size: 0.85rem; color: var(--brand); background: none;
+    border: 1px solid var(--line); border-radius: 8px; padding: 4px 10px; cursor: pointer;
+  }
+  footer { color: var(--muted); font-size: 0.85rem; }
+</style>
+
+<div class="page">
+  <header>
+    <div class="app">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <defs><linearGradient id="g" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#2f7bf5"/><stop offset="1" stop-color="#4338ca"/></linearGradient></defs>
+        <rect width="64" height="64" fill="url(#g)"/>
+        <circle cx="32" cy="32" r="19.9" fill="none" stroke="#ffffff" stroke-opacity="0.22" stroke-width="4.4"/>
+        <path d="M32 12.1 A19.9 19.9 0 1 1 12.1 32" fill="none" stroke="#ff8f2e" stroke-width="4.4" stroke-linecap="round"/>
+        <g fill="#ffffff"><rect x="22.6" y="30.4" width="18.8" height="3.2" rx="1.6"/><rect x="23" y="24.6" width="3.9" height="14.8" rx="1.4"/><rect x="37.1" y="24.6" width="3.9" height="14.8" rx="1.4"/><rect x="19.3" y="26.7" width="3.1" height="10.6" rx="1.2"/><rect x="41.6" y="26.7" width="3.1" height="10.6" rx="1.2"/></g>
+      </svg>
+      <span>세트 카운터 · Set Counter</span>
+    </div>
+    <h1>개인정보 처리방침</h1>
+    <p class="meta">시행일 2026년 10월 25일 · Effective October 25, 2026</p>
+    <nav class="lang" aria-label="언어 / Language">
+      <a href="#ko">한국어</a>
+      <a href="#en">English</a>
+    </nav>
+  </header>
+
+  <div class="summary">
+    <p>세트 카운터는 개인정보를 수집하지 않고, 어떤 정보도 외부 서버로 보내지 않습니다. 모든 운동 기록은 사용자의 iPhone 안에만 저장됩니다.</p>
+  </div>
+
+  <section class="lang-block" id="ko" lang="ko">
+    <h2>한국어</h2>
+
+    <article>
+      <h3>1. 기기에 저장되는 정보</h3>
+      <p>아래 정보는 사용자의 iPhone 안에만 저장되며, 개발자나 제3자에게 전송되지 않습니다.</p>
+      <ul>
+        <li>운동 기록: 운동 이름, 무게, 반복 횟수, 세트 수, 운동 시간, 루틴 부위</li>
+        <li>신체 정보: 몸무게, 나이, 성별 (칼로리 추정에만 사용)</li>
+        <li>심박수와 칼로리: 운동 중 측정·계산된 평균/최대 심박수와 추정 칼로리</li>
+        <li>앱 설정: 루틴, 목표, 알림 시간, 테마 등</li>
+      </ul>
+    </article>
+
+    <article>
+      <h3>2. 건강 앱(HealthKit) 데이터</h3>
+      <p>사용자가 허용한 경우에만 다음을 이용합니다.</p>
+      <ul>
+        <li><strong>읽기</strong>: Apple Watch·AirPods 등에서 측정된 심박수. 운동 중 칼로리 계산과 화면 표시에만 사용합니다.</li>
+        <li><strong>쓰기</strong>: 마친 운동과 소모 칼로리를 건강 앱에 저장합니다.</li>
+      </ul>
+      <p>HealthKit 데이터는 광고나 마케팅에 사용하지 않고, 판매하지 않으며, iCloud나 외부 서버에 저장하지 않습니다. 권한은 언제든지 iPhone 설정 → 건강 → 데이터 접근 및 기기에서 끌 수 있습니다.</p>
+    </article>
+
+    <article>
+      <h3>3. 블루투스</h3>
+      <p>블루투스 심박 센서(가슴 스트랩 등)에서 심박수를 받을 때만 블루투스를 사용합니다. 받은 심박수는 기기 안에서만 처리됩니다.</p>
+    </article>
+
+    <article>
+      <h3>4. 알림과 알람</h3>
+      <p>운동 알림과 휴식 종료 알람은 iPhone 안에서 예약되고 울리며, 이 과정에서 외부로 보내는 정보는 없습니다.</p>
+    </article>
+
+    <article>
+      <h3>5. 데이터 내보내기와 삭제</h3>
+      <ul>
+        <li>설정 → 데이터 관리에서 운동 기록을 CSV 파일로 내보낼 수 있습니다. 파일은 사용자가 직접 고른 곳으로만 공유됩니다.</li>
+        <li>같은 화면에서 모든 운동 기록을 삭제할 수 있습니다. 앱을 삭제하면 앱 안의 데이터도 모두 삭제됩니다.</li>
+      </ul>
+    </article>
+
+    <article>
+      <h3>6. 문의 메일</h3>
+      <p>앱의 "지원 및 피드백"에서 메일을 보내면 본문에 앱 버전, 기기 모델, iOS 버전이 자동으로 들어갑니다. 보내기 전에 확인하고 지울 수 있으며, 받은 메일은 답변에만 사용합니다.</p>
+    </article>
+
+    <article>
+      <h3>7. 어린이</h3>
+      <p>이 앱은 어린이를 대상으로 하지 않으며, 어린이의 정보를 따로 수집하지 않습니다.</p>
+    </article>
+
+    <article>
+      <h3>8. 방침 변경</h3>
+      <p>이 방침이 바뀌면 이 페이지에 새 시행일과 함께 게시합니다.</p>
+    </article>
+
+    <article>
+      <h3>9. 연락처</h3>
+      <div class="contact">
+        <span class="email">andykim0706@naver.com</span>
+        <button class="copy" type="button" id="copy-ko" data-copy="andykim0706@naver.com">복사</button>
+      </div>
+    </article>
+  </section>
+
+  <section class="lang-block" id="en" lang="en">
+    <h2>English</h2>
+
+    <article>
+      <h3>1. What stays on your iPhone</h3>
+      <p>The following is stored only on your device and is never sent to the developer or any third party.</p>
+      <ul>
+        <li>Workout records: exercise, weight, reps, sets, duration, routine body part</li>
+        <li>Body info: weight, age, sex (used only to estimate calories)</li>
+        <li>Heart rate and calories measured or estimated during workouts</li>
+        <li>App settings such as routine, goal, reminder time, and theme</li>
+      </ul>
+    </article>
+
+    <article>
+      <h3>2. Health (HealthKit) data</h3>
+      <p>Only if you allow it, the app reads heart rate (for example from Apple Watch or AirPods) to estimate calories during a workout, and writes finished workouts and calories to the Health app.</p>
+      <p>HealthKit data is never used for advertising or marketing, never sold, and never stored in iCloud or on any server. You can turn off access anytime in Settings → Health → Data Access &amp; Devices.</p>
+    </article>
+
+    <article>
+      <h3>3. Bluetooth</h3>
+      <p>Bluetooth is used only to receive heart rate from a Bluetooth heart rate sensor such as a chest strap. Readings are processed on the device.</p>
+    </article>
+
+    <article>
+      <h3>4. Notifications and alarms</h3>
+      <p>Workout reminders and rest alarms are scheduled and delivered on the device. Nothing is sent off the device.</p>
+    </article>
+
+    <article>
+      <h3>5. Export and deletion</h3>
+      <p>In Settings → Data you can export your records as a CSV file, shared only where you choose, and delete all records. Deleting the app removes all of its data.</p>
+    </article>
+
+    <article>
+      <h3>6. Support email</h3>
+      <p>Emails sent from "Support &amp; Feedback" include the app version, device model, and iOS version. You can review or remove them before sending. They are used only to reply to you.</p>
+    </article>
+
+    <article>
+      <h3>7. Children</h3>
+      <p>The app is not directed at children and does not knowingly collect information from them.</p>
+    </article>
+
+    <article>
+      <h3>8. Changes</h3>
+      <p>Changes to this policy will be posted on this page with a new effective date.</p>
+    </article>
+
+    <article>
+      <h3>9. Contact</h3>
+      <div class="contact">
+        <span class="email">andykim0706@naver.com</span>
+        <button class="copy" type="button" id="copy-en" data-copy="andykim0706@naver.com" data-done="Copied">Copy</button>
+      </div>
+    </article>
+  </section>
+
+  <footer>© 2026 세트 카운터 · Set Counter</footer>
+</div>
+
+<script>
+  document.querySelectorAll(".copy").forEach((button) => {
+    const label = button.textContent;
+    const done = button.dataset.done || "복사됨";
+    button.addEventListener("click", () => {
+      const text = button.dataset.copy;
+      const show = (message) => {
+        button.textContent = message;
+        setTimeout(() => { button.textContent = label; }, 1500);
+      };
+      const selectFallback = () => {
+        const range = document.createRange();
+        range.selectNodeContents(button.previousElementSibling);
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(() => show(done), selectFallback);
+      } else {
+        selectFallback();
+      }
+    });
+  });
+</script>

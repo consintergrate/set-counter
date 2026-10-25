@@ -1,0 +1,91 @@
+{
+  "sourceLanguage": "ko",
+  "strings": {
+    "CFBundleDisplayName": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "세트 카운터"
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Counter"
+          }
+        }
+      }
+    },
+    "NSAlarmKitUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "화면이 잠겨 있을 때도 쉬는 시간이 끝나면 알람을 울리기 위해 필요해요."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needed to ring an alarm when your rest ends, even with the screen locked."
+          }
+        }
+      }
+    },
+    "NSBluetoothAlwaysUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "블루투스 심박 센서에서 운동 중 심박수를 받기 위해 필요해요."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needed to read your heart rate from a Bluetooth heart rate sensor during workouts."
+          }
+        }
+      }
+    },
+    "NSHealthShareUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch와 AirPods의 심박수를 읽어 칼로리를 계산하기 위해 필요해요."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needed to read heart rate from Apple Watch and AirPods to estimate calories."
+          }
+        }
+      }
+    },
+    "NSHealthUpdateUsageDescription": {
+      "extractionState": "manual",
+      "localizations": {
+        "ko": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "마친 운동과 소모 칼로리를 건강 앱에 저장하기 위해 필요해요."
+          }
+        },
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Needed to save finished workouts and calories to the Health app."
+          }
+        }
+      }
+    }
+  },
+  "version": "1.0"
+}
