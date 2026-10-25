@@ -26,7 +26,6 @@ struct StatsView: View {
     @AppStorage("weeklyGoal") private var weeklyGoal = 4
     @AppStorage(WeightUnit.key) private var unitRaw = WeightUnit.kg.rawValue
     @State private var period = Period.week
-    @State private var selectedExercise: String?
 
     private var unit: WeightUnit { WeightUnit(rawValue: unitRaw) ?? .kg }
 
@@ -38,16 +37,6 @@ struct StatsView: View {
                   let end = calendar.date(byAdding: period.component, value: 1, to: start) else { return nil }
             return Bucket(start: start, records: records.filter { $0.date >= start && $0.date < end })
         }
-    }
-
-    private var exercises: [String] {
-        var seen = Set<String>()
-        return records.map(\.exercise).filter { !$0.isEmpty && seen.insert($0).inserted }
-    }
-
-    /// The most recent weighted exercise, since bodyweight ones have no weight trend to show.
-    private var defaultExercise: String {
-        records.first { $0.weight > 0 && !$0.exercise.isEmpty }?.exercise ?? exercises[0]
     }
 
     var body: some View {
@@ -86,19 +75,18 @@ struct StatsView: View {
                         }
                     }
 
-                    ChartCard(title: "부위별 세트") {
-                        PartChart(records: buckets.flatMap(\.records))
+                    ChartCard(title: "운동 잔디") {
+                        ActivityHeatmap(records: records, weeklyGoal: weeklyGoal)
                     }
 
-                    if !exercises.isEmpty {
-                        ChartCard(title: "운동별 기록") {
-                            ExerciseProgress(
-                                exercises: exercises,
-                                selection: Binding(get: { selectedExercise ?? defaultExercise }, set: { selectedExercise = $0 }),
-                                records: records,
-                                unit: unit
-                            )
-                        }
+                    ChartCard(title: "최근 7일 부위 균형") {
+                        // A rolling week, so the check isn't empty every Monday morning.
+                        let since = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
+                        BalanceChart(records: records.filter { $0.date > since })
+                    }
+
+                    ChartCard(title: "개인 기록") {
+                        PRBoardSummary(records: records)
                     }
                 }
             }
@@ -109,7 +97,7 @@ struct StatsView: View {
     }
 }
 
-private struct ChartCard<Content: View>: View {
+struct ChartCard<Content: View>: View {
     let title: LocalizedStringKey
     @ViewBuilder let content: Content
 
@@ -259,120 +247,5 @@ private struct BucketBarChart: View {
             }
             .frame(height: 180)
         }
-    }
-}
-
-/// Sets per routine part, in routine order, as labeled horizontal bars.
-private struct PartChart: View {
-    let records: [WorkoutRecord]
-
-    private var parts: [(name: String, sets: Int)] {
-        let order = Routine.savedNames
-        let grouped = Dictionary(grouping: records) { $0.routineName.isEmpty ? String(localized: "기타") : $0.routineName }
-            .mapValues { $0.reduce(0) { $0 + $1.sets } }
-        return grouped
-            .map { (name: $0.key, sets: $0.value) }
-            .sorted { (order.firstIndex(of: $0.name) ?? .max, $0.name) < (order.firstIndex(of: $1.name) ?? .max, $1.name) }
-    }
-
-    var body: some View {
-        if parts.isEmpty {
-            Text("이 기간에는 기록이 없어요").font(.subheadline).foregroundStyle(.secondary)
-        } else {
-            Chart(parts, id: \.name) { part in
-                BarMark(x: .value("세트", part.sets), y: .value("부위", part.name), height: .ratio(0.6))
-                    .cornerRadius(4)
-                    .foregroundStyle(.tint)
-                    .annotation(position: .trailing) {
-                        Text(String(localized: "\(part.sets)세트")).font(.caption).foregroundStyle(.secondary)
-                    }
-            }
-            .chartXAxis(.hidden)
-            .chartYAxis {
-                AxisMarks { _ in AxisValueLabel() }
-            }
-            .frame(height: CGFloat(parts.count) * 36 + 8)
-        }
-    }
-}
-
-/// Heaviest set per session for one exercise, plus personal bests.
-private struct ExerciseProgress: View {
-    let exercises: [String]
-    @Binding var selection: String
-    let records: [WorkoutRecord]
-    let unit: WeightUnit
-
-    private var sessions: [(date: Date, weight: Double)] {
-        let calendar = Calendar.current
-        let matching = records.filter { $0.exercise == selection }
-        let byDay = Dictionary(grouping: matching) { calendar.startOfDay(for: $0.date) }
-        return byDay
-            .map { (date: $0.key, weight: $0.value.map(\.weight).max() ?? 0) }
-            .sorted { $0.date < $1.date }
-            .suffix(20)
-    }
-
-    private var best: Double { records.filter { $0.exercise == selection }.map(\.weight).max() ?? 0 }
-
-    /// Epley estimate, weight × (1 + reps / 30), best across sessions.
-    private var estimatedMax: Double {
-        records.filter { $0.exercise == selection && $0.weight > 0 }
-            .map { $0.weight * (1 + Double($0.reps) / 30) }
-            .max() ?? 0
-    }
-
-    private var totalSets: Int { records.filter { $0.exercise == selection }.reduce(0) { $0 + $1.sets } }
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            Picker("운동", selection: $selection) {
-                ForEach(exercises, id: \.self) { Text($0).tag($0) }
-            }
-            .pickerStyle(.menu)
-            .padding(.horizontal, -12)
-
-            HStack(spacing: 12) {
-                MiniStat(title: "최고 무게", value: formatWeight(best, unit: unit))
-                MiniStat(title: "추정 1RM", value: estimatedMax > 0 ? formatMass(estimatedMax, unit: unit) : "-")
-                MiniStat(title: "총 세트", value: String(localized: "\(totalSets)세트"))
-            }
-
-            if best == 0 {
-                Text("맨몸 운동은 무게 그래프 대신 세트 수로 기록돼요").font(.footnote).foregroundStyle(.secondary)
-            } else if sessions.count >= 2 {
-                Chart(sessions, id: \.date) { session in
-                    LineMark(x: .value("날짜", session.date, unit: .day), y: .value("무게", unit.fromKg(session.weight)))
-                        .lineStyle(StrokeStyle(lineWidth: 2))
-                        .foregroundStyle(.tint)
-                    PointMark(x: .value("날짜", session.date, unit: .day), y: .value("무게", unit.fromKg(session.weight)))
-                        .symbolSize(48)
-                        .foregroundStyle(.tint)
-                }
-                .chartYScale(domain: .automatic(includesZero: false))
-                .chartYAxis {
-                    AxisMarks(position: .leading) { _ in
-                        AxisGridLine().foregroundStyle(.quaternary)
-                        AxisValueLabel()
-                    }
-                }
-                .frame(height: 160)
-            } else {
-                Text("두 번 이상 기록하면 무게 변화 그래프가 보여요").font(.footnote).foregroundStyle(.secondary)
-            }
-        }
-    }
-}
-
-private struct MiniStat: View {
-    let title: LocalizedStringKey
-    let value: String
-
-    var body: some View {
-        VStack(alignment: .leading, spacing: 2) {
-            Text(title).font(.caption2).foregroundStyle(.secondary)
-            Text(value).font(.subheadline.bold()).monospacedDigit().lineLimit(1).minimumScaleFactor(0.7)
-        }
-        .frame(maxWidth: .infinity, alignment: .leading)
     }
 }

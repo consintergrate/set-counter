@@ -39,7 +39,11 @@ struct HistoryView: View {
                         .foregroundStyle(.secondary)
                 } else {
                     ForEach(dayRecords) { record in
-                        RecordRow(record: record)
+                        NavigationLink {
+                            RecordEditorView(record: record)
+                        } label: {
+                            RecordRow(record: record)
+                        }
                     }
                     .onDelete { offsets in
                         let targets = offsets.map { dayRecords[$0] }
@@ -49,6 +53,13 @@ struct HistoryView: View {
             }
         }
         .navigationTitle("운동 기록")
+        .toolbar {
+            NavigationLink {
+                RecordEditorView(newOn: selectedDay)
+            } label: {
+                Label("기록 추가", systemImage: "plus")
+            }
+        }
     }
 }
 
@@ -140,7 +151,7 @@ private struct DayCell: View {
     }
 }
 
-private struct RecordRow: View {
+struct RecordRow: View {
     let record: WorkoutRecord
 
     var body: some View {
@@ -160,7 +171,7 @@ private struct RecordRow: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
-            Text("\(formatWeight(record.weight)) × \(record.reps)회 × \(record.sets)세트")
+            Text(setsSummary(record.setValues))
                 .monospacedDigit()
             HStack(spacing: 12) {
                 Label(formatClock(record.duration), systemImage: "clock")
@@ -168,7 +179,7 @@ private struct RecordRow: View {
                     Label(formatMass(record.volume), systemImage: "scalemass")
                 }
                 if record.calories > 0 {
-                    Label("\(Int(record.calories))kcal", systemImage: "flame")
+                    Label("\(Int(record.calories).formatted())kcal", systemImage: "flame")
                 }
                 if record.averageHeartRate > 0 {
                     Label("\(record.averageHeartRate)", systemImage: "heart")

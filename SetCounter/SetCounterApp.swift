@@ -6,13 +6,13 @@ struct SetCounterApp: App {
     /// Pinned to the app's own container: with an App Group entitlement SwiftData would
     /// otherwise default to the group container and existing records would vanish.
     private let container: ModelContainer = {
-        if let container = try? ModelContainer(for: WorkoutRecord.self, configurations: ModelConfiguration(groupContainer: .none)) {
+        if let container = try? ModelContainer(for: WorkoutRecord.self, SetEntry.self, ExerciseProfile.self, configurations: ModelConfiguration(groupContainer: .none)) {
             return container
         }
         // The store couldn't be opened (e.g. a failed migration). Run on an in-memory store
         // instead of crashing on every launch; the file on disk is left untouched.
         do {
-            return try ModelContainer(for: WorkoutRecord.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
+            return try ModelContainer(for: WorkoutRecord.self, SetEntry.self, ExerciseProfile.self, configurations: ModelConfiguration(isStoredInMemoryOnly: true))
         } catch {
             fatalError("Could not create an in-memory workout store: \(error)")
         }

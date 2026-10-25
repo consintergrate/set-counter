@@ -11,6 +11,22 @@
         }
       }
     },
+    "%@ %lld세트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ %2$lld sets"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ %2$lld세트"
+          }
+        }
+      }
+    },
     "%@ kcal": {
       "localizations": {
         "en": {
@@ -21,18 +37,18 @@
         }
       }
     },
-    "%@ × %lld회": {
+    "%@ · %lld세트": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "%1$@ × %2$lld reps"
+            "value": "%1$@ · %2$lld sets"
           }
         },
         "ko": {
           "stringUnit": {
             "state": "new",
-            "value": "%1$@ × %2$lld회"
+            "value": "%1$@ · %2$lld세트"
           }
         }
       }
@@ -75,6 +91,16 @@
           "stringUnit": {
             "state": "new",
             "value": "%1$@%2$lld%%"
+          }
+        }
+      }
+    },
+    "%@kcal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ kcal"
           }
         }
       }
@@ -131,33 +157,28 @@
         }
       }
     },
-    "%lld kcal": {
-      "extractionState": "stale",
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld kcal"
-          }
-        }
-      }
-    },
-    "%lldkcal": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%lld kcal"
-          }
-        }
-      }
-    },
     "%lld개": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "%lld"
+          }
+        }
+      }
+    },
+    "%lld개 기록 · 마지막 %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld records · last %2$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld개 기록 · 마지막 %2$@"
           }
         }
       }
@@ -256,6 +277,22 @@
         }
       }
     },
+    "%lld세트 · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld sets · %2$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld세트 · %2$@"
+          }
+        }
+      }
+    },
     "%lld세트 시작 · 탭해서 끄기": {
       "localizations": {
         "en": {
@@ -314,6 +351,28 @@
         }
       }
     },
+    "%lld주": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld week"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld weeks"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "%lld초": {
       "localizations": {
         "en": {
@@ -346,6 +405,16 @@
         }
       }
     },
+    "'%@'을(를) 어느 운동으로 합칠까요?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Merge '%@' into which exercise?"
+          }
+        }
+      }
+    },
     "'세트 카운터'를 찾아 크기를 고르세요": {
       "localizations": {
         "en": {
@@ -372,6 +441,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "--"
+          }
+        }
+      }
+    },
+    "0": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "0"
           }
         }
       }
@@ -416,12 +495,32 @@
         }
       }
     },
-    "CSV 파일은 엑셀·Numbers·구글 시트에서 열 수 있어요.": {
+    "CSV": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open the CSV file in Excel, Numbers, or Google Sheets."
+            "value": "CSV"
+          }
+        }
+      }
+    },
+    "CSV 가져오기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Import CSV"
+          }
+        }
+      }
+    },
+    "CSV 파일은 엑셀·Numbers·구글 시트에서 열 수 있어요. 이 앱에서 내보낸 CSV를 가져오면 이미 있는 기록은 건너뛰어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open the CSV in Excel, Numbers, or Google Sheets. Importing a CSV exported from this app skips records you already have."
           }
         }
       }
@@ -436,12 +535,32 @@
         }
       }
     },
+    "CSV에서 날짜와 운동 이름 열을 찾지 못했어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't find the date and exercise columns in this CSV."
+          }
+        }
+      }
+    },
     "English": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "English"
+          }
+        }
+      }
+    },
+    "NEW": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "NEW"
           }
         }
       }
@@ -482,6 +601,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Change in iPhone Settings"
+          }
+        }
+      }
+    },
+    "kcal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "kcal"
           }
         }
       }
@@ -553,6 +682,26 @@
         }
       }
     },
+    "같은 이름의 운동이 이미 있으면 기록이 하나로 합쳐져요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "If an exercise with that name exists, the records are merged."
+          }
+        }
+      }
+    },
+    "개인 기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Personal Records"
+          }
+        }
+      }
+    },
     "개인정보": {
       "localizations": {
         "en": {
@@ -593,6 +742,26 @@
         }
       }
     },
+    "권장 끝": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Target end"
+          }
+        }
+      }
+    },
+    "권장 시작": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Target start"
+          }
+        }
+      }
+    },
     "기간": {
       "localizations": {
         "en": {
@@ -609,6 +778,82 @@
           "stringUnit": {
             "state": "translated",
             "value": "History"
+          }
+        }
+      }
+    },
+    "기록 %lld개를 가져왔어요. 이미 있던 %lld개는 건너뛰었어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Imported %1$lld records. Skipped %2$lld you already had."
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "기록 %1$lld개를 가져왔어요. 이미 있던 %2$lld개는 건너뛰었어요."
+          }
+        }
+      }
+    },
+    "기록 %lld개를 복원했어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restored %lld records."
+          }
+        }
+      }
+    },
+    "기록 삭제": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete Record"
+          }
+        }
+      }
+    },
+    "기록 수정": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit Record"
+          }
+        }
+      }
+    },
+    "기록 추가": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Record"
+          }
+        }
+      }
+    },
+    "기록, 세트별 무게·횟수, 운동 부위, 앱 설정이 파일 하나에 담겨요. 파일 앱이나 iCloud Drive에 저장해두면 새 iPhone이나 재설치 후에 복원할 수 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One file holds your records, every set's weight and reps, body parts, and settings. Save it to Files or iCloud Drive to restore on a new iPhone or after reinstalling."
+          }
+        }
+      }
+    },
+    "기록이 모두 고른 운동 이름으로 옮겨져요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All records move to the exercise you pick."
           }
         }
       }
@@ -663,6 +908,16 @@
         }
       }
     },
+    "다른 운동과 합치기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Merge with Another Exercise"
+          }
+        }
+      }
+    },
     "다음: %lld세트": {
       "localizations": {
         "en": {
@@ -683,6 +938,16 @@
         }
       }
     },
+    "데이터": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data"
+          }
+        }
+      }
+    },
     "데이터 관리": {
       "localizations": {
         "en": {
@@ -693,12 +958,12 @@
         }
       }
     },
-    "두 번 이상 기록하면 무게 변화 그래프가 보여요": {
+    "두 번 이상 기록하면 변화 그래프가 보여요": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Log it twice or more to see your weight trend"
+            "value": "Log it twice or more to see the trend"
           }
         }
       }
@@ -743,12 +1008,32 @@
         }
       }
     },
+    "루틴 부위": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Routine Day"
+          }
+        }
+      }
+    },
     "마지막 신호": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Last Signal"
+          }
+        }
+      }
+    },
+    "많음": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "High"
           }
         }
       }
@@ -763,12 +1048,12 @@
         }
       }
     },
-    "맨몸 운동은 무게 그래프 대신 세트 수로 기록돼요": {
+    "맨몸 · 최다 반복": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bodyweight exercises are tracked by sets, not a weight chart"
+            "value": "Bodyweight · most reps"
           }
         }
       }
@@ -779,6 +1064,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Opens Mail with the app version and device info filled in.\n%@"
+          }
+        }
+      }
+    },
+    "모두 백업으로 바꾸기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Replace Everything with Backup"
           }
         }
       }
@@ -845,6 +1140,16 @@
         }
       }
     },
+    "목표 달성 연속": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal Streak"
+          }
+        }
+      }
+    },
     "목표 달성! 🎉": {
       "localizations": {
         "en": {
@@ -875,12 +1180,32 @@
         }
       }
     },
+    "무게 늘리기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Increase weight"
+          }
+        }
+      }
+    },
     "무게 단위": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Weight Unit"
+          }
+        }
+      }
+    },
+    "무게 줄이기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decrease weight"
           }
         }
       }
@@ -935,6 +1260,66 @@
         }
       }
     },
+    "방금 한 %lld세트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set %lld you just did"
+          }
+        }
+      }
+    },
+    "백업": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Backup"
+          }
+        }
+      }
+    },
+    "백업 파일 만들기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Create Backup File"
+          }
+        }
+      }
+    },
+    "백업에 기록 %lld개가 있어요. 바꾸기를 고르면 지금 기록을 지우고 설정도 백업대로 돌려요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The backup has %lld records. Replacing deletes your current records and restores the backup's settings."
+          }
+        }
+      }
+    },
+    "백업에서 복원": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore from Backup"
+          }
+        }
+      }
+    },
+    "백업을 어떻게 복원할까요?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How should the backup be restored?"
+          }
+        }
+      }
+    },
     "버전": {
       "localizations": {
         "en": {
@@ -985,6 +1370,16 @@
         }
       }
     },
+    "복근": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Core"
+          }
+        }
+      }
+    },
     "복근·유산소": {
       "localizations": {
         "en": {
@@ -1025,12 +1420,22 @@
         }
       }
     },
-    "부위별 세트": {
+    "부위는 통계의 부위별 균형 분석에 쓰여요. 운동 이름을 보고 자동으로 정해두었고, 직접 바꿀 수 있어요.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Sets by Body Part"
+            "value": "Body parts feed the balance check in Stats. They're guessed from the exercise name, and you can change them."
+          }
+        }
+      }
+    },
+    "부족": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Low"
           }
         }
       }
@@ -1125,12 +1530,32 @@
         }
       }
     },
-    "삭제한 기록은 되돌릴 수 없어요.": {
+    "삭제": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Deleted records can't be restored."
+            "value": "Delete"
+          }
+        }
+      }
+    },
+    "삭제한 기록은 되돌릴 수 없어요. 먼저 백업 파일을 만들어두는 걸 추천해요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deleted records can't be restored. Consider creating a backup first."
+          }
+        }
+      }
+    },
+    "삼두": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Triceps"
           }
         }
       }
@@ -1141,6 +1566,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Upper Body"
+          }
+        }
+      }
+    },
+    "새 이름": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "New name"
           }
         }
       }
@@ -1195,12 +1630,42 @@
         }
       }
     },
+    "세트 추가": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add Set"
+          }
+        }
+      }
+    },
+    "세트 카운터 백업 파일이 아니에요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This isn't a Set Counter backup file."
+          }
+        }
+      }
+    },
     "세트 카운터와 휴식 타이머": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Set counter and rest timer"
+          }
+        }
+      }
+    },
+    "세트를 하나 이상 추가해주세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add at least one set."
           }
         }
       }
@@ -1331,6 +1796,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Heart rate and calorie estimates"
+          }
+        }
+      }
+    },
+    "아직 운동 기록이 없어요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Workouts Yet"
           }
         }
       }
@@ -1475,6 +1950,16 @@
         }
       }
     },
+    "없음": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "None"
+          }
+        }
+      }
+    },
     "여성": {
       "localizations": {
         "en": {
@@ -1511,6 +1996,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Connected"
+          }
+        }
+      }
+    },
+    "연속 운동 주": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Week Streak"
           }
         }
       }
@@ -1591,6 +2086,16 @@
         }
       }
     },
+    "올해 운동일": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Days This Year"
+          }
+        }
+      }
+    },
     "완료한 %lld세트는 기록에 저장돼요.": {
       "localizations": {
         "en": {
@@ -1651,6 +2156,16 @@
         }
       }
     },
+    "운동 목록에서 고르기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pick from your exercises"
+          }
+        }
+      }
+    },
     "운동 설정": {
       "localizations": {
         "en": {
@@ -1701,12 +2216,42 @@
         }
       }
     },
+    "운동 이름": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercise name"
+          }
+        }
+      }
+    },
     "운동 이름 (예: 벤치프레스)": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Exercise (e.g. Bench Press)"
+          }
+        }
+      }
+    },
+    "운동 이름 관리": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage Exercises"
+          }
+        }
+      }
+    },
+    "운동 잔디": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Activity"
           }
         }
       }
@@ -1751,12 +2296,12 @@
         }
       }
     },
-    "운동별 기록": {
+    "운동을 기록하면 여기서 이름과 부위를 관리할 수 있어요.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "By Exercise"
+            "value": "Once you log workouts, you can rename them and set body parts here."
           }
         }
       }
@@ -1871,12 +2416,12 @@
         }
       }
     },
-    "이 기간에는 기록이 없어요": {
+    "이 기록을 삭제할까요?": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "No records in this period"
+            "value": "Delete this record?"
           }
         }
       }
@@ -1887,6 +2432,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "No workouts on this day"
+          }
+        }
+      }
+    },
+    "이두": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Biceps"
+          }
+        }
+      }
+    },
+    "이름 바꾸기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rename"
           }
         }
       }
@@ -1985,6 +2550,16 @@
         }
       }
     },
+    "저장": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save"
+          }
+        }
+      }
+    },
     "저장된 데이터": {
       "localizations": {
         "en": {
@@ -1995,12 +2570,42 @@
         }
       }
     },
+    "적음": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Less"
+          }
+        }
+      }
+    },
+    "적정": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Good"
+          }
+        }
+      }
+    },
     "전신": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Full Body"
+          }
+        }
+      }
+    },
+    "전체 %lld개 운동 보기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "See All %lld Exercises"
           }
         }
       }
@@ -2087,12 +2692,32 @@
         }
       }
     },
+    "지금 기록에 합치기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Merge with Current Records"
+          }
+        }
+      }
+    },
     "지원 및 피드백": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Support & Feedback"
+          }
+        }
+      }
+    },
+    "지표": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Metric"
           }
         }
       }
@@ -2147,12 +2772,32 @@
         }
       }
     },
+    "초록 띠는 근육별 주 10~20세트 권장 범위예요. 일반적인 근비대 기준이라 참고용이에요. 운동의 부위는 설정 → 데이터 관리 → 운동 이름 관리에서 바꿀 수 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The green band is the common 10–20 sets per muscle per week for muscle growth, as a guide only. Change an exercise's body part in Settings → Data → Manage Exercises."
+          }
+        }
+      }
+    },
     "총 볼륨": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Total Volume"
+          }
+        }
+      }
+    },
+    "총 볼륨 %@ · 밀어서 세트 삭제": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total volume %@ · Swipe to delete a set"
           }
         }
       }
@@ -2177,12 +2822,114 @@
         }
       }
     },
+    "최고 무게 %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Best weight %@"
+          }
+        }
+      }
+    },
+    "최근 %@ · 최근 %lld회 기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Latest %1$@ · last %2$lld sessions"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "최근 %1$@ · 최근 %2$lld회 기록"
+          }
+        }
+      }
+    },
+    "최근 1년 %lld일 운동 · 칸을 누르면 그날 세트 수가 보여요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld workout days in the past year · Tap a square to see that day's sets"
+          }
+        }
+      }
+    },
+    "최근 7일 부위 균형": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 7 Days' Balance"
+          }
+        }
+      }
+    },
+    "최다 반복": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Most Reps"
+          }
+        }
+      }
+    },
+    "최다 반복 %lld회": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Most reps %lld"
+          }
+        }
+      }
+    },
+    "최장 연속": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Longest Streak"
+          }
+        }
+      }
+    },
     "추정 1RM": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Est. 1RM"
+          }
+        }
+      }
+    },
+    "추정 1RM %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Est. 1RM %@"
+          }
+        }
+      }
+    },
+    "추정 1RM %@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Est. 1RM %1$@ · %2$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "추정 1RM %1$@ · %2$@"
           }
         }
       }
@@ -2393,6 +3140,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "OK"
+          }
+        }
+      }
+    },
+    "횟수 늘리기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Increase reps"
+          }
+        }
+      }
+    },
+    "횟수 줄이기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Decrease reps"
           }
         }
       }

@@ -133,14 +133,16 @@ struct SetupView: View {
                 Button {
                     // Ask for the alarm permission when it's first needed, not at launch.
                     Task { await LockScreenAlarm.requestAuthorization() }
+                    let name = exercise.trimmingCharacters(in: .whitespaces)
                     session = WorkoutSession(
-                        exercise: exercise.trimmingCharacters(in: .whitespaces),
+                        exercise: name,
                         weight: weight,
                         reps: reps,
                         totalSets: totalSets,
                         restSeconds: restSeconds,
                         routineIndex: todayIndex,
-                        routineName: todayName
+                        routineName: todayName,
+                        previousBest: name.isEmpty ? nil : PersonalBest.of(name, in: records)
                     )
                 } label: {
                     Text("운동 준비").font(.headline).frame(maxWidth: .infinity)
@@ -186,5 +188,5 @@ func formatDurationShort(_ seconds: Int) -> String {
 
 #Preview {
     SetupView()
-        .modelContainer(for: WorkoutRecord.self, inMemory: true)
+        .modelContainer(for: [WorkoutRecord.self, SetEntry.self, ExerciseProfile.self], inMemory: true)
 }

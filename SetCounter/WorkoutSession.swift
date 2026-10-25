@@ -11,17 +11,26 @@ final class WorkoutSession: Identifiable {
         case finished
     }
 
+    /// A new personal best hit during this workout, shown briefly as a banner.
+    struct RecordAlert: Equatable {
+        let id = UUID()
+        let message: String
+    }
+
     let id = UUID()
     let exercise: String
-    let weight: Double
-    let reps: Int
     let totalSets: Int
     let restSeconds: Int
     let alarm: RestAlarmSettings
     let routineIndex: Int
     let routineName: String
 
-    private(set) var completedSets = 0
+    /// Weight and reps for the next set; adjustable between sets.
+    var currentWeight: Double
+    var currentReps: Int
+    /// Sets done so far, each with its own weight and reps.
+    private(set) var entries: [SetValue] = []
+    private(set) var recordAlert: RecordAlert?
     private(set) var phase: Phase = .ready
     private(set) var startedAt: Date?
     private(set) var finishedAt: Date?
@@ -40,22 +49,29 @@ final class WorkoutSession: Identifiable {
 
     @ObservationIgnored private var restTask: Task<Void, Never>?
     @ObservationIgnored private var isInBackground = false
+    /// Bests to beat, updated as this workout sets new ones. Nil the first time
+    /// an exercise is done, so there's nothing to celebrate yet.
+    @ObservationIgnored private var bestSoFar: PersonalBest?
 
     init(exercise: String, weight: Double, reps: Int, totalSets: Int, restSeconds: Int,
-         routineIndex: Int = -1, routineName: String = "",
+         routineIndex: Int = -1, routineName: String = "", previousBest: PersonalBest? = nil,
          alarm: RestAlarmSettings = .saved, profile: BodyProfile = .saved,
          useHealthKit: Bool = UserDefaults.standard.object(forKey: "useHealthKit") as? Bool ?? true) {
         self.routineIndex = routineIndex
         self.routineName = routineName
         self.exercise = exercise
-        self.weight = weight
-        self.reps = reps
+        self.currentWeight = weight
+        self.currentReps = reps
+        self.bestSoFar = previousBest
         self.totalSets = totalSets
         self.restSeconds = restSeconds
         self.alarm = alarm
         self.profile = profile
         self.useHealthKit = useHealthKit
     }
+
+    var completedSets: Int { entries.count }
+    var volume: Double { entries.reduce(0) { $0 + $1.volume } }
 
     /// The set the user is doing now (1-based).
     var currentSet: Int { min(completedSets + 1, totalSets) }
@@ -75,7 +91,9 @@ final class WorkoutSession: Identifiable {
 
     func completeSet() {
         guard phase == .exercising else { return }
-        completedSets += 1
+        let set = SetValue(weight: currentWeight, reps: currentReps)
+        entries.append(set)
+        checkForRecord(set)
         if completedSets >= totalSets {
             finishedAt = Date()
             phase = .finished
@@ -83,6 +101,33 @@ final class WorkoutSession: Identifiable {
             return
         }
         startRest(until: Date().addingTimeInterval(TimeInterval(restSeconds)))
+    }
+
+    /// Fixes the set just finished, e.g. when fewer reps were done than planned.
+    func adjustLastSet(weightBy weightDelta: Double = 0, repsBy repsDelta: Int = 0) {
+        guard var last = entries.popLast() else { return }
+        last.weight = max(0, last.weight + weightDelta)
+        last.reps = max(1, last.reps + repsDelta)
+        entries.append(last)
+        currentWeight = last.weight
+        currentReps = last.reps
+    }
+
+    private func checkForRecord(_ set: SetValue) {
+        guard var best = bestSoFar else { return }
+        var message: String?
+        if set.weight > 0, set.weight > best.weight {
+            message = String(localized: "최고 무게 \(formatWeight(set.weight))")
+        } else if set.oneRepMax > best.oneRepMax + 0.05 {
+            message = String(localized: "추정 1RM \(formatMass(set.oneRepMax))")
+        } else if set.weight == 0, set.reps > best.reps {
+            message = String(localized: "최다 반복 \(set.reps)회")
+        }
+        best.weight = max(best.weight, set.weight)
+        best.oneRepMax = max(best.oneRepMax, set.oneRepMax)
+        best.reps = max(best.reps, set.reps)
+        bestSoFar = best
+        if let message { recordAlert = RecordAlert(message: message) }
     }
 
     func addRestTime(_ seconds: TimeInterval) {

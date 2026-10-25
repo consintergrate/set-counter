@@ -16,6 +16,7 @@ struct WorkoutView: View {
     @AppStorage("hapticsOn") private var hapticsOn = true
     @State private var confirmingEnd = false
     @State private var saved = false
+    @State private var shownAlert: WorkoutSession.RecordAlert?
 
     private var isAlarming: Bool { session.phase == .alarming }
     private var accentColor: Color { (AccentChoice(rawValue: accent) ?? .blue).color }
@@ -44,6 +45,29 @@ struct WorkoutView: View {
         .onChange(of: session.phase) { _, newPhase in
             if newPhase == .finished { save() }
         }
+        .overlay(alignment: .top) {
+            if let shownAlert {
+                Label(shownAlert.message, systemImage: "trophy.fill")
+                    .font(.headline)
+                    .foregroundStyle(.white)
+                    .padding(.horizontal, 18)
+                    .padding(.vertical, 10)
+                    .background(Color.orange.gradient, in: Capsule())
+                    .shadow(color: .black.opacity(0.15), radius: 8, y: 4)
+                    .padding(.top, 52)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .accessibilityAddTraits(.isStaticText)
+            }
+        }
+        .onChange(of: session.recordAlert) { _, alert in
+            guard let alert else { return }
+            withAnimation(.spring) { shownAlert = alert }
+            Task {
+                try? await Task.sleep(for: .seconds(3))
+                if shownAlert == alert { withAnimation { shownAlert = nil } }
+            }
+        }
+        .sensoryFeedback(trigger: session.recordAlert) { _, alert in hapticsOn && alert != nil ? .impact(weight: .heavy) : nil }
         .confirmationDialog("운동을 종료할까요?", isPresented: $confirmingEnd, titleVisibility: .visible) {
             Button("종료", role: .destructive, action: close)
         } message: {
@@ -96,13 +120,26 @@ struct WorkoutView: View {
         case .exercising:
             setPrompt(subtitle: "운동 중", buttonTitle: "세트 완료", action: session.completeSet)
         case .resting(let end):
-            RestTimerView(
-                end: end,
-                total: TimeInterval(session.restSeconds),
-                nextSet: session.currentSet,
-                onAdd: { session.addRestTime(15) },
-                onSkip: session.skipRest
-            )
+            VStack(spacing: 24) {
+                RestTimerView(
+                    end: end,
+                    total: TimeInterval(session.restSeconds),
+                    nextSet: session.currentSet,
+                    onAdd: { session.addRestTime(15) },
+                    onSkip: session.skipRest
+                )
+                if let last = session.entries.last {
+                    VStack(spacing: 8) {
+                        Text("방금 한 \(session.completedSets)세트").font(.subheadline).foregroundStyle(.secondary)
+                        SetValueStepper(
+                            weight: last.weight,
+                            reps: last.reps,
+                            onWeight: { session.adjustLastSet(weightBy: $0) },
+                            onReps: { session.adjustLastSet(repsBy: $0) }
+                        )
+                    }
+                }
+            }
         case .alarming:
             alarming
         case .finished:
@@ -126,15 +163,18 @@ struct WorkoutView: View {
             }
             Text(exerciseName)
                 .font(.title2.bold())
-            Text("\(formatWeight(session.weight)) × \(session.reps)회")
-                .font(.headline)
-                .monospacedDigit()
-                .foregroundStyle(.secondary)
+            SetValueStepper(
+                weight: session.currentWeight,
+                reps: session.currentReps,
+                onWeight: { session.currentWeight = max(0, session.currentWeight + $0) },
+                onReps: { session.currentReps = max(1, session.currentReps + $0) }
+            )
+            .padding(.top, 4)
         }
     }
 
     private func setPrompt(subtitle: LocalizedStringKey, buttonTitle: LocalizedStringKey, action: @escaping () -> Void) -> some View {
-        VStack(spacing: 32) {
+        VStack(spacing: 24) {
             exerciseLine
             VStack(spacing: 8) {
                 // Own key: in English this is "Set 2", while "%lld세트" elsewhere means "2 sets".
@@ -148,7 +188,7 @@ struct WorkoutView: View {
                 Text(buttonTitle)
                     .font(.title.bold())
                     .foregroundStyle(.white)
-                    .frame(width: 220, height: 220)
+                    .frame(width: 200, height: 200)
                     .background(Circle().fill(.tint))
             }
             .sensoryFeedback(trigger: session.completedSets) { _, _ in hapticsOn ? .success : nil }
@@ -180,10 +220,17 @@ struct WorkoutView: View {
             Text("운동 완료!").font(.system(size: 44, weight: .bold, design: .rounded))
             VStack(spacing: 12) {
                 SummaryRow(title: "운동", value: exerciseName)
-                SummaryRow(title: "세트", value: String(localized: "\(formatWeight(session.weight)) × \(session.reps)회 × \(session.completedSets)세트"))
+                SummaryRow(title: "세트", value: setsSummary(session.entries))
+                if Set(session.entries).count > 1 {
+                    Text(session.entries.map { "\(formatWeight($0.weight))×\($0.reps)" }.joined(separator: " · "))
+                        .font(.caption)
+                        .monospacedDigit()
+                        .foregroundStyle(.secondary)
+                        .frame(maxWidth: .infinity, alignment: .trailing)
+                }
                 SummaryRow(title: "운동 시간", value: formatClock(session.duration))
-                if session.weight > 0 {
-                    SummaryRow(title: "총 볼륨", value: formatMass(session.weight * Double(session.reps * session.completedSets)))
+                if session.volume > 0 {
+                    SummaryRow(title: "총 볼륨", value: formatMass(session.volume))
                 }
                 SummaryRow(title: "칼로리 (추정)", value: "\(Int(session.calories).formatted()) kcal")
                 if session.maxHeartRate > 0 {
@@ -203,19 +250,23 @@ struct WorkoutView: View {
     private func save() {
         guard !saved, session.completedSets > 0, let startedAt = session.startedAt else { return }
         saved = true
-        modelContext.insert(WorkoutRecord(
+        let record = WorkoutRecord(
             date: startedAt,
             exercise: session.exercise,
             sets: session.completedSets,
-            weight: session.weight,
-            reps: session.reps,
+            weight: 0,
+            reps: 0,
             duration: session.duration,
             calories: session.calories,
             averageHeartRate: session.averageHeartRate,
             maxHeartRate: session.maxHeartRate,
             routineIndex: session.routineIndex,
             routineName: session.routineName
-        ))
+        )
+        modelContext.insert(record)
+        record.replaceSets(session.entries, in: modelContext)
+        // Write now rather than at the next autosave, in case the app is closed right away.
+        try? modelContext.save()
     }
 
     private func close() {
@@ -267,7 +318,7 @@ private struct RestTimerView: View {
     let onSkip: () -> Void
 
     var body: some View {
-        VStack(spacing: 32) {
+        VStack(spacing: 24) {
             VStack(spacing: 4) {
                 Text("쉬는 시간").font(.title2.bold())
                 Text("다음: \(nextSet)세트").foregroundStyle(.secondary)
@@ -285,7 +336,7 @@ private struct RestTimerView: View {
                         .font(.system(size: 64, weight: .bold, design: .rounded))
                         .monospacedDigit()
                 }
-                .frame(width: 260, height: 260)
+                .frame(width: 230, height: 230)
             }
 
             HStack(spacing: 16) {
@@ -296,5 +347,48 @@ private struct RestTimerView: View {
             }
             .controlSize(.large)
         }
+    }
+}
+
+
+/// Compact −/+ controls for one set's weight and reps.
+struct SetValueStepper: View {
+    let weight: Double
+    let reps: Int
+    /// Change in kg (one plate step in the display unit).
+    let onWeight: (Double) -> Void
+    let onReps: (Int) -> Void
+
+    @AppStorage(WeightUnit.key) private var unitRaw = WeightUnit.kg.rawValue
+    private var unit: WeightUnit { WeightUnit(rawValue: unitRaw) ?? .kg }
+
+    var body: some View {
+        HStack(spacing: 10) {
+            pill(formatWeight(weight, unit: unit), minus: String(localized: "무게 줄이기"), plus: String(localized: "무게 늘리기")) {
+                onWeight(unit.toKg($0 ? unit.step : -unit.step))
+            }
+            pill(String(localized: "\(reps)회"), minus: String(localized: "횟수 줄이기"), plus: String(localized: "횟수 늘리기")) {
+                onReps($0 ? 1 : -1)
+            }
+        }
+    }
+
+    private func pill(_ label: String, minus: String, plus: String, change: @escaping (Bool) -> Void) -> some View {
+        HStack(spacing: 4) {
+            Button { change(false) } label: { Image(systemName: "minus").frame(width: 32, height: 32).contentShape(Rectangle()) }
+                .accessibilityLabel(minus)
+            Text(label)
+                .font(.headline)
+                .monospacedDigit()
+                .frame(minWidth: 64)
+                .contentTransition(.numericText())
+            Button { change(true) } label: { Image(systemName: "plus").frame(width: 32, height: 32).contentShape(Rectangle()) }
+                .accessibilityLabel(plus)
+        }
+        // Plain buttons only hit-test drawn pixels, so the thin "−" needs a full tap square.
+        .buttonStyle(.plain)
+        .foregroundStyle(.primary)
+        .padding(.horizontal, 6)
+        .background(Color.secondary.opacity(0.12), in: Capsule())
     }
 }
