@@ -9,12 +9,17 @@
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>블루투스 심박 센서에서 운동 중 심박수를 받기 위해 필요해요.</string>
 	<key>NSHealthShareUsageDescription</key>
-	<string>Apple Watch와 AirPods의 심박수를 읽어 칼로리를 계산하기 위해 필요해요.</string>
+	<string>걸음 수, 활동 칼로리, 체중, 먹은 칼로리, 심박수와 나이키 런 클럽 같은 다른 앱의 운동 기록을 읽어 하루 칼로리, 활동 목표, 유산소 기록을 보여주기 위해 필요해요.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>마친 운동과 소모 칼로리를 건강 앱에 저장하기 위해 필요해요.</string>
+	<string>마친 근력 운동과 소모 칼로리, 직접 기록한 체중과 먹은 칼로리를 건강 앱에 저장하기 위해 필요해요.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>
 	</array>
+	<key>UILaunchScreen</key>
+	<dict>
+		<key>UIColorName</key>
+		<string>LaunchBackground</string>
+	</dict>
 </dict>
 </plist>

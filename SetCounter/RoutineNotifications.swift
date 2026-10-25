@@ -6,6 +6,8 @@ import UserNotifications
 @MainActor
 enum RoutineNotifications {
     private static let prefix = "routine-"
+    static let weeklyReportID = "weekly-report"
+    static let weeklyReportKey = "weeklyReportOn"
     private static let horizonDays = 21
     private static let maxScheduled = 14
 
@@ -31,8 +33,25 @@ enum RoutineNotifications {
         String(localized: "오늘은 \(name) 하는 날이에요. \(cheers[cheerIndex % cheers.count])")
     }
 
+    /// 8 p.m. on the last day of the week (Saturday where weeks start on Sunday, as in
+    /// Korea), while the toggle is on and notifications are allowed.
+    static func scheduleWeeklyReport() async {
+        let center = UNUserNotificationCenter.current()
+        center.removePendingNotificationRequests(withIdentifiers: [weeklyReportID])
+        guard UserDefaults.standard.object(forKey: weeklyReportKey) as? Bool ?? true,
+              await center.notificationSettings().authorizationStatus == .authorized else { return }
+        let content = UNMutableNotificationContent()
+        content.title = String(localized: "📊 이번 주 리포트가 도착했어요")
+        content.body = String(localized: "근력·유산소·식단·체중을 한눈에 확인해 보세요.")
+        content.sound = .default
+        let lastWeekday = (Calendar.current.firstWeekday + 5) % 7 + 1
+        let trigger = UNCalendarNotificationTrigger(dateMatching: DateComponents(hour: 20, minute: 0, weekday: lastWeekday), repeats: true)
+        try? await center.add(UNNotificationRequest(identifier: weeklyReportID, content: content, trigger: trigger))
+    }
+
     /// `records` must be newest first.
     static func reschedule(records: [WorkoutRecord], now: Date = Date()) async {
+        await scheduleWeeklyReport()
         let center = UNUserNotificationCenter.current()
         let old = await center.pendingNotificationRequests().map(\.identifier).filter { $0.hasPrefix(prefix) }
         center.removePendingNotificationRequests(withIdentifiers: old)

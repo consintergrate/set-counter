@@ -129,7 +129,7 @@ enum Muscle: String, CaseIterable, Identifiable, Codable {
     /// Keyword guess, checked in an order that resolves overlaps
     /// ("레그 컬" is legs, "숄더프레스" is shoulders, plain "프레스" is chest).
     static func guess(for name: String) -> Muscle {
-        let text = name.lowercased().replacingOccurrences(of: " ", with: "")
+        let text = name.lowercased().replacingOccurrences(of: " ", with: "").replacingOccurrences(of: "-", with: "")
         let table: [(Muscle, [String])] = [
             (.legs, ["스쿼트", "레그", "런지", "카프", "힙", "데드리프트", "squat", "leg", "lunge", "calf", "hip", "deadlift"]),
             (.shoulders, ["숄더", "오버헤드", "밀리터리", "레이즈", "shoulder", "overhead", "military", "raise", "ohp"]),

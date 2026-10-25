@@ -3,6 +3,7 @@ import SwiftUI
 
 @main
 struct SetCounterApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) private var appDelegate
     /// Pinned to the app's own container: with an App Group entitlement SwiftData would
     /// otherwise default to the group container and existing records would vanish.
     private let container: ModelContainer = {
@@ -31,6 +32,10 @@ struct RootView: View {
     @AppStorage("accent") private var accent = AccentChoice.blue.rawValue
 
     @Query(sort: \WorkoutRecord.date, order: .reverse) private var records: [WorkoutRecord]
+    /// The opening animation plays once per launch, over the already-loaded app.
+    @State private var showingSplash = true
+    @State private var router = AppRouter.shared
+    @Environment(\.scenePhase) private var scenePhase
 
     var body: some View {
         TabView {
@@ -47,6 +52,15 @@ struct RootView: View {
                 SettingsView()
             }
         }
+        .overlay {
+            if showingSplash {
+                SplashView { showingSplash = false }
+            }
+        }
+        .statusBarHidden(showingSplash)
+        .sheet(isPresented: $router.showingWeeklyReport) {
+            WeeklyReportView()
+        }
         .tint((AccentChoice(rawValue: accent) ?? .blue).color)
         .preferredColorScheme((ThemeChoice(rawValue: theme) ?? .system).colorScheme)
         .task(id: records.count) {
@@ -54,7 +68,16 @@ struct RootView: View {
             await RoutineNotifications.reschedule(records: records)
             WidgetSnapshot.write(records: records)
         }
+        // Runs from Nike Run Club and friends land in Health while we're in the background.
+        .onChange(of: scenePhase) { _, phase in
+            if phase == .active { Task { await HealthData.shared.refresh() } }
+        }
+        .task { await HealthData.shared.refresh() }
         #if DEBUG
+        // `-seedHealth YES` fills the simulator's Health store with sample diet data.
+        .task {
+            if UserDefaults.standard.bool(forKey: "seedHealth") { await HealthData.shared.seedSampleData() }
+        }
         // `-demoHeartRate 126` feeds a fake sensor, for simulator screenshots.
         .task {
             // Launch arguments arrive as strings; integer(forKey:) converts them.

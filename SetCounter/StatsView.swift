@@ -25,7 +25,11 @@ struct StatsView: View {
     @Query(sort: \WorkoutRecord.date, order: .reverse) private var records: [WorkoutRecord]
     @AppStorage("weeklyGoal") private var weeklyGoal = 4
     @AppStorage(WeightUnit.key) private var unitRaw = WeightUnit.kg.rawValue
+    @AppStorage(Goals.cardioKey) private var cardioGoal = 150
+    @AppStorage(Goals.goalWeightKey) private var goalWeight = 68.0
     @State private var period = Period.week
+
+    private let health = HealthData.shared
 
     private var unit: WeightUnit { WeightUnit(rawValue: unitRaw) ?? .kg }
 
@@ -87,6 +91,17 @@ struct StatsView: View {
 
                     ChartCard(title: "개인 기록") {
                         PRBoardSummary(records: records)
+                    }
+                }
+
+                if !health.cardio.isEmpty {
+                    ChartCard(title: "유산소") {
+                        CardioChart(period: period, health: health, weeklyGoal: cardioGoal)
+                    }
+                }
+                if !health.weights.isEmpty {
+                    ChartCard(title: "체중") {
+                        WeightTrendCard(health: health, goalWeight: goalWeight)
                     }
                 }
             }

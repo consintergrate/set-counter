@@ -26,7 +26,7 @@ final class HeartRateMonitor {
     }
 }
 
-struct BodyProfile {
+struct BodyProfile: Equatable {
     var weight: Double
     var age: Int
     var isMale: Bool

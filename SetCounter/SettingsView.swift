@@ -6,6 +6,7 @@ import WidgetKit
 struct SettingsView: View {
     @AppStorage(WeightUnit.key) private var unitRaw = WeightUnit.kg.rawValue
     @AppStorage("notifyOn") private var notifyOn = false
+    @AppStorage(RoutineNotifications.weeklyReportKey) private var weeklyReportOn = true
     @AppStorage(Routine.namesKey) private var routineRaw = Routine.defaultRaw
     @AppStorage("weeklyGoal") private var weeklyGoal = 4
     @AppStorage("notifyTime") private var notifyTime = RoutineNotifications.defaultTime
@@ -18,7 +19,7 @@ struct SettingsView: View {
 
     /// Everything reminders and the widget depend on that can change from these screens.
     private var scheduleKey: String {
-        "\(routineRaw)|\(weeklyGoal)|\(notifyOn)|\(notifyTime)|\(notifyWeekdaysRaw)|\(unitRaw)"
+        "\(routineRaw)|\(weeklyGoal)|\(notifyOn)|\(notifyTime)|\(notifyWeekdaysRaw)|\(unitRaw)|\(weeklyReportOn)"
     }
 
     var body: some View {
@@ -77,12 +78,15 @@ struct SettingsView: View {
                     if notifyOn {
                         NavigationLink("알림 시간 · 요일") { NotificationSettingsView() }
                     }
+                    Toggle(isOn: $weeklyReportOn) {
+                        SettingsLabel("주간 리포트 알림", systemImage: "chart.bar.doc.horizontal.fill", color: .mint)
+                    }
                 } footer: {
                     if notificationsDenied {
                         Text("알림 권한이 꺼져 있어요. 설정 앱 → 세트 카운터 → 알림에서 켜주세요.")
                             .foregroundStyle(.red)
                     } else {
-                        Text("운동하는 날 아침에 \"오늘은 OO 하는 날이에요\" 알림을 보내드려요.")
+                        Text("운동하는 날 아침에 \"오늘은 OO 하는 날이에요\" 알림을, 한 주의 마지막 날 저녁 8시에 주간 리포트를 보내드려요.")
                     }
                 }
 
@@ -112,6 +116,14 @@ struct SettingsView: View {
                 let granted = await RoutineNotifications.requestAuthorization()
                 notificationsDenied = !granted
                 if !granted { notifyOn = false }
+            }
+        }
+        .onChange(of: weeklyReportOn) { _, isOn in
+            guard isOn else { return }
+            Task {
+                let granted = await RoutineNotifications.requestAuthorization()
+                notificationsDenied = !granted
+                if !granted { weeklyReportOn = false }
             }
         }
         .task(id: scheduleKey) {
@@ -157,6 +169,7 @@ struct WorkoutManagementView: View {
     @AppStorage("bodyWeight") private var bodyWeight = 70.0
     @AppStorage("age") private var age = 25
     @AppStorage("isMale") private var isMale = true
+    @AppStorage(Goals.heightKey) private var heightCm = 172.0
     @AppStorage(WeightUnit.key) private var unitRaw = WeightUnit.kg.rawValue
 
     private var unit: WeightUnit { WeightUnit(rawValue: unitRaw) ?? .kg }
@@ -185,11 +198,19 @@ struct WorkoutManagementView: View {
                 } label: {
                     Label("분할 루틴 · 주간 목표", systemImage: "target")
                 }
+                NavigationLink {
+                    GoalsSettingsView()
+                } label: {
+                    Label("다이어트 · 활동 목표", systemImage: "flame")
+                }
             }
 
             Section {
                 WheelPickerRow(title: "몸무게", values: bodyWeightValues, selection: displayBodyWeight) {
                     "\($0.formatted(.number.precision(.fractionLength(unit == .kg ? 1 : 0))))\(unit.symbol)"
+                }
+                WheelPickerRow(title: "키", values: Array(stride(from: 130.0, through: 220, by: 1)), selection: $heightCm) {
+                    "\(Int($0))cm"
                 }
                 WheelPickerRow(title: "나이", values: Array(10...90), selection: $age) {
                     String(localized: "\($0)세")
@@ -202,7 +223,7 @@ struct WorkoutManagementView: View {
             } header: {
                 Text("내 정보")
             } footer: {
-                Text("칼로리는 심박수가 있으면 심박수·몸무게·나이·성별로, 없으면 근력 운동 평균 강도로 추정해요.")
+                Text("칼로리는 심박수가 있으면 심박수·몸무게·나이·성별로, 없으면 근력 운동 평균 강도로 추정해요. 건강 앱에 체중이 기록되면 최신 체중으로 자동으로 바뀌어요.")
             }
         }
         .navigationTitle("운동 관리")

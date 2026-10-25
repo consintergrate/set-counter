@@ -58,13 +58,13 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "Apple Watch와 AirPods의 심박수를 읽어 칼로리를 계산하기 위해 필요해요."
+            "value": "걸음 수, 활동 칼로리, 체중, 먹은 칼로리, 심박수와 나이키 런 클럽 같은 다른 앱의 운동 기록을 읽어 하루 칼로리, 활동 목표, 유산소 기록을 보여주기 위해 필요해요."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Needed to read heart rate from Apple Watch and AirPods to estimate calories."
+            "value": "Needed to read steps, active energy, body weight, dietary energy, heart rate, and workouts from other apps such as Nike Run Club to show your daily calories, activity goals, and cardio."
           }
         }
       }
@@ -75,13 +75,13 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "마친 운동과 소모 칼로리를 건강 앱에 저장하기 위해 필요해요."
+            "value": "마친 근력 운동과 소모 칼로리, 직접 기록한 체중과 먹은 칼로리를 건강 앱에 저장하기 위해 필요해요."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Needed to save finished workouts and calories to the Health app."
+            "value": "Needed to save finished strength workouts and calories, and the body weight and meals you log, to the Health app."
           }
         }
       }

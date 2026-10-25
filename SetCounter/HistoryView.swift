@@ -8,10 +8,20 @@ struct HistoryView: View {
     @State private var month = Calendar.current.startOfMonth(for: Date())
     @State private var selectedDay = Calendar.current.startOfDay(for: Date())
 
+    private let health = HealthData.shared
     private var calendar: Calendar { .current }
 
     private var workoutDays: Set<Date> {
         Set(records.map { calendar.startOfDay(for: $0.date) })
+    }
+
+    /// Workouts other apps saved to Health (runs, walks, rides…).
+    private var cardioDays: Set<Date> {
+        Set(health.cardio.map { calendar.startOfDay(for: $0.start) })
+    }
+
+    private var dayCardio: [CardioWorkout] {
+        health.cardio.filter { calendar.isDate($0.start, inSameDayAs: selectedDay) }
     }
 
     private var monthRecords: [WorkoutRecord] {
@@ -25,18 +35,34 @@ struct HistoryView: View {
     var body: some View {
         List {
             Section {
-                MonthCalendar(month: $month, selectedDay: $selectedDay, workoutDays: workoutDays)
+                MonthCalendar(month: $month, selectedDay: $selectedDay, workoutDays: workoutDays, cardioDays: cardioDays)
                     .listRowInsets(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12))
             } footer: {
                 let days = Set(monthRecords.map { calendar.startOfDay(for: $0.date) }).count
                 let calories = monthRecords.reduce(0) { $0 + $1.calories }
-                Text("이번 달 \(days)일 운동 · \(monthRecords.count)개 기록 · \(Int(calories)) kcal")
+                let cardio = health.cardio.filter { calendar.isDate($0.start, equalTo: month, toGranularity: .month) }
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("이번 달 \(days)일 운동 · \(monthRecords.count)개 기록 · \(Int(calories)) kcal")
+                    if !cardio.isEmpty {
+                        Text("다른 앱 운동 \(cardio.count)회 · \(formatDistance(cardio.reduce(0) { $0 + $1.distance }))")
+                    }
+                    HStack(spacing: 12) {
+                        Label("근력", systemImage: "circle.fill").foregroundStyle(.orange)
+                        Label("유산소", systemImage: "circle.fill").foregroundStyle(.teal)
+                    }
+                    .labelStyle(LegendLabelStyle())
+                }
             }
 
             Section(selectedDay.formatted(.dateTime.month().day().weekday(.wide))) {
+                ForEach(dayCardio) { workout in
+                    CardioRow(workout: workout)
+                }
                 if dayRecords.isEmpty {
-                    Text("이 날은 운동 기록이 없어요")
-                        .foregroundStyle(.secondary)
+                    if dayCardio.isEmpty {
+                        Text("이 날은 운동 기록이 없어요")
+                            .foregroundStyle(.secondary)
+                    }
                 } else {
                     ForEach(dayRecords) { record in
                         NavigationLink {
@@ -67,6 +93,7 @@ private struct MonthCalendar: View {
     @Binding var month: Date
     @Binding var selectedDay: Date
     let workoutDays: Set<Date>
+    let cardioDays: Set<Date>
 
     private var calendar: Calendar { .current }
 
@@ -110,7 +137,8 @@ private struct MonthCalendar: View {
                             day: day,
                             isSelected: calendar.isDate(day, inSameDayAs: selectedDay),
                             isToday: calendar.isDateInToday(day),
-                            hasWorkout: workoutDays.contains(day)
+                            hasWorkout: workoutDays.contains(day),
+                            hasCardio: cardioDays.contains(day)
                         )
                         .onTapGesture { selectedDay = day }
                     } else {
@@ -133,6 +161,7 @@ private struct DayCell: View {
     let isSelected: Bool
     let isToday: Bool
     let hasWorkout: Bool
+    let hasCardio: Bool
 
     var body: some View {
         VStack(spacing: 3) {
@@ -142,9 +171,11 @@ private struct DayCell: View {
                 .foregroundStyle(isSelected ? AnyShapeStyle(Color.white) : isToday ? AnyShapeStyle(.tint) : AnyShapeStyle(Color.primary))
                 .frame(width: 30, height: 30)
                 .background(Circle().fill(isSelected ? AnyShapeStyle(.tint) : AnyShapeStyle(Color.clear)))
-            Circle()
-                .fill(hasWorkout ? Color.orange : .clear)
-                .frame(width: 5, height: 5)
+            HStack(spacing: 3) {
+                if hasWorkout { Circle().fill(Color.orange).frame(width: 5, height: 5) }
+                if hasCardio { Circle().fill(Color.teal).frame(width: 5, height: 5) }
+            }
+            .frame(height: 5)
         }
         .frame(height: 40)
         .contentShape(Rectangle())
@@ -189,6 +220,58 @@ struct RecordRow: View {
             .foregroundStyle(.secondary)
         }
         .padding(.vertical, 2)
+    }
+}
+
+/// A run, walk, or ride from another app, read from Health.
+struct CardioRow: View {
+    let workout: CardioWorkout
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: workout.systemImage)
+                .foregroundStyle(.teal)
+                .frame(width: 32, height: 32)
+                .background(Color.teal.opacity(0.12), in: Circle())
+            VStack(alignment: .leading, spacing: 3) {
+                HStack {
+                    Text(workout.title).font(.headline)
+                    Text(workout.source)
+                        .font(.caption2.bold())
+                        .padding(.horizontal, 6)
+                        .padding(.vertical, 2)
+                        .background(Color.teal.opacity(0.15), in: Capsule())
+                        .foregroundStyle(.teal)
+                    Spacer()
+                    Text(workout.start.formatted(date: .omitted, time: .shortened))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                Text(workout.summary).monospacedDigit()
+                HStack(spacing: 12) {
+                    if workout.energy > 0 {
+                        Label("\(Int(workout.energy).formatted())kcal", systemImage: "flame")
+                    }
+                    if workout.averageHeartRate > 0 {
+                        Label("\(workout.averageHeartRate)", systemImage: "heart")
+                    }
+                }
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            }
+        }
+        .padding(.vertical, 2)
+        .accessibilityElement(children: .combine)
+    }
+}
+
+/// Small colored dot followed by the title, for chart and calendar legends.
+struct LegendLabelStyle: LabelStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        HStack(spacing: 4) {
+            configuration.icon.font(.system(size: 6))
+            configuration.title.foregroundStyle(Color.secondary)
+        }
     }
 }
 

@@ -1,10 +1,12 @@
 import SwiftData
 import SwiftUI
 
-/// First screen: today's routine with a start button, this week's progress,
-/// and what happened lately. Workout setup opens as a sheet from here.
+/// First screen: the coach's tips, today's routine with a start button, the day's
+/// activity and calories, this week's progress, and what happened lately.
+/// Workout setup opens as a sheet from here.
 struct HomeView: View {
     @Query(sort: \WorkoutRecord.date, order: .reverse) private var records: [WorkoutRecord]
+    @Query private var profiles: [ExerciseProfile]
     @AppStorage(Routine.namesKey) private var routineRaw = Routine.defaultRaw
     @AppStorage("weeklyGoal") private var weeklyGoal = 4
     @AppStorage("accent") private var accent = AccentChoice.blue.rawValue
@@ -15,6 +17,14 @@ struct HomeView: View {
     /// Held while the setup sheet closes, then presented full screen.
     @State private var pendingSession: WorkoutSession?
     @State private var session: WorkoutSession?
+    @State private var showingFood = false
+    // Snapshots of the settings, refreshed whenever a default changes (goals, body weight…).
+    @State private var goals = Goals.saved
+    @State private var profile = BodyProfile.saved
+
+    private let health = HealthData.shared
+    /// Diet cards wait for the first Health read so they don't flash zeros.
+    private var hasHealth: Bool { health.isAvailable && !health.needsAuthorization && health.lastRefresh != nil }
 
     private var calendar: Calendar { .current }
     private var accentColor: Color { (AccentChoice(rawValue: accent) ?? .blue).color }
@@ -34,6 +44,14 @@ struct HomeView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 20) {
                     greeting
+                    if health.isAvailable, health.needsAuthorization {
+                        HealthConnectCard(health: health)
+                    }
+                    CoachCard(
+                        tips: Coach.tips(records: records, profiles: profiles, health: health, todayPart: todayName,
+                                         goals: goals, profile: profile),
+                        onReport: { AppRouter.shared.showingWeeklyReport = true }
+                    )
                     TodayCard(
                         splitLabel: routineNames.count == 1
                             ? String(localized: "무분할 루틴")
@@ -49,6 +67,15 @@ struct HomeView: View {
                         },
                         onStart: { showingSetup = true }
                     )
+                    let suggestions = Coach.recommendedRoutine(for: todayName, records: records, profiles: profiles)
+                    if !suggestions.isEmpty {
+                        RecommendedRoutineCard(part: todayName, suggestions: suggestions, onSelect: prefill)
+                    }
+                    if hasHealth {
+                        ActivityRingsCard(health: health, goals: goals)
+                        CalorieCard(health: health, goals: goals, profile: profile) { showingFood = true }
+                        CardioCard(health: health, goals: goals)
+                    }
                     WeekCard(records: records, goal: weeklyGoal, color: accentColor)
                     recentSection
                 }
@@ -71,7 +98,25 @@ struct HomeView: View {
             .fullScreenCover(item: $session) { session in
                 WorkoutView(session: session)
             }
+            .sheet(isPresented: $showingFood) {
+                FoodLogSheet()
+            }
+            .refreshable { await health.refresh() }
+            .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)) { _ in
+                goals = .saved
+                profile = .saved
+            }
         }
+    }
+
+    /// Fills the setup screen with a suggested exercise and opens it.
+    private func prefill(_ item: RoutineSuggestion) {
+        let defaults = UserDefaults.standard
+        defaults.set(item.exercise, forKey: "exercise")
+        defaults.set(item.weight, forKey: "weight")
+        defaults.set(item.reps, forKey: "reps")
+        defaults.set(item.sets, forKey: "totalSets")
+        showingSetup = true
     }
 
     private var greeting: some View {
