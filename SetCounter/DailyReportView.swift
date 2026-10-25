@@ -48,6 +48,7 @@ struct DailyReportView: View {
                             ForEach(workouts) { CardioRow(workout: $0) }
                         }
                     }
+                    mealCard
                     calorieCard(goals: goals)
                     weightCard
                 }
@@ -154,6 +155,16 @@ struct DailyReportView: View {
                     .font(.caption)
                     .foregroundStyle(.secondary)
             }
+        }
+    }
+
+    private var mealCard: some View {
+        let meals = health.meals(on: day)
+        return ReportCard(title: "식사", systemImage: "fork.knife", color: .orange) {
+            if meals.isEmpty {
+                Text("이 날은 기록한 식사가 없어요.").font(.subheadline).foregroundStyle(.secondary)
+            }
+            ForEach(meals) { MealRow(meal: $0) }
         }
     }
 

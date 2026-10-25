@@ -11,6 +11,16 @@
         }
       }
     },
+    "%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@"
+          }
+        }
+      }
+    },
     "%@ %@": {
       "localizations": {
         "en": {
@@ -247,6 +257,22 @@
         }
       }
     },
+    "%@ 저장 · %@kcal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save %1$@ · %2$@ kcal"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ 저장 · %2$@kcal"
+          }
+        }
+      }
+    },
     "%@ 주": {
       "localizations": {
         "en": {
@@ -321,6 +347,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ kcal"
+          }
+        }
+      }
+    },
+    "%@kcal 남음": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ kcal left"
+          }
+        }
+      }
+    },
+    "%@kcal 초과": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ kcal over"
           }
         }
       }
@@ -467,6 +513,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Delete %lld Records"
+          }
+        }
+      }
+    },
+    "%lld끼 · 전체 보기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld meals · See All"
           }
         }
       }
@@ -745,6 +801,16 @@
         }
       }
     },
+    "'식사 추가'로 무엇을 먹었는지 남겨 보세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Use Add Meal to note what you ate."
+          }
+        }
+      }
+    },
     "'편집'을 눌러 이 날 할 운동을 골라 보세요.": {
       "localizations": {
         "en": {
@@ -775,16 +841,6 @@
         }
       }
     },
-    "+%lldkcal": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "+%lld kcal"
-          }
-        }
-      }
-    },
     "+15초": {
       "localizations": {
         "en": {
@@ -811,6 +867,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "."
+          }
+        }
+      }
+    },
+    "/ %@kcal": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "/ %@ kcal"
           }
         }
       }
@@ -1167,6 +1233,16 @@
         }
       }
     },
+    "×%@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "×%@"
+          }
+        }
+      }
+    },
     "–": {
       "localizations": {
         "en": {
@@ -1247,6 +1323,26 @@
         }
       }
     },
+    "간식": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Snack"
+          }
+        }
+      }
+    },
+    "간편식·외식": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Quick & Eating Out"
+          }
+        }
+      }
+    },
     "감량 (%@kg/주)": {
       "localizations": {
         "en": {
@@ -1263,6 +1359,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Weekly Loss"
+          }
+        }
+      }
+    },
+    "감자 1개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Potato"
+          }
+        }
+      }
+    },
+    "감자튀김 (M)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fries (M)"
           }
         }
       }
@@ -1507,6 +1623,26 @@
         }
       }
     },
+    "검색 결과": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Results"
+          }
+        }
+      }
+    },
+    "견과류 1줌": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Handful of nuts"
+          }
+        }
+      }
+    },
     "계단 오르기": {
       "localizations": {
         "en": {
@@ -1527,12 +1663,52 @@
         }
       }
     },
-    "공깃밥": {
+    "계란말이 1접시": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Bowl of Rice"
+            "value": "Rolled omelet"
+          }
+        }
+      }
+    },
+    "고구마 1개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sweet potato"
+          }
+        }
+      }
+    },
+    "공깃밥 1공기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bowl of rice"
+          }
+        }
+      }
+    },
+    "과일": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fruit"
+          }
+        }
+      }
+    },
+    "과자 1봉 (소)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bag of chips (small)"
           }
         }
       }
@@ -1553,6 +1729,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Target start"
+          }
+        }
+      }
+    },
+    "귤 1개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mandarin"
+          }
+        }
+      }
+    },
+    "그릭요거트 1컵": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Greek yogurt cup"
           }
         }
       }
@@ -1783,6 +1979,26 @@
         }
       }
     },
+    "김치 1접시": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Side of kimchi"
+          }
+        }
+      }
+    },
+    "김치찌개 1인분": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kimchi stew"
+          }
+        }
+      }
+    },
     "나이": {
       "localizations": {
         "en": {
@@ -1889,6 +2105,16 @@
         }
       }
     },
+    "내 음식": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "My Foods"
+          }
+        }
+      }
+    },
     "내 정보": {
       "localizations": {
         "en": {
@@ -1905,6 +2131,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Exercises you picked. Weight and reps are set up from your history."
+          }
+        }
+      }
+    },
+    "냉면 1그릇": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Naengmyeon"
           }
         }
       }
@@ -2005,6 +2241,16 @@
         }
       }
     },
+    "단백질": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Protein"
+          }
+        }
+      }
+    },
     "닫기": {
       "localizations": {
         "en": {
@@ -2015,22 +2261,52 @@
         }
       }
     },
-    "닭가슴살": {
+    "닭가슴살 1팩 (100g)": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Chicken Breast"
+            "value": "Chicken breast (100 g)"
           }
         }
       }
     },
-    "대략적인 값이에요. 정확한 숫자는 포장지 영양 정보를 참고하세요.": {
+    "닭갈비 1인분": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "These are rough values. Check the nutrition label for exact numbers."
+            "value": "Dakgalbi"
+          }
+        }
+      }
+    },
+    "담기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add"
+          }
+        }
+      }
+    },
+    "담은 음식": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your Meal"
+          }
+        }
+      }
+    },
+    "대략적인 1인분 기준이에요. 정확한 숫자는 포장지 영양 정보를 참고하세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rough values per serving. Check the nutrition label for exact numbers."
           }
         }
       }
@@ -2125,12 +2401,42 @@
         }
       }
     },
+    "된장찌개 1인분": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Doenjang stew"
+          }
+        }
+      }
+    },
     "두 번 이상 기록하면 변화 그래프가 보여요": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Log it twice or more to see the trend"
+          }
+        }
+      }
+    },
+    "두부 반 모": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Half block of tofu"
+          }
+        }
+      }
+    },
+    "두유 1팩": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soy milk"
           }
         }
       }
@@ -2165,7 +2471,37 @@
         }
       }
     },
-    "라면": {
+    "딸기 10개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10 Strawberries"
+          }
+        }
+      }
+    },
+    "떡 100g": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rice cake (100 g)"
+          }
+        }
+      }
+    },
+    "떡볶이 1인분": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tteokbokki"
+          }
+        }
+      }
+    },
+    "라면 1개": {
       "localizations": {
         "en": {
           "stringUnit": {
@@ -2355,12 +2691,42 @@
         }
       }
     },
+    "막걸리 1병": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bottle of makgeolli"
+          }
+        }
+      }
+    },
+    "만두 5개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5 Dumplings"
+          }
+        }
+      }
+    },
     "많음": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "High"
+          }
+        }
+      }
+    },
+    "맥주 1캔 (355ml)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Can of beer (355 ml)"
           }
         }
       }
@@ -2411,6 +2777,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Logging what you eat makes it easier to see why."
+          }
+        }
+      }
+    },
+    "메모 (예: 회식, 삼겹살 2인분이랑 소주 반 병)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Memo (e.g. team dinner, pork belly and half a bottle of soju)"
           }
         }
       }
@@ -2727,6 +3103,16 @@
         }
       }
     },
+    "미역국 1그릇": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Seaweed soup"
+          }
+        }
+      }
+    },
     "바꾸기": {
       "localizations": {
         "en": {
@@ -2737,12 +3123,22 @@
         }
       }
     },
-    "바나나": {
+    "바나나 1개": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Banana"
+          }
+        }
+      }
+    },
+    "바닐라라떼": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Vanilla latte"
           }
         }
       }
@@ -2773,6 +3169,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Reps"
+          }
+        }
+      }
+    },
+    "밥·면": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rice & Noodles"
           }
         }
       }
@@ -2867,6 +3273,16 @@
         }
       }
     },
+    "베이글 1개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bagel"
+          }
+        }
+      }
+    },
     "벤치프레스": {
       "localizations": {
         "en": {
@@ -2913,6 +3329,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Abs · Cardio"
+          }
+        }
+      }
+    },
+    "볶음밥 1인분": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Fried rice"
           }
         }
       }
@@ -3047,12 +3473,42 @@
         }
       }
     },
+    "불고기 1인분": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bulgogi"
+          }
+        }
+      }
+    },
+    "블루베리 1컵": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cup of blueberries"
+          }
+        }
+      }
+    },
     "블루투스 심박 센서": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Bluetooth Heart Rate Sensor"
+          }
+        }
+      }
+    },
+    "비빔밥 1그릇": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bibimbap"
           }
         }
       }
@@ -3067,16 +3523,6 @@
         }
       }
     },
-    "빠른 추가": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Quick Add"
-          }
-        }
-      }
-    },
     "빨강": {
       "localizations": {
         "en": {
@@ -3087,12 +3533,32 @@
         }
       }
     },
+    "빵·간식": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bread & Snacks"
+          }
+        }
+      }
+    },
     "삐삐삐": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Beeps"
+          }
+        }
+      }
+    },
+    "사과 1개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple"
           }
         }
       }
@@ -3147,6 +3613,26 @@
         }
       }
     },
+    "삼각김밥 1개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Triangle gimbap"
+          }
+        }
+      }
+    },
+    "삼겹살 1인분 (200g)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pork belly (200 g)"
+          }
+        }
+      }
+    },
     "삼두": {
       "localizations": {
         "en": {
@@ -3173,6 +3659,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "New name"
+          }
+        }
+      }
+    },
+    "샌드위치 1개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sandwich"
           }
         }
       }
@@ -3277,6 +3773,16 @@
         }
       }
     },
+    "세트 카운터에서 기록한 식사는 왼쪽으로 밀어서 지울 수 있어요. 다른 앱의 기록은 그 앱이나 건강 앱에서 고쳐 주세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Swipe left to delete meals logged in Set Counter. Edit other apps' entries in that app or in Health."
+          }
+        }
+      }
+    },
     "세트 카운터와 휴식 타이머": {
       "localizations": {
         "en": {
@@ -3327,6 +3833,16 @@
         }
       }
     },
+    "소고기 스테이크 200g": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Beef steak (200 g)"
+          }
+        }
+      }
+    },
     "소리": {
       "localizations": {
         "en": {
@@ -3357,12 +3873,52 @@
         }
       }
     },
+    "소주 1병": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bottle of soju"
+          }
+        }
+      }
+    },
+    "수박 1조각": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slice of watermelon"
+          }
+        }
+      }
+    },
     "수영": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Swim"
+          }
+        }
+      }
+    },
+    "순대 1인분": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Sundae"
+          }
+        }
+      }
+    },
+    "순두부찌개 1인분": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Soft tofu stew"
           }
         }
       }
@@ -3497,6 +4053,36 @@
         }
       }
     },
+    "식단 기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meal Diary"
+          }
+        }
+      }
+    },
+    "식빵 1장": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slice of bread"
+          }
+        }
+      }
+    },
+    "식사": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meals"
+          }
+        }
+      }
+    },
     "식사 기록한 날": {
       "localizations": {
         "en": {
@@ -3607,6 +4193,16 @@
         }
       }
     },
+    "쌀국수 1그릇": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pho"
+          }
+        }
+      }
+    },
     "아래 '운동 추가'로 루틴을 채워 보세요.": {
       "localizations": {
         "en": {
@@ -3627,12 +4223,42 @@
         }
       }
     },
+    "아메리카노": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Americano"
+          }
+        }
+      }
+    },
+    "아이스크림 1개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ice cream"
+          }
+        }
+      }
+    },
     "아직 %@kcal 남았어요": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "%@ kcal still left"
+          }
+        }
+      }
+    },
+    "아직 없어요. 아래 '직접 입력'으로 추가하면 여기에 모여요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Nothing here yet. Foods you add under Enter Manually collect here."
           }
         }
       }
@@ -3663,6 +4289,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No Stats Yet"
+          }
+        }
+      }
+    },
+    "아침": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Breakfast"
           }
         }
       }
@@ -3877,6 +4513,16 @@
         }
       }
     },
+    "연어 100g": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Salmon (100 g)"
+          }
+        }
+      }
+    },
     "예: %@\n그날 이미 운동했다면 알림이 오지 않아요.": {
       "localizations": {
         "en": {
@@ -3927,12 +4573,12 @@
         }
       }
     },
-    "오늘 먹은 양: %@kcal": {
+    "오늘 먹은 것": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Eaten today: %@ kcal"
+            "value": "Eaten Today"
           }
         }
       }
@@ -4083,6 +4729,16 @@
         }
       }
     },
+    "오렌지주스 1잔": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Orange juice"
+          }
+        }
+      }
+    },
     "오버헤드 트라이셉 익스텐션": {
       "localizations": {
         "en": {
@@ -4109,6 +4765,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Days This Year"
+          }
+        }
+      }
+    },
+    "와인 1잔": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glass of wine"
+          }
+        }
+      }
+    },
+    "완료": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Done"
           }
         }
       }
@@ -4149,6 +4825,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Activity by Day"
+          }
+        }
+      }
+    },
+    "우동 1그릇": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Udon"
+          }
+        }
+      }
+    },
+    "우유 1잔": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Glass of milk"
           }
         }
       }
@@ -4529,12 +5225,72 @@
         }
       }
     },
+    "음료·술": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Drinks"
+          }
+        }
+      }
+    },
     "음식": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Food"
+          }
+        }
+      }
+    },
+    "음식 검색": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Search foods"
+          }
+        }
+      }
+    },
+    "음식 고르기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Choose Foods"
+          }
+        }
+      }
+    },
+    "음식 이름": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Food name"
+          }
+        }
+      }
+    },
+    "음식 이름 없이 기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logged without a food name"
+          }
+        }
+      }
+    },
+    "음식을 담아 주세요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add some food"
           }
         }
       }
@@ -4565,6 +5321,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No strength training on this day."
+          }
+        }
+      }
+    },
+    "이 날은 기록한 식사가 없어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No meals logged on this day."
           }
         }
       }
@@ -4625,6 +5391,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Unnamed sensor"
+          }
+        }
+      }
+    },
+    "이름을 적으면 '내 음식'에 저장돼서 다음부터 바로 고를 수 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With a name, it's saved to My Foods so you can pick it next time."
           }
         }
       }
@@ -4855,6 +5631,16 @@
         }
       }
     },
+    "저녁": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Dinner"
+          }
+        }
+      }
+    },
     "저장": {
       "localizations": {
         "en": {
@@ -4945,6 +5731,16 @@
         }
       }
     },
+    "점심": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lunch"
+          }
+        }
+      }
+    },
     "정보": {
       "localizations": {
         "en": {
@@ -4971,6 +5767,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Set"
+          }
+        }
+      }
+    },
+    "제로 탄산음료": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Zero-calorie soda"
+          }
+        }
+      }
+    },
+    "제육덮밥 1그릇": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spicy pork rice bowl"
+          }
+        }
+      }
+    },
+    "제육볶음 1인분": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Spicy stir-fried pork"
           }
         }
       }
@@ -5227,12 +6053,12 @@
         }
       }
     },
-    "지우기": {
+    "지우지 못했어요": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Clear"
+            "value": "Couldn't Delete"
           }
         }
       }
@@ -5257,12 +6083,72 @@
         }
       }
     },
+    "직접 입력": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Enter Manually"
+          }
+        }
+      }
+    },
     "진동": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Vibration"
+          }
+        }
+      }
+    },
+    "짜장면 1그릇": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jjajangmyeon"
+          }
+        }
+      }
+    },
+    "짬뽕 1그릇": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Jjamppong"
+          }
+        }
+      }
+    },
+    "참치김밥 1줄": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tuna gimbap roll"
+          }
+        }
+      }
+    },
+    "참치캔 1캔": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Can of tuna"
+          }
+        }
+      }
+    },
+    "찾는 음식이 없어요. 아래 '직접 입력'으로 추가해 보세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No match. Add it under Enter Manually below."
           }
         }
       }
@@ -5393,6 +6279,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "The green band is the common 10–20 sets per muscle per week for muscle growth, as a guide only. Change an exercise's body part in Settings → Data → Manage Exercises."
+          }
+        }
+      }
+    },
+    "초코바 1개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Chocolate bar"
           }
         }
       }
@@ -5609,12 +6505,32 @@
         }
       }
     },
+    "카페라떼": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Caffè latte"
+          }
+        }
+      }
+    },
     "카프 레이즈": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Calf Raise"
+          }
+        }
+      }
+    },
+    "칼국수 1그릇": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Kalguksu"
           }
         }
       }
@@ -5659,6 +6575,16 @@
         }
       }
     },
+    "컵라면 (소)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cup noodles (small)"
+          }
+        }
+      }
+    },
     "케이블 컬": {
       "localizations": {
         "en": {
@@ -5699,6 +6625,16 @@
         }
       }
     },
+    "케이크 1조각": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slice of cake"
+          }
+        }
+      }
+    },
     "켜두면 운동 화면에서 자동 잠금이 되지 않아요. 배터리를 더 사용해요.": {
       "localizations": {
         "en": {
@@ -5719,12 +6655,32 @@
         }
       }
     },
+    "콜라 1캔": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Can of cola"
+          }
+        }
+      }
+    },
     "크런치": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Crunch"
+          }
+        }
+      }
+    },
+    "크로와상 1개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Croissant"
           }
         }
       }
@@ -5789,6 +6745,16 @@
         }
       }
     },
+    "파스타 1접시": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pasta"
+          }
+        }
+      }
+    },
     "팔": {
       "localizations": {
         "en": {
@@ -5815,6 +6781,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Pec Deck Fly"
+          }
+        }
+      }
+    },
+    "편의점 도시락": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Convenience store lunch box"
           }
         }
       }
@@ -5869,6 +6845,16 @@
         }
       }
     },
+    "포도 반 송이": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Half bunch of grapes"
+          }
+        }
+      }
+    },
     "표시": {
       "localizations": {
         "en": {
@@ -5899,12 +6885,12 @@
         }
       }
     },
-    "프로틴 쉐이크": {
+    "프로틴 쉐이크 1잔": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Protein Shake"
+            "value": "Protein shake"
           }
         }
       }
@@ -5935,6 +6921,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Send Feedback"
+          }
+        }
+      }
+    },
+    "피자 1조각": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Slice of pizza"
           }
         }
       }
@@ -6049,6 +7045,26 @@
         }
       }
     },
+    "한식": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Korean"
+          }
+        }
+      }
+    },
+    "핫도그 1개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Corn dog"
+          }
+        }
+      }
+    },
     "해머 컬": {
       "localizations": {
         "en": {
@@ -6059,12 +7075,32 @@
         }
       }
     },
+    "햄버거 1개": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Hamburger"
+          }
+        }
+      }
+    },
     "행잉 레그 레이즈": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Hanging Leg Raise"
+          }
+        }
+      }
+    },
+    "현미밥 1공기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bowl of brown rice"
           }
         }
       }

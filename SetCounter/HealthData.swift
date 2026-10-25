@@ -67,6 +67,23 @@ struct CardioWorkout: Identifiable, Hashable {
     }
 }
 
+/// A meal logged in Health. Ours carry the foods and a memo as metadata; other
+/// apps' entries show with just their calories and source.
+struct MealEntry: Identifiable, Hashable {
+    let id: UUID
+    let date: Date
+    let kcal: Double
+    let type: MealType
+    let foods: String
+    let memo: String
+    let source: String
+    /// Saved by this app, so it can be deleted here.
+    let isOwn: Bool
+
+    static let typeKey = "SetCounterMealType"
+    static let memoKey = "SetCounterMemo"
+}
+
 struct WeightEntry: Identifiable, Hashable {
     let date: Date
     let kg: Double
@@ -96,6 +113,8 @@ final class HealthData {
     private(set) var dailyActive: [Date: Double] = [:]
     private(set) var dailyEaten: [Date: Double] = [:]
     private(set) var dailyExercise: [Date: Double] = [:]
+    /// Meals over the past four weeks, oldest first.
+    private(set) var meals: [MealEntry] = []
     private(set) var needsAuthorization = false
     private(set) var lastRefresh: Date?
 
@@ -167,9 +186,11 @@ final class HealthData {
         async let active = dailySums(.activeEnergyBurned, unit: .kilocalorie(), since: fourWeeksAgo, anchor: today)
         async let eaten = dailySums(.dietaryEnergyConsumed, unit: .kilocalorie(), since: fourWeeksAgo, anchor: today)
         async let exercise = dailySums(.appleExerciseTime, unit: .minute(), since: fourWeeksAgo, anchor: today)
+        async let meals = fetchMeals(since: fourWeeksAgo)
 
         self.cardio = await cardio
         self.weights = await weights
+        self.meals = await meals
         dailySteps = await steps
         dailyActive = await active
         dailyEaten = await eaten
@@ -198,15 +219,36 @@ final class HealthData {
         await refresh()
     }
 
-    func saveFood(_ kcal: Double, at date: Date = Date()) async throws {
+    /// One sample per meal; the food names go in the standard food type field so
+    /// other diet apps can show them too.
+    func saveMeal(kcal: Double, type: MealType, foods: [String], memo: String, at date: Date = Date()) async throws {
+        var metadata: [String: Any] = [MealEntry.typeKey: type.rawValue]
+        if !foods.isEmpty { metadata[HKMetadataKeyFoodType] = foods.joined(separator: ", ") }
+        let memo = memo.trimmingCharacters(in: .whitespacesAndNewlines)
+        if !memo.isEmpty { metadata[MealEntry.memoKey] = memo }
         let sample = HKQuantitySample(
             type: HKQuantityType(.dietaryEnergyConsumed),
             quantity: HKQuantity(unit: .kilocalorie(), doubleValue: kcal),
             start: date,
-            end: date
+            end: date,
+            metadata: metadata
         )
         try await store.save(sample)
         await refresh()
+    }
+
+    func deleteMeal(_ meal: MealEntry) async throws {
+        let descriptor = HKSampleQueryDescriptor(
+            predicates: [.quantitySample(type: HKQuantityType(.dietaryEnergyConsumed), predicate: HKQuery.predicateForObject(with: meal.id))],
+            sortDescriptors: []
+        )
+        let samples = try await descriptor.result(for: store)
+        if !samples.isEmpty { try await store.delete(samples) }
+        await refresh()
+    }
+
+    func meals(on day: Date) -> [MealEntry] {
+        meals.filter { Calendar.current.isDate($0.date, inSameDayAs: day) }
     }
 
     /// Cardio (and other apps' workouts) in the week containing `date`.
@@ -251,6 +293,29 @@ final class HealthData {
                     source: workout.sourceRevision.source.name
                 )
             }
+    }
+
+    private func fetchMeals(since start: Date) async -> [MealEntry] {
+        let descriptor = HKSampleQueryDescriptor(
+            predicates: [.quantitySample(type: HKQuantityType(.dietaryEnergyConsumed), predicate: HKQuery.predicateForSamples(withStart: start, end: nil))],
+            sortDescriptors: [SortDescriptor(\.startDate)],
+            limit: 2000
+        )
+        guard let samples = try? await descriptor.result(for: store) else { return [] }
+        let ownBundle = Bundle.main.bundleIdentifier ?? ""
+        return samples.map { sample in
+            let metadata = sample.metadata ?? [:]
+            return MealEntry(
+                id: sample.uuid,
+                date: sample.startDate,
+                kcal: sample.quantity.doubleValue(for: .kilocalorie()),
+                type: (metadata[MealEntry.typeKey] as? String).flatMap(MealType.init(rawValue:)) ?? .guess(at: sample.startDate),
+                foods: metadata[HKMetadataKeyFoodType] as? String ?? "",
+                memo: metadata[MealEntry.memoKey] as? String ?? "",
+                source: sample.sourceRevision.source.name,
+                isOwn: sample.sourceRevision.source.bundleIdentifier == ownBundle
+            )
+        }
     }
 
     private func fetchWeights(since start: Date) async -> [WeightEntry] {

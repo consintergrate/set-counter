@@ -304,6 +304,8 @@ struct CalorieCard: View {
                 .transition(.opacity.combined(with: .move(edge: .top)))
             }
 
+            mealsToday
+
             NavigationLink {
                 WeightView()
             } label: {
@@ -335,6 +337,51 @@ struct CalorieCard: View {
             .buttonStyle(.plain)
         }
         .homeCard()
+    }
+
+    /// Today's meals in one line each, linking to the full meal diary.
+    private var mealsToday: some View {
+        let meals = health.meals(on: Date())
+        return NavigationLink {
+            MealDiaryView()
+        } label: {
+            VStack(alignment: .leading, spacing: 8) {
+                HStack {
+                    Image(systemName: "fork.knife").foregroundStyle(.tint)
+                    Text("오늘 먹은 것").font(.subheadline.bold())
+                    Spacer()
+                    Text(meals.isEmpty ? String(localized: "식단 기록") : String(localized: "\(meals.count)끼 · 전체 보기"))
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                    Image(systemName: "chevron.right").font(.caption.bold()).foregroundStyle(.tertiary)
+                }
+                if meals.isEmpty {
+                    Text("'식사 추가'로 무엇을 먹었는지 남겨 보세요.")
+                        .font(.caption)
+                        .foregroundStyle(.secondary)
+                }
+                ForEach(meals.suffix(4)) { meal in
+                    HStack(spacing: 8) {
+                        Image(systemName: meal.type.systemImage)
+                            .font(.caption)
+                            .foregroundStyle(meal.type.color)
+                            .frame(width: 16)
+                        Text(meal.foods.isEmpty ? meal.type.title : meal.foods)
+                            .font(.caption)
+                            .lineLimit(1)
+                        Spacer()
+                        Text("\(Int(meal.kcal).formatted())kcal")
+                            .font(.caption)
+                            .monospacedDigit()
+                            .foregroundStyle(.secondary)
+                    }
+                }
+            }
+            .padding(12)
+            .background(Color(.tertiarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12))
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
     }
 
     private func mathRow(_ title: LocalizedStringKey, _ value: Double, sign: String, bold: Bool = false) -> some View {

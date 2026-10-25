@@ -161,3 +161,27 @@ struct SharedDataTests {
         #expect(heartRate.command == nil)
     }
 }
+
+@Suite("Meals")
+struct MealTests {
+    @Test(arguments: [(7, MealType.breakfast), (12, .lunch), (19, .dinner), (23, .snack), (3, .snack)])
+    func mealTypeFollowsTheClock(hour: Int, type: MealType) throws {
+        let date = try #require(Calendar.current.date(bySettingHour: hour, minute: 30, second: 0, of: Date()))
+        #expect(MealType.guess(at: date) == type)
+    }
+
+    @Test func amountsScaleCaloriesAndShowInTheLog() {
+        let rice = FoodItem(name: "공깃밥 1공기", kcal: 300)
+        #expect(FoodLogSheet.Line(food: rice, amount: 1).label == "공깃밥 1공기")
+        let double = FoodLogSheet.Line(food: rice, amount: 1.5)
+        #expect(double.kcal == 450)
+        #expect(double.label.hasSuffix("×1.5"))
+    }
+
+    @Test func builtInFoodsAreUniqueAndSane() {
+        let all = FoodCatalog.all
+        #expect(all.count >= 70)
+        #expect(Set(all.map(\.name)).count == all.count)
+        #expect(all.allSatisfy { (0...1500).contains($0.kcal) })
+    }
+}
