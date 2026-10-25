@@ -16,6 +16,7 @@ struct SettingsView: View {
 
     @Query(sort: \WorkoutRecord.date, order: .reverse) private var records: [WorkoutRecord]
     @State private var notificationsDenied = false
+    @State private var showingGuide = false
 
     /// Everything reminders and the widget depend on that can change from these screens.
     private var scheduleKey: String {
@@ -96,6 +97,12 @@ struct SettingsView: View {
                     } label: {
                         SettingsLabel("데이터 관리", systemImage: "externaldrive.fill", color: .green)
                     }
+                    Button {
+                        showingGuide = true
+                    } label: {
+                        SettingsLabel("사용법", systemImage: "questionmark.circle.fill", color: .orange)
+                    }
+                    .foregroundStyle(.primary)
                     NavigationLink {
                         SupportView()
                     } label: {
@@ -109,6 +116,9 @@ struct SettingsView: View {
                 }
             }
             .navigationTitle("설정")
+        }
+        .sheet(isPresented: $showingGuide) {
+            OnboardingView { showingGuide = false }
         }
         .onChange(of: notifyOn) { _, isOn in
             guard isOn else { return }

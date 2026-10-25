@@ -108,15 +108,18 @@ struct WeightTrendCard: View {
                     Image(systemName: "chevron.right").font(.caption.bold()).foregroundStyle(.tertiary)
                 }
                 if entries.count >= 2 {
-                    let values = entries.map { unit.fromKg($0.kg) } + [unit.fromKg(goalWeight)]
+                    let showGoal = Goals.hasGoalWeight
+                    let values = entries.map { unit.fromKg($0.kg) } + (showGoal ? [unit.fromKg(goalWeight)] : [])
                     Chart {
                         ForEach(entries) { entry in
                             LineMark(x: .value("날짜", entry.date), y: .value("체중", unit.fromKg(entry.kg)))
                                 .interpolationMethod(.monotone)
                         }
-                        RuleMark(y: .value("목표", unit.fromKg(goalWeight)))
-                            .lineStyle(StrokeStyle(lineWidth: 1, dash: [4, 3]))
-                            .foregroundStyle(.green)
+                        if showGoal {
+                            RuleMark(y: .value("목표", unit.fromKg(goalWeight)))
+                                .lineStyle(StrokeStyle(lineWidth: 1, dash: [4, 3]))
+                                .foregroundStyle(.green)
+                        }
                     }
                     .chartYScale(domain: ((values.min() ?? 0) - 1)...((values.max() ?? 0) + 1))
                     .frame(height: 120)

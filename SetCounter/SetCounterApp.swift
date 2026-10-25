@@ -34,6 +34,8 @@ struct RootView: View {
     @Query(sort: \WorkoutRecord.date, order: .reverse) private var records: [WorkoutRecord]
     /// The opening animation plays once per launch, over the already-loaded app.
     @State private var showingSplash = true
+    @State private var showingOnboarding = false
+    @AppStorage(OnboardingView.doneKey) private var onboardingDone = false
     @State private var router = AppRouter.shared
     @Environment(\.scenePhase) private var scenePhase
 
@@ -54,12 +56,22 @@ struct RootView: View {
         }
         .overlay {
             if showingSplash {
-                SplashView { showingSplash = false }
+                SplashView {
+                    showingSplash = false
+                    // First launch: a short guide right after the opening animation.
+                    if !onboardingDone { showingOnboarding = true }
+                }
             }
         }
         .statusBarHidden(showingSplash)
         .sheet(isPresented: $router.showingWeeklyReport) {
             WeeklyReportView()
+        }
+        .fullScreenCover(isPresented: $showingOnboarding) {
+            OnboardingView {
+                onboardingDone = true
+                showingOnboarding = false
+            }
         }
         .tint((AccentChoice(rawValue: accent) ?? .blue).color)
         .preferredColorScheme((ThemeChoice(rawValue: theme) ?? .system).colorScheme)

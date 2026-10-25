@@ -70,17 +70,20 @@ enum Coach {
             let recent = health.weights.filter { $0.date >= twoWeeksAgo }
             if let first = recent.first, let last = recent.last, first.date != last.date {
                 let change = last.kg - first.kg
+                let hasGoal = Goals.hasGoalWeight
                 let toGo = last.kg - goals.goalWeight
-                if goals.weeklyLoss > 0, toGo <= 0 {
+                if hasGoal, goals.weeklyLoss > 0, toGo <= 0 {
                     tips.append(CoachTip(kind: .weight, icon: "party.popper.fill", color: .green,
                                          title: String(localized: "목표 체중에 도달했어요"),
                                          detail: String(localized: "이제 감량 속도를 '유지'로 바꾸면 유지 칼로리로 안내해 드려요.")))
                 } else if change <= -0.2 {
                     tips.append(CoachTip(kind: .weight, icon: "chart.line.downtrend.xyaxis", color: .green,
                                          title: String(localized: "2주 동안 \(formatMass(-change)) 빠졌어요"),
-                                         detail: toGo > 0
-                                            ? String(localized: "목표까지 \(formatMass(toGo)) 남았어요. 지금 속도 좋아요.")
-                                            : String(localized: "지금 속도를 유지해 보세요.")))
+                                         detail: !hasGoal
+                                            ? String(localized: "홈의 체중 카드를 눌러 목표 체중을 정하면 남은 양도 알려드려요.")
+                                            : toGo > 0
+                                                ? String(localized: "목표까지 \(formatMass(toGo)) 남았어요. 지금 속도 좋아요.")
+                                                : String(localized: "지금 속도를 유지해 보세요.")))
                 } else if goals.weeklyLoss > 0, change >= 0.5 {
                     tips.append(CoachTip(kind: .weight, icon: "chart.line.uptrend.xyaxis", color: .orange,
                                          title: String(localized: "2주 동안 \(formatMass(change)) 늘었어요"),

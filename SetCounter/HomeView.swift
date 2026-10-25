@@ -18,6 +18,7 @@ struct HomeView: View {
     @State private var pendingSession: WorkoutSession?
     @State private var session: WorkoutSession?
     @State private var showingFood = false
+    @State private var showingGuide = false
     // Snapshots of the settings, refreshed whenever a default changes (goals, body weight…).
     @State private var goals = Goals.saved
     @State private var profile = BodyProfile.saved
@@ -65,7 +66,8 @@ struct HomeView: View {
                             overrideDay = calendar.startOfDay(for: Date()).timeIntervalSince1970
                             overrideIndex = index
                         },
-                        onStart: { showingSetup = true }
+                        onStart: { showingSetup = true },
+                        onGuide: { showingGuide = true }
                     )
                     let suggestions = Coach.recommendedRoutine(for: todayName, records: records, profiles: profiles)
                     if !suggestions.isEmpty {
@@ -100,6 +102,9 @@ struct HomeView: View {
             }
             .sheet(isPresented: $showingFood) {
                 FoodLogSheet()
+            }
+            .sheet(isPresented: $showingGuide) {
+                OnboardingView { showingGuide = false }
             }
             .refreshable { await health.refresh() }
             .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)) { _ in
@@ -247,6 +252,8 @@ private struct TodayCard: View {
     let routineNames: [String]
     let onPick: (Int) -> Void
     let onStart: () -> Void
+    /// Reopens the first-launch guide, right next to the button it explains.
+    let onGuide: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
@@ -305,6 +312,14 @@ private struct TodayCard: View {
                     .padding(.vertical, 14)
                     .background(.white, in: Capsule())
                     .foregroundStyle(color)
+            }
+            .buttonStyle(.plain)
+
+            Button(action: onGuide) {
+                Label("세트 카운트 사용법", systemImage: "questionmark.circle")
+                    .font(.subheadline.weight(.semibold))
+                    .foregroundStyle(.white.opacity(0.9))
+                    .frame(maxWidth: .infinity)
             }
             .buttonStyle(.plain)
         }

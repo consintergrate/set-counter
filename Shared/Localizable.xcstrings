@@ -1263,6 +1263,16 @@
         }
       }
     },
+    "건강 앱을 연결하면 걸음, 칼로리, 체중, 나이키 런 클럽 같은 다른 앱의 러닝까지 모아 알려드려요. 목표 체중은 홈의 체중 카드를 눌러 언제든 바꿀 수 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Connect Health and the app brings together steps, calories, weight, and runs from apps like Nike Run Club. Change your goal weight anytime by tapping the weight card on Home."
+          }
+        }
+      }
+    },
     "건너뛰기": {
       "localizations": {
         "en": {
@@ -1299,6 +1309,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ steps to go"
+          }
+        }
+      }
+    },
+    "걸음 · 활동 · 유산소 목표": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Step, Activity & Cardio Goals"
           }
         }
       }
@@ -1657,6 +1677,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Merge with Another Exercise"
+          }
+        }
+      }
+    },
+    "다음": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next"
           }
         }
       }
@@ -2103,6 +2133,16 @@
         }
       }
     },
+    "목표 정하기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set a Goal"
+          }
+        }
+      }
+    },
     "목표 체중": {
       "localizations": {
         "en": {
@@ -2119,6 +2159,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "You reached your goal weight"
+          }
+        }
+      }
+    },
+    "목표 체중을 눌러 바꿀 수 있어요. 감량 속도에 맞춰 하루 권장 섭취가 %@kcal로 잡혀 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap Goal Weight to change it. Based on your weekly loss, your daily target is set to %@ kcal."
           }
         }
       }
@@ -2583,6 +2633,16 @@
         }
       }
     },
+    "사용법": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How to Use"
+          }
+        }
+      }
+    },
     "사이드 레터럴 레이즈": {
       "localizations": {
         "en": {
@@ -2753,6 +2813,36 @@
         }
       }
     },
+    "세트 카운트 사용법": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How Set Counting Works"
+          }
+        }
+      }
+    },
+    "세트는 한 번만 누르면 끝": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "One Tap per Set"
+          }
+        }
+      }
+    },
+    "세트를 마치면 눌러요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap when you finish the set"
+          }
+        }
+      }
+    },
     "세트를 하나 이상 추가해주세요.": {
       "localizations": {
         "en": {
@@ -2809,6 +2899,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rest"
+          }
+        }
+      }
+    },
+    "쉬는 시간은 알아서": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Rest, Timed for You"
           }
         }
       }
@@ -2873,12 +2973,32 @@
         }
       }
     },
+    "시작을 누르고 운동하세요. 세트를 마칠 때마다 큰 버튼을 한 번 누르면 세트 수가 올라가고 휴식 타이머가 바로 시작돼요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Tap Start and lift. Each time you finish a set, tap the big button once: the set count goes up and the rest timer starts."
+          }
+        }
+      }
+    },
     "시작이 반이에요. 가볍게 출발해요 🏃": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Starting is half the battle. Ease into it 🏃"
+          }
+        }
+      }
+    },
+    "시작하기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Get Started"
           }
         }
       }
@@ -3599,16 +3719,6 @@
         }
       }
     },
-    "운동 중": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Working out"
-          }
-        }
-      }
-    },
     "운동 중 화면 켜두기": {
       "localizations": {
         "en": {
@@ -4141,6 +4251,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Whole"
+          }
+        }
+      }
+    },
+    "정하기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set"
           }
         }
       }
@@ -4839,6 +4959,16 @@
         }
       }
     },
+    "코치가 하루를 챙겨요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A Coach for Your Day"
+          }
+        }
+      }
+    },
     "크런치": {
       "localizations": {
         "en": {
@@ -5149,6 +5279,16 @@
         }
       }
     },
+    "홈의 체중 카드를 눌러 목표 체중을 정하면 남은 양도 알려드려요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set a goal weight from the weight card on Home to see how much is left."
+          }
+        }
+      }
+    },
     "화면 모드": {
       "localizations": {
         "en": {
@@ -5285,6 +5425,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rest Alarm (Sound · Vibration)"
+          }
+        }
+      }
+    },
+    "휴식이 끝나면 알람이 울려요. 음악은 알람이 울리는 동안만 잠깐 멈추고, 화면을 잠가도 울려요. 쉬는 동안 방금 한 세트의 무게와 횟수를 고칠 수 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "An alarm rings when rest is over. Your music pauses only while it rings, and it works with the screen locked. While resting, you can fix the weight and reps of the set you just did."
           }
         }
       }

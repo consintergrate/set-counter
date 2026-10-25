@@ -19,6 +19,9 @@ struct Goals: Equatable {
     var exerciseMinutes: Int
     var cardioWeeklyMinutes: Int
 
+    /// False until the user picks a goal weight; the default only seeds the wheel.
+    static var hasGoalWeight: Bool { UserDefaults.standard.object(forKey: goalWeightKey) != nil }
+
     static var saved: Goals {
         let d = UserDefaults.standard
         return Goals(

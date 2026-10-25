@@ -4,6 +4,7 @@ import SwiftUI
 /// Body weight trend from Health (any app or scale that writes there) against the goal.
 struct WeightView: View {
     @AppStorage(Goals.goalWeightKey) private var goalWeight = 68.0
+    @AppStorage(Goals.weeklyLossKey) private var weeklyLoss = 0.5
     @AppStorage(Goals.heightKey) private var heightCm = 172.0
     @AppStorage(WeightUnit.key) private var unitRaw = WeightUnit.kg.rawValue
 
@@ -46,6 +47,17 @@ struct WeightView: View {
             }
 
             Section {
+                GoalWeightRow()
+                WeeklyLossPicker()
+                NavigationLink("걸음 · 활동 · 유산소 목표") { GoalsSettingsView() }
+            } header: {
+                Text("목표")
+            } footer: {
+                let _ = (goalWeight, weeklyLoss)
+                Text("목표 체중을 눌러 바꿀 수 있어요. 감량 속도에 맞춰 하루 권장 섭취가 \(Int(Goals.saved.intakeTarget(profile: .saved)).formatted())kcal로 잡혀 있어요.")
+            }
+
+            Section {
                 if health.weights.isEmpty {
                     Text("아직 체중 기록이 없어요. 오른쪽 위 + 로 기록하거나, 체중계 앱이 건강 앱에 저장하면 자동으로 보여요.")
                         .font(.subheadline)
@@ -81,7 +93,7 @@ struct WeightView: View {
         return HStack(spacing: 0) {
             MiniStat(title: "현재", value: latest.map { formatMass($0.kg, unit: unit) } ?? "–")
             MiniStat(title: "기간 변화", value: change.map { ($0 > 0 ? "+" : "") + formatMass($0, unit: unit) } ?? "–")
-            MiniStat(title: "목표까지", value: latest.map { formatMass(max($0.kg - goalWeight, 0), unit: unit) } ?? "–")
+            MiniStat(title: "목표까지", value: Goals.hasGoalWeight ? latest.map { formatMass(max($0.kg - goalWeight, 0), unit: unit) } ?? "–" : "–")
             MiniStat(title: "BMI", value: bmi.map { $0.formatted(.number.precision(.fractionLength(1))) } ?? "–")
         }
     }
@@ -94,7 +106,8 @@ struct WeightView: View {
                 .foregroundStyle(.secondary)
                 .frame(maxWidth: .infinity, minHeight: 160)
         } else {
-            let values = entries.map { unit.fromKg($0.kg) } + [unit.fromKg(goalWeight)]
+            let showGoal = Goals.hasGoalWeight
+            let values = entries.map { unit.fromKg($0.kg) } + (showGoal ? [unit.fromKg(goalWeight)] : [])
             let low = (values.min() ?? 0) - 1, high = (values.max() ?? 0) + 1
             Chart {
                 ForEach(entries) { entry in
@@ -103,12 +116,14 @@ struct WeightView: View {
                     PointMark(x: .value("날짜", entry.date), y: .value("체중", unit.fromKg(entry.kg)))
                         .symbolSize(entries.count > 40 ? 8 : 24)
                 }
-                RuleMark(y: .value("목표", unit.fromKg(goalWeight)))
-                    .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [5, 4]))
-                    .foregroundStyle(.green)
-                    .annotation(position: .top, alignment: .leading) {
-                        Text("목표 \(formatMass(goalWeight, unit: unit))").font(.caption2.bold()).foregroundStyle(.green)
-                    }
+                if showGoal {
+                    RuleMark(y: .value("목표", unit.fromKg(goalWeight)))
+                        .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [5, 4]))
+                        .foregroundStyle(.green)
+                        .annotation(position: .top, alignment: .leading) {
+                            Text("목표 \(formatMass(goalWeight, unit: unit))").font(.caption2.bold()).foregroundStyle(.green)
+                        }
+                }
             }
             .chartYScale(domain: low...high)
             .frame(height: 200)

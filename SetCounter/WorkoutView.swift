@@ -17,6 +17,7 @@ struct WorkoutView: View {
     @State private var confirmingEnd = false
     @State private var saved = false
     @State private var shownAlert: WorkoutSession.RecordAlert?
+    @State private var showingGuide = false
 
     private var isAlarming: Bool { session.phase == .alarming }
     private var accentColor: Color { (AccentChoice(rawValue: accent) ?? .blue).color }
@@ -96,6 +97,19 @@ struct WorkoutView: View {
                     .monospacedDigit()
             }
             .foregroundStyle(isAlarming ? Color.white : Color.secondary)
+            Button {
+                showingGuide = true
+            } label: {
+                Image(systemName: "questionmark.circle")
+                    .font(.title3)
+                    .frame(width: 36, height: 36)
+                    .contentShape(Rectangle())
+            }
+            .tint(isAlarming ? .white : accentColor)
+            .accessibilityLabel("사용법")
+        }
+        .sheet(isPresented: $showingGuide) {
+            OnboardingView { showingGuide = false }
         }
     }
 
@@ -118,7 +132,7 @@ struct WorkoutView: View {
         case .ready:
             setPrompt(subtitle: "준비되면 시작을 눌러요", buttonTitle: "시작", action: session.start)
         case .exercising:
-            setPrompt(subtitle: "운동 중", buttonTitle: "세트 완료", action: session.completeSet)
+            setPrompt(subtitle: "세트를 마치면 눌러요", buttonTitle: "세트 완료", action: session.completeSet)
         case .resting(let end):
             VStack(spacing: 24) {
                 RestTimerView(

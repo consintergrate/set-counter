@@ -245,10 +245,16 @@ struct CalorieCard: View {
                     } else {
                         Text("체중 기록하기").font(.subheadline.bold())
                     }
-                    Text("목표 \(formatMass(goals.goalWeight))")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .monospacedDigit()
+                    if Goals.hasGoalWeight {
+                        Text("목표 \(formatMass(goals.goalWeight))")
+                            .font(.subheadline)
+                            .foregroundStyle(.secondary)
+                            .monospacedDigit()
+                    } else {
+                        Text("목표 정하기")
+                            .font(.subheadline.weight(.semibold))
+                            .foregroundStyle(.tint)
+                    }
                     Spacer()
                     Image(systemName: "chevron.right").font(.caption.bold()).foregroundStyle(.tertiary)
                 }

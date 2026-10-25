@@ -1,49 +1,24 @@
 import SwiftUI
 
 struct GoalsSettingsView: View {
-    @AppStorage(Goals.goalWeightKey) private var goalWeight = 68.0
     @AppStorage(Goals.weeklyLossKey) private var weeklyLoss = 0.5
     @AppStorage(Goals.stepKey) private var stepGoal = 8000
     @AppStorage(Goals.activeKey) private var activeGoal = 400
     @AppStorage(Goals.exerciseKey) private var exerciseGoal = 30
     @AppStorage(Goals.cardioKey) private var cardioGoal = 150
-    @AppStorage(WeightUnit.key) private var unitRaw = WeightUnit.kg.rawValue
     // Read so the intake estimate below updates when the profile changes.
     @AppStorage("bodyWeight") private var bodyWeight = 70.0
     @AppStorage(Goals.heightKey) private var heightCm = 172.0
 
     private let health = HealthData.shared
-    private var unit: WeightUnit { WeightUnit(rawValue: unitRaw) ?? .kg }
-
-    private var goalWeightValues: [Double] {
-        unit == .kg ? stride(from: 35.0, through: 180, by: 0.5).map { $0 } : stride(from: 77.0, through: 400, by: 1).map { $0 }
-    }
-
-    private var displayGoalWeight: Binding<Double> {
-        Binding(
-            get: {
-                let step = unit == .kg ? 0.5 : 1
-                let value = (unit.fromKg(goalWeight) / step).rounded() * step
-                return min(max(value, goalWeightValues.first ?? value), goalWeightValues.last ?? value)
-            },
-            set: { goalWeight = unit.toKg($0) }
-        )
-    }
 
     var body: some View {
-        let _ = (bodyWeight, heightCm)
+        let _ = (bodyWeight, heightCm, weeklyLoss)
         let target = Goals.saved.intakeTarget(profile: .saved)
         Form {
             Section {
-                WheelPickerRow(title: "목표 체중", values: goalWeightValues, selection: displayGoalWeight) {
-                    "\($0.formatted(.number.precision(.fractionLength(unit == .kg ? 1 : 0))))\(unit.symbol)"
-                }
-                Picker("감량 속도", selection: $weeklyLoss) {
-                    Text("유지").tag(0.0)
-                    Text("주 0.25kg").tag(0.25)
-                    Text("주 0.5kg").tag(0.5)
-                    Text("주 0.75kg").tag(0.75)
-                }
+                GoalWeightRow()
+                WeeklyLossPicker()
                 LabeledContent("하루 권장 섭취") {
                     Text("\(Int(target).formatted()) kcal").bold().monospacedDigit()
                 }
@@ -84,5 +59,51 @@ struct GoalsSettingsView: View {
             }
         }
         .navigationTitle("다이어트 · 활동 목표")
+    }
+}
+
+/// Goal weight on a wheel in the display unit; stored in kg. Shared by the goals
+/// screen and the weight screen so it can be changed where it's shown.
+struct GoalWeightRow: View {
+    @AppStorage(Goals.goalWeightKey) private var goalWeight = 68.0
+    @AppStorage(WeightUnit.key) private var unitRaw = WeightUnit.kg.rawValue
+
+    private var unit: WeightUnit { WeightUnit(rawValue: unitRaw) ?? .kg }
+
+    private var values: [Double] {
+        unit == .kg ? stride(from: 35.0, through: 180, by: 0.5).map { $0 } : stride(from: 77.0, through: 400, by: 1).map { $0 }
+    }
+
+    private var displayGoalWeight: Binding<Double> {
+        Binding(
+            get: {
+                let step = unit == .kg ? 0.5 : 1
+                let value = (unit.fromKg(goalWeight) / step).rounded() * step
+                return min(max(value, values.first ?? value), values.last ?? value)
+            },
+            set: { goalWeight = unit.toKg($0) }
+        )
+    }
+
+    var body: some View {
+        // Reading goalWeight keeps this current once a goal is picked.
+        let hasGoal = goalWeight > 0 && Goals.hasGoalWeight
+        WheelPickerRow(title: "목표 체중", values: values, selection: displayGoalWeight,
+                       placeholder: hasGoal ? nil : String(localized: "정하기")) {
+            "\($0.formatted(.number.precision(.fractionLength(unit == .kg ? 1 : 0))))\(unit.symbol)"
+        }
+    }
+}
+
+struct WeeklyLossPicker: View {
+    @AppStorage(Goals.weeklyLossKey) private var weeklyLoss = 0.5
+
+    var body: some View {
+        Picker("감량 속도", selection: $weeklyLoss) {
+            Text("유지").tag(0.0)
+            Text("주 0.25kg").tag(0.25)
+            Text("주 0.5kg").tag(0.5)
+            Text("주 0.75kg").tag(0.75)
+        }
     }
 }

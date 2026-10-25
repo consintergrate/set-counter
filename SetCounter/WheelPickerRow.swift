@@ -6,6 +6,8 @@ struct WheelPickerRow<Value: Hashable>: View {
     let title: LocalizedStringKey
     let values: [Value]
     @Binding var selection: Value
+    /// Shown instead of the value while nothing has been picked yet.
+    var placeholder: String? = nil
     let label: (Value) -> String
 
     @State private var draft: Value?
@@ -17,7 +19,7 @@ struct WheelPickerRow<Value: Hashable>: View {
             isPresented = true
         } label: {
             LabeledContent(title) {
-                Text(label(selection))
+                Text(placeholder ?? label(selection))
                     .monospacedDigit()
                     .bold()
                     .foregroundStyle(.tint)
