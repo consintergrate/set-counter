@@ -34,8 +34,8 @@ struct RootView: View {
 
     var body: some View {
         TabView {
-            Tab("운동", systemImage: "dumbbell.fill") {
-                SetupView()
+            Tab("홈", systemImage: "house.fill") {
+                HomeView()
             }
             Tab("기록", systemImage: "calendar") {
                 NavigationStack { HistoryView() }

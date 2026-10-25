@@ -1,7 +1,12 @@
 import SwiftData
 import SwiftUI
 
+/// Workout setup, shown as a sheet from the home screen. Starting hands the
+/// session back so the home screen can present the workout full screen.
 struct SetupView: View {
+    var onStart: (WorkoutSession) -> Void = { _ in }
+
+    @Environment(\.dismiss) private var dismiss
     @AppStorage("exercise") private var exercise = ""
     @AppStorage("weight") private var weight = 20.0
     @AppStorage("reps") private var reps = 10
@@ -9,12 +14,10 @@ struct SetupView: View {
     @AppStorage("restSeconds") private var restSeconds = 90
     @AppStorage(WeightUnit.key) private var unitRaw = WeightUnit.kg.rawValue
     @AppStorage(Routine.namesKey) private var routineRaw = Routine.defaultRaw
-    @AppStorage("weeklyGoal") private var weeklyGoal = 4
     @AppStorage("routineOverrideDay") private var overrideDay = 0.0
     @AppStorage("routineOverrideIndex") private var overrideIndex = 0
 
     @Query(sort: \WorkoutRecord.date, order: .reverse) private var records: [WorkoutRecord]
-    @State private var session: WorkoutSession?
 
     private let restPresets = [30, 60, 90, 120, 180]
 
@@ -48,30 +51,9 @@ struct SetupView: View {
         NavigationStack {
             Form {
                 Section {
-                    VStack(alignment: .leading, spacing: 12) {
-                        HStack(alignment: .firstTextBaseline) {
-                            VStack(alignment: .leading, spacing: 4) {
-                                Text(routineNames.count == 1 ? String(localized: "무분할 루틴") : String(localized: "\(routineNames.count)분할 · \(todayIndex + 1)일차"))
-                                    .font(.subheadline)
-                                    .foregroundStyle(.secondary)
-                                Text("오늘은 \(todayName) 하는 날")
-                                    .font(.title3.bold())
-                            }
-                            Spacer()
-                            Menu {
-                                ForEach(routineNames.indices, id: \.self) { index in
-                                    Button("\(index + 1)일차 · \(routineNames[index])") {
-                                        overrideDay = Calendar.current.startOfDay(for: Date()).timeIntervalSince1970
-                                        overrideIndex = index
-                                    }
-                                }
-                            } label: {
-                                Text("바꾸기").font(.subheadline)
-                            }
-                        }
-                        WeeklyGoalGauge(done: Routine.weeklyDays(records: records), goal: weeklyGoal)
+                    LabeledContent("오늘 루틴") {
+                        Text(todayName).bold().foregroundStyle(.tint)
                     }
-                    .padding(.vertical, 4)
                 }
 
                 Section("운동") {
@@ -128,13 +110,19 @@ struct SetupView: View {
                     }
                 }
             }
-            .navigationTitle("운동 설정")
+            .navigationTitle("운동 준비")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .cancellationAction) {
+                    Button("닫기") { dismiss() }
+                }
+            }
             .safeAreaInset(edge: .bottom) {
                 Button {
                     // Ask for the alarm permission when it's first needed, not at launch.
                     Task { await LockScreenAlarm.requestAuthorization() }
                     let name = exercise.trimmingCharacters(in: .whitespaces)
-                    session = WorkoutSession(
+                    onStart(WorkoutSession(
                         exercise: name,
                         weight: weight,
                         reps: reps,
@@ -143,16 +131,13 @@ struct SetupView: View {
                         routineIndex: todayIndex,
                         routineName: todayName,
                         previousBest: name.isEmpty ? nil : PersonalBest.of(name, in: records)
-                    )
+                    ))
                 } label: {
-                    Text("운동 준비").font(.headline).frame(maxWidth: .infinity)
+                    Text("준비 완료").font(.headline).frame(maxWidth: .infinity)
                 }
                 .buttonStyle(.borderedProminent)
                 .controlSize(.large)
                 .padding()
-            }
-            .fullScreenCover(item: $session) { session in
-                WorkoutView(session: session)
             }
             .task {
                 // Reconnect a previously paired strap so it's ready before the workout starts.
