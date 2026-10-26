@@ -201,3 +201,26 @@ struct CSVTests {
         #expect(records.first?.exercise == "=SUM(A1)")
     }
 }
+
+@Suite("Exercise minutes")
+struct ExerciseMinuteTests {
+    private let start = Date(timeIntervalSince1970: 1_800_000_000)
+
+    private func interval(_ fromMinute: Double, _ toMinute: Double) -> DateInterval {
+        DateInterval(start: start.addingTimeInterval(fromMinute * 60), end: start.addingTimeInterval(toMinute * 60))
+    }
+
+    @Test func separateWorkoutsAddUp() {
+        #expect(coveredDuration([interval(0, 20), interval(60, 90)]) == 50 * 60)
+    }
+
+    @Test func overlappingWorkoutsCountOnce() {
+        // A Set Counter session inside an Apple Watch workout is one workout.
+        #expect(coveredDuration([interval(0, 45), interval(10, 30)]) == 45 * 60)
+        #expect(coveredDuration([interval(30, 60), interval(0, 40)]) == 60 * 60)
+    }
+
+    @Test func nothingIsZero() {
+        #expect(coveredDuration([]) == 0)
+    }
+}

@@ -82,7 +82,7 @@ struct HomeView: View {
                         onEdit: { editingRoutine = true }
                     )
                     if hasHealth {
-                        ActivityRingsCard(health: health, goals: goals)
+                        ActivityRingsCard(health: health, goals: goals, records: records)
                         CalorieCard(health: health, goals: goals, profile: profile) { showingFood = true }
                         CardioCard(health: health, goals: goals)
                     }
@@ -167,9 +167,11 @@ struct HomeView: View {
         }
     }
 
+    /// The last few workout days, one row each, plus any new records as chips.
     @ViewBuilder
     private var recentSection: some View {
-        let recentPRs = ExerciseBest.all(in: records).filter(\.isRecent).prefix(3)
+        let recentPRs = Array(ExerciseBest.all(in: records).filter(\.isRecent).prefix(5))
+        let days = recentDays
         VStack(alignment: .leading, spacing: 12) {
             HStack {
                 Text("최근 기록").font(.title3.bold())
@@ -195,64 +197,110 @@ struct HomeView: View {
                 .padding(24)
                 .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 20))
             } else {
-                VStack(spacing: 0) {
-                    ForEach(Array(recentPRs)) { item in
-                        NavigationLink {
-                            ExerciseDetailView(name: item.name)
-                        } label: {
-                            HStack(spacing: 12) {
-                                Image(systemName: "trophy.fill")
-                                    .foregroundStyle(.orange)
-                                    .frame(width: 28)
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(item.name).font(.subheadline.bold())
-                                    Text("신기록 \(item.best.weight > 0 ? formatWeight(item.best.weight) : String(localized: "\(item.best.reps)회"))")
-                                        .font(.caption)
-                                        .foregroundStyle(.secondary)
+                if !recentPRs.isEmpty {
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack(spacing: 8) {
+                            ForEach(recentPRs) { item in
+                                NavigationLink {
+                                    ExerciseDetailView(name: item.name)
+                                } label: {
+                                    HStack(spacing: 6) {
+                                        Image(systemName: "trophy.fill").foregroundStyle(.orange)
+                                        Text(item.name).font(.subheadline.bold()).foregroundStyle(Color.primary)
+                                        Text(item.best.weight > 0 ? formatWeight(item.best.weight) : String(localized: "\(item.best.reps)회"))
+                                            .font(.subheadline)
+                                            .monospacedDigit()
+                                            .foregroundStyle(Color.secondary)
+                                    }
+                                    .padding(.horizontal, 12)
+                                    .padding(.vertical, 8)
+                                    .background(Color(.secondarySystemGroupedBackground), in: Capsule())
                                 }
-                                Spacer()
-                                Image(systemName: "chevron.right").font(.caption.bold()).foregroundStyle(.tertiary)
+                                .buttonStyle(.plain)
                             }
-                            .padding(.vertical, 12)
-                            .contentShape(Rectangle())
                         }
-                        .buttonStyle(.plain)
-                        Divider().padding(.leading, 40)
                     }
-                    ForEach(records.prefix(4)) { record in
+                    .scrollClipDisabled()
+                }
+
+                VStack(spacing: 0) {
+                    ForEach(days, id: \.day) { item in
                         NavigationLink {
-                            RecordEditorView(record: record)
+                            HistoryView(day: item.day)
                         } label: {
-                            HStack(spacing: 12) {
-                                VStack(spacing: 0) {
-                                    // Bare number: the Korean day format adds "일" and wraps.
-                                    Text("\(calendar.component(.day, from: record.date))")
-                                        .font(.subheadline.bold())
-                                        .monospacedDigit()
-                                    Text(record.date.formatted(.dateTime.weekday(.abbreviated)))
-                                        .font(.caption2)
-                                        .foregroundStyle(.secondary)
-                                }
-                                .frame(width: 28)
-                                VStack(alignment: .leading, spacing: 2) {
-                                    Text(record.exercise.isEmpty ? String(localized: "운동") : record.exercise)
-                                        .font(.subheadline.bold())
-                                    Text(setsSummary(record.setValues)).font(.caption).foregroundStyle(.secondary)
-                                }
-                                Spacer()
-                                Image(systemName: "chevron.right").font(.caption.bold()).foregroundStyle(.tertiary)
-                            }
-                            .padding(.vertical, 12)
-                            .contentShape(Rectangle())
+                            RecentDayRow(day: item.day, records: item.records)
                         }
                         .buttonStyle(.plain)
-                        if record.id != records.prefix(4).last?.id { Divider().padding(.leading, 40) }
+                        if item.day != days.last?.day { Divider().padding(.leading, 56) }
                     }
                 }
                 .padding(.horizontal, 16)
                 .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 20))
             }
         }
+    }
+
+    /// The last four days with workouts, oldest record of each day first.
+    private var recentDays: [(day: Date, records: [WorkoutRecord])] {
+        var order: [Date] = []
+        var byDay: [Date: [WorkoutRecord]] = [:]
+        for record in records {
+            let day = calendar.startOfDay(for: record.date)
+            if byDay[day] == nil {
+                guard order.count < 4 else { break }
+                order.append(day)
+            }
+            byDay[day, default: []].insert(record, at: 0)
+        }
+        return order.map { ($0, byDay[$0] ?? []) }
+    }
+}
+
+/// One workout day: date, the routine part, the exercises, and totals.
+private struct RecentDayRow: View {
+    let day: Date
+    let records: [WorkoutRecord]
+
+    var body: some View {
+        let calendar = Calendar.current
+        let names = records.map(\.exercise).filter { !$0.isEmpty }.reduce(into: [String]()) { if !$0.contains($1) { $0.append($1) } }
+        let part = records.first(where: { !$0.routineName.isEmpty })?.routineName
+        let sets = records.reduce(0) { $0 + $1.sets }
+        let calories = records.reduce(0) { $0 + $1.calories }
+        HStack(spacing: 14) {
+            VStack(spacing: 0) {
+                // Bare number: the Korean day format adds "일" and wraps.
+                Text("\(calendar.component(.day, from: day))")
+                    .font(.title3.bold())
+                    .monospacedDigit()
+                Text(day.formatted(.dateTime.weekday(.abbreviated)))
+                    .font(.caption2)
+                    .foregroundStyle(calendar.isDateInToday(day) ? AnyShapeStyle(.tint) : AnyShapeStyle(.secondary))
+            }
+            .frame(width: 30)
+
+            VStack(alignment: .leading, spacing: 3) {
+                Text(part ?? String(localized: "운동"))
+                    .font(.subheadline.bold())
+                Text(names.isEmpty ? String(localized: "운동") : names.joined(separator: ", "))
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
+
+            Spacer(minLength: 8)
+
+            VStack(alignment: .trailing, spacing: 3) {
+                Text(String(localized: "\(sets)세트")).font(.subheadline.bold()).monospacedDigit()
+                if calories > 0 {
+                    Text("\(Int(calories).formatted())kcal").font(.caption).monospacedDigit().foregroundStyle(.secondary)
+                }
+            }
+            Image(systemName: "chevron.right").font(.caption.bold()).foregroundStyle(.tertiary)
+        }
+        .padding(.vertical, 12)
+        .contentShape(Rectangle())
+        .accessibilityElement(children: .combine)
     }
 }
 

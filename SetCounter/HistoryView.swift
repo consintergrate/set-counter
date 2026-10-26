@@ -5,8 +5,14 @@ struct HistoryView: View {
     @Query(sort: \WorkoutRecord.date, order: .reverse) private var records: [WorkoutRecord]
     @Environment(\.modelContext) private var modelContext
 
-    @State private var month = Calendar.current.startOfMonth(for: Date())
-    @State private var selectedDay = Calendar.current.startOfDay(for: Date())
+    @State private var month: Date
+    @State private var selectedDay: Date
+
+    /// Opens on `day` (today by default), e.g. from a row in Home's recent workouts.
+    init(day: Date = Date()) {
+        _month = State(initialValue: Calendar.current.startOfMonth(for: day))
+        _selectedDay = State(initialValue: Calendar.current.startOfDay(for: day))
+    }
 
     private let health = HealthData.shared
     private var calendar: Calendar { .current }
@@ -31,8 +37,9 @@ struct HistoryView: View {
         records.filter { calendar.isDate($0.date, equalTo: month, toGranularity: .month) }
     }
 
+    /// In the order they were done.
     private var dayRecords: [WorkoutRecord] {
-        records.filter { calendar.isDate($0.date, inSameDayAs: selectedDay) }
+        records.filter { calendar.isDate($0.date, inSameDayAs: selectedDay) }.reversed()
     }
 
     var body: some View {
@@ -41,32 +48,28 @@ struct HistoryView: View {
                 MonthCalendar(month: $month, selectedDay: $selectedDay, workoutDays: workoutDays, cardioDays: cardioDays)
                     .listRowInsets(EdgeInsets(top: 12, leading: 12, bottom: 12, trailing: 12))
             } footer: {
-                let days = Set(monthRecords.map { calendar.startOfDay(for: $0.date) }).count
-                let calories = monthRecords.reduce(0) { $0 + $1.calories }
-                let cardio = health.cardio.filter { calendar.isDate($0.start, equalTo: month, toGranularity: .month) }
-                VStack(alignment: .leading, spacing: 4) {
-                    Text("이번 달 \(days)일 운동 · \(monthRecords.count)개 기록 · \(Int(calories)) kcal")
-                    if !cardio.isEmpty {
-                        Text("다른 앱 운동 \(cardio.count)회 · \(formatDistance(cardio.reduce(0) { $0 + $1.distance }))")
-                    }
-                    HStack(spacing: 12) {
-                        Label("근력", systemImage: "circle.fill").foregroundStyle(.orange)
-                        Label("유산소", systemImage: "circle.fill").foregroundStyle(.teal)
-                    }
-                    .labelStyle(LegendLabelStyle())
+                // One line: the legend doubles as the month's totals.
+                let strengthDays = workoutDays.filter { calendar.isDate($0, equalTo: month, toGranularity: .month) }.count
+                let cardioCount = health.cardio.filter { $0.isCardio && calendar.isDate($0.start, equalTo: month, toGranularity: .month) }.count
+                HStack(spacing: 12) {
+                    Label(String(localized: "근력 \(strengthDays)일"), systemImage: "circle.fill").foregroundStyle(.orange)
+                    Label(String(localized: "유산소 \(cardioCount)회"), systemImage: "circle.fill").foregroundStyle(.teal)
+                    Spacer()
+                    Text("\(Int(monthRecords.reduce(0) { $0 + $1.calories }).formatted())kcal")
+                        .monospacedDigit()
                 }
+                .labelStyle(LegendLabelStyle())
             }
 
-            Section(selectedDay.formatted(.dateTime.month().day().weekday(.wide))) {
+            Section {
+                if dayRecords.isEmpty, dayCardio.isEmpty {
+                    Text("이 날은 운동 기록이 없어요")
+                        .foregroundStyle(.secondary)
+                }
                 ForEach(dayCardio) { workout in
                     CardioRow(workout: workout)
                 }
-                if dayRecords.isEmpty {
-                    if dayCardio.isEmpty {
-                        Text("이 날은 운동 기록이 없어요")
-                            .foregroundStyle(.secondary)
-                    }
-                } else {
+                if !dayRecords.isEmpty {
                     ForEach(dayRecords) { record in
                         NavigationLink {
                             RecordEditorView(record: record)
@@ -80,14 +83,32 @@ struct HistoryView: View {
                         try? modelContext.save()
                     }
                 }
+            } header: {
+                dayHeader
             }
         }
         .navigationTitle("운동 기록")
+        .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             NavigationLink {
                 RecordEditorView(newOn: selectedDay)
             } label: {
                 Label("기록 추가", systemImage: "plus")
+            }
+        }
+    }
+
+    /// Date on the left, the day's routine and totals on the right.
+    private var dayHeader: some View {
+        let sets = dayRecords.reduce(0) { $0 + $1.sets }
+        let volume = dayRecords.reduce(0) { $0 + $1.volume }
+        let part = dayRecords.first(where: { !$0.routineName.isEmpty })?.routineName
+        return HStack(alignment: .firstTextBaseline) {
+            Text(selectedDay.formatted(.dateTime.month().day().weekday(.wide)))
+            Spacer()
+            if !dayRecords.isEmpty {
+                Text([part, String(localized: "\(sets)세트"), volume > 0 ? formatMass(volume) : nil].compactMap { $0 }.joined(separator: " · "))
+                    .monospacedDigit()
             }
         }
     }
@@ -190,40 +211,59 @@ struct RecordRow: View {
     let record: WorkoutRecord
 
     var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            HStack {
-                Text(record.exercise.isEmpty ? String(localized: "운동") : record.exercise).font(.headline)
-                if !record.routineName.isEmpty {
-                    Text(record.routineName)
-                        .font(.caption2.bold())
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
-                        .background(.tint.opacity(0.15), in: Capsule())
-                        .foregroundStyle(.tint)
+        HistoryRowLayout(
+            systemImage: "dumbbell.fill",
+            color: .orange,
+            title: record.exercise.isEmpty ? String(localized: "운동") : record.exercise,
+            subtitle: setsSummary(record.setValues),
+            time: record.date,
+            detail: record.calories > 0 ? "\(Int(record.calories).formatted())kcal" : formatClock(record.duration)
+        )
+    }
+}
+
+/// The shared row: icon, title and one line of detail, time and one number on the right.
+private struct HistoryRowLayout: View {
+    let systemImage: String
+    let color: Color
+    let title: String
+    var badge: String?
+    let subtitle: String
+    let time: Date
+    let detail: String
+
+    var body: some View {
+        HStack(spacing: 12) {
+            Image(systemName: systemImage)
+                .font(.subheadline)
+                .foregroundStyle(color)
+                .frame(width: 32, height: 32)
+                .background(color.opacity(0.12), in: Circle())
+            VStack(alignment: .leading, spacing: 2) {
+                HStack(spacing: 6) {
+                    Text(title).font(.subheadline.bold()).lineLimit(1)
+                    if let badge {
+                        Text(badge).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
+                    }
                 }
-                Spacer()
-                Text(record.date.formatted(date: .omitted, time: .shortened))
+                Text(subtitle)
+                    .font(.caption)
+                    .monospacedDigit()
+                    .foregroundStyle(.secondary)
+                    .lineLimit(1)
+            }
+            Spacer(minLength: 8)
+            VStack(alignment: .trailing, spacing: 2) {
+                Text(time.formatted(date: .omitted, time: .shortened))
                     .font(.caption)
                     .foregroundStyle(.secondary)
+                Text(detail)
+                    .font(.caption.bold())
+                    .monospacedDigit()
             }
-            Text(setsSummary(record.setValues))
-                .monospacedDigit()
-            HStack(spacing: 12) {
-                Label(formatClock(record.duration), systemImage: "clock")
-                if record.volume > 0 {
-                    Label(formatMass(record.volume), systemImage: "scalemass")
-                }
-                if record.calories > 0 {
-                    Label("\(Int(record.calories).formatted())kcal", systemImage: "flame")
-                }
-                if record.averageHeartRate > 0 {
-                    Label("\(record.averageHeartRate)", systemImage: "heart")
-                }
-            }
-            .font(.caption)
-            .foregroundStyle(.secondary)
         }
         .padding(.vertical, 2)
+        .accessibilityElement(children: .combine)
     }
 }
 
@@ -231,44 +271,17 @@ struct RecordRow: View {
 struct CardioRow: View {
     let workout: CardioWorkout
 
-    /// Teal for cardio, orange like this app's own records for strength.
-    private var color: Color { workout.isCardio ? .teal : .orange }
-
     var body: some View {
-        HStack(spacing: 12) {
-            Image(systemName: workout.systemImage)
-                .foregroundStyle(color)
-                .frame(width: 32, height: 32)
-                .background(color.opacity(0.12), in: Circle())
-            VStack(alignment: .leading, spacing: 3) {
-                HStack {
-                    Text(workout.title).font(.headline)
-                    Text(workout.source)
-                        .font(.caption2.bold())
-                        .padding(.horizontal, 6)
-                        .padding(.vertical, 2)
-                        .background(color.opacity(0.15), in: Capsule())
-                        .foregroundStyle(color)
-                    Spacer()
-                    Text(workout.start.formatted(date: .omitted, time: .shortened))
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-                Text(workout.summary).monospacedDigit()
-                HStack(spacing: 12) {
-                    if workout.energy > 0 {
-                        Label("\(Int(workout.energy).formatted())kcal", systemImage: "flame")
-                    }
-                    if workout.averageHeartRate > 0 {
-                        Label("\(workout.averageHeartRate)", systemImage: "heart")
-                    }
-                }
-                .font(.caption)
-                .foregroundStyle(.secondary)
-            }
-        }
-        .padding(.vertical, 2)
-        .accessibilityElement(children: .combine)
+        HistoryRowLayout(
+            // Teal for cardio, orange like this app's own records for strength.
+            systemImage: workout.systemImage,
+            color: workout.isCardio ? .teal : .orange,
+            title: workout.title,
+            badge: workout.source,
+            subtitle: workout.summary,
+            time: workout.start,
+            detail: workout.energy > 0 ? "\(Int(workout.energy).formatted())kcal" : formatClock(workout.duration)
+        )
     }
 }
 

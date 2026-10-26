@@ -37,7 +37,7 @@ struct RoutinePlanEditor: View {
 
     @Environment(\.dismiss) private var dismiss
     @State private var items: [PlanItem]
-    @State private var showingPicker = false
+    @State private var addingExercise = false
     private let isCustom: Bool
 
     init(part: String, suggestions: [RoutineSuggestion]) {
@@ -72,7 +72,8 @@ struct RoutinePlanEditor: View {
                 }
 
                 Section {
-                    Button("운동 추가", systemImage: "plus.circle.fill") { showingPicker = true }
+                    // A button, not a NavigationLink: links are disabled while the list is editing.
+                    Button("운동 추가", systemImage: "plus.circle.fill") { addingExercise = true }
                 }
 
                 if isCustom {
@@ -86,6 +87,13 @@ struct RoutinePlanEditor: View {
             }
             // Always in edit mode: reorder handles and delete buttons without an extra tap.
             .environment(\.editMode, .constant(.active))
+            .navigationDestination(isPresented: $addingExercise) {
+                ExercisePickerView(title: "운동 추가", preferred: Coach.muscles(in: part)) { name in
+                    if !items.contains(where: { $0.name == name }) {
+                        items.append(PlanItem(name: name, sets: 3))
+                    }
+                }
+            }
             .navigationTitle("루틴 편집")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
@@ -96,13 +104,6 @@ struct RoutinePlanEditor: View {
                         dismiss()
                     }
                     .disabled(items.isEmpty)
-                }
-            }
-            .sheet(isPresented: $showingPicker) {
-                ExercisePickerView(title: "운동 추가", preferred: Coach.muscles(in: part)) { name in
-                    if !items.contains(where: { $0.name == name }) {
-                        items.append(PlanItem(name: name, sets: 3))
-                    }
                 }
             }
         }

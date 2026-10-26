@@ -2,7 +2,8 @@ import SwiftData
 import SwiftUI
 
 /// Searchable exercise list: recent ones, the user's own, then the built-in list by
-/// muscle. Typing a name that isn't listed offers to add it.
+/// muscle. Typing a name that isn't listed offers to add it. Pushed onto the
+/// caller's navigation stack; picking pops back.
 struct ExercisePickerView: View {
     var title: LocalizedStringKey = "운동 선택"
     /// Muscles listed first, e.g. today's routine part.
@@ -58,78 +59,73 @@ struct ExercisePickerView: View {
     }
 
     var body: some View {
-        NavigationStack {
-            List {
+        List {
+            Section {
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack(spacing: 6) {
+                        chip(nil)
+                        ForEach(orderedMuscles) { chip($0) }
+                    }
+                }
+            }
+            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+
+            if !trimmedSearch.isEmpty, !hasExactMatch {
                 Section {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack(spacing: 6) {
-                            chip(nil)
-                            ForEach(orderedMuscles) { chip($0) }
-                        }
+                    Button {
+                        add(trimmedSearch)
+                    } label: {
+                        Label("‘\(trimmedSearch)’ 추가", systemImage: "plus.circle.fill")
                     }
-                }
-                .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
-
-                if !trimmedSearch.isEmpty, !hasExactMatch {
-                    Section {
-                        Button {
-                            add(trimmedSearch)
-                        } label: {
-                            Label("‘\(trimmedSearch)’ 추가", systemImage: "plus.circle.fill")
-                        }
-                        Picker("부위", selection: $newMuscle) {
-                            ForEach(Muscle.allCases) { Text($0.title).tag($0) }
-                        }
-                    } footer: {
-                        Text("목록에 없는 운동은 이렇게 추가해 두면 다음부터 '내 운동'에 나와요.")
+                    Picker("부위", selection: $newMuscle) {
+                        ForEach(Muscle.allCases) { Text($0.title).tag($0) }
                     }
+                } footer: {
+                    Text("목록에 없는 운동은 이렇게 추가해 두면 다음부터 '내 운동'에 나와요.")
                 }
+            }
 
-                if filter == nil, trimmedSearch.isEmpty, !recent.isEmpty {
-                    Section("최근") {
-                        ForEach(recent, id: \.self) { row($0) }
-                    }
+            if filter == nil, trimmedSearch.isEmpty, !recent.isEmpty {
+                Section("최근") {
+                    ForEach(recent, id: \.self) { row($0) }
                 }
+            }
 
-                let ownNames = mine.filter { matches($0) && (filter == nil || muscle(of: $0) == filter) }
-                if !ownNames.isEmpty {
-                    Section("내 운동") {
-                        ForEach(ownNames, id: \.self) { name in
-                            row(name)
-                                .swipeActions {
-                                    // Only names the user added and never logged can go.
-                                    if let profile = profiles.first(where: { $0.name == name }),
-                                       !records.contains(where: { $0.exercise == name }) {
-                                        Button("삭제", role: .destructive) {
-                                            modelContext.delete(profile)
-                                            try? modelContext.save()
-                                        }
+            let ownNames = mine.filter { matches($0) && (filter == nil || muscle(of: $0) == filter) }
+            if !ownNames.isEmpty {
+                Section("내 운동") {
+                    ForEach(ownNames, id: \.self) { name in
+                        row(name)
+                            .swipeActions {
+                                // Only names the user added and never logged can go.
+                                if let profile = profiles.first(where: { $0.name == name }),
+                                   !records.contains(where: { $0.exercise == name }) {
+                                    Button("삭제", role: .destructive) {
+                                        modelContext.delete(profile)
+                                        try? modelContext.save()
                                     }
                                 }
-                        }
-                    }
-                }
-
-                let spelling = ownSpelling
-                ForEach(orderedMuscles.filter { filter == nil || $0 == filter }) { muscle in
-                    let items = ExerciseLibrary.exercises(for: muscle)
-                        .map { spelling[ExerciseLibrary.normalized($0.name)] ?? $0.name }
-                        .filter(matches)
-                    if !items.isEmpty {
-                        Section(muscle.title) {
-                            ForEach(items, id: \.self) { row($0, showMuscle: false) }
-                        }
+                            }
                     }
                 }
             }
-            .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "운동 검색 또는 새 이름")
-            .onChange(of: search) { _, text in newMuscle = Muscle.guess(for: text) }
-            .navigationTitle(title)
-            .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .cancellationAction) { Button("취소") { dismiss() } }
+
+            let spelling = ownSpelling
+            ForEach(orderedMuscles.filter { filter == nil || $0 == filter }) { muscle in
+                let items = ExerciseLibrary.exercises(for: muscle)
+                    .map { spelling[ExerciseLibrary.normalized($0.name)] ?? $0.name }
+                    .filter(matches)
+                if !items.isEmpty {
+                    Section(muscle.title) {
+                        ForEach(items, id: \.self) { row($0, showMuscle: false) }
+                    }
+                }
             }
         }
+        .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "운동 검색 또는 새 이름")
+        .onChange(of: search) { _, text in newMuscle = Muscle.guess(for: text) }
+        .navigationTitle(title)
+        .navigationBarTitleDisplayMode(.inline)
     }
 
     private func chip(_ muscle: Muscle?) -> some View {

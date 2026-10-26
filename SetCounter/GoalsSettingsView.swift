@@ -28,7 +28,7 @@ struct GoalsSettingsView: View {
                 Text("기초대사량(키·체중·나이·성별)에서 감량 속도만큼 빼서 잡아요(1kg ≈ 7,700kcal). 걷기와 운동으로 쓴 칼로리는 건강 앱에 기록된 만큼 그날 더 먹을 수 있는 양에 더해져요. 건강을 위해 남성 1,500kcal, 여성 1,200kcal 아래로는 잡지 않아요.")
             }
 
-            Section("하루 활동 목표") {
+            Section {
                 WheelPickerRow(title: "걸음", values: Array(stride(from: 2000, through: 20000, by: 500)), selection: $stepGoal) {
                     String(localized: "\($0.formatted())보")
                 }
@@ -38,6 +38,10 @@ struct GoalsSettingsView: View {
                 WheelPickerRow(title: "운동 시간", values: Array(stride(from: 10, through: 120, by: 5)), selection: $exerciseGoal) {
                     String(localized: "\($0)분")
                 }
+            } header: {
+                Text("하루 활동 목표")
+            } footer: {
+                Text("운동 시간은 세트 카운터의 근력 운동과 다른 앱에서 한 운동을 합쳐서 계산해요. 같은 시간에 겹친 운동은 한 번만 세요.")
             }
 
             Section {

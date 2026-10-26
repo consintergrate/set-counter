@@ -170,6 +170,7 @@ struct RecommendedRoutineCard: View {
 struct ActivityRingsCard: View {
     let health: HealthData
     let goals: Goals
+    let records: [WorkoutRecord]
 
     private struct Ring: Identifiable {
         let id: Int
@@ -180,19 +181,19 @@ struct ActivityRingsCard: View {
     }
 
     private var rings: [Ring] {
-        [
+        let minutes = health.exerciseMinutes(on: Date(), records: records)
+        return [
             Ring(id: 0, title: "활동", value: "\(Int(health.todayActive).formatted())/\(goals.activeCalories.formatted())kcal",
                  progress: health.todayActive / Double(max(goals.activeCalories, 1)), color: .pink),
-            Ring(id: 1, title: "운동", value: String(localized: "\(Int(health.todayExerciseMinutes))/\(goals.exerciseMinutes)분"),
-                 progress: health.todayExerciseMinutes / Double(max(goals.exerciseMinutes, 1)), color: .green),
+            Ring(id: 1, title: "운동", value: String(localized: "\(Int(minutes))/\(goals.exerciseMinutes)분"),
+                 progress: minutes / Double(max(goals.exerciseMinutes, 1)), color: .green),
             Ring(id: 2, title: "걸음", value: "\(Int(health.todaySteps).formatted())/\(goals.steps.formatted())",
                  progress: health.todaySteps / Double(max(goals.steps, 1)), color: .cyan),
         ]
     }
 
     var body: some View {
-        // Without an Apple Watch the exercise ring would sit at zero forever.
-        let rings = rings.filter { $0.id != 1 || health.hasExerciseMinutes }
+        let rings = rings
         HStack(spacing: 20) {
             ZStack {
                 ForEach(Array(rings.enumerated()), id: \.element.id) { index, ring in

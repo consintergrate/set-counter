@@ -106,13 +106,11 @@ final class HealthData {
     private(set) var weights: [WeightEntry] = []            // oldest first, past year
     private(set) var todaySteps: Double = 0
     private(set) var todayActive: Double = 0
-    private(set) var todayExerciseMinutes: Double = 0
     private(set) var todayEaten: Double = 0
     /// Per-day totals for the past few weeks, keyed by start of day, for the weekly report.
     private(set) var dailySteps: [Date: Double] = [:]
     private(set) var dailyActive: [Date: Double] = [:]
     private(set) var dailyEaten: [Date: Double] = [:]
-    private(set) var dailyExercise: [Date: Double] = [:]
     /// Meals over the past four weeks, oldest first.
     private(set) var meals: [MealEntry] = []
     private(set) var needsAuthorization = false
@@ -125,8 +123,19 @@ final class HealthData {
     @ObservationIgnored private var refreshAgain = false
 
     var isAvailable: Bool { HKHealthStore.isHealthDataAvailable() }
-    /// Exercise minutes come from Apple Watch; without one they stay at zero.
-    var hasExerciseMinutes: Bool { dailyExercise.values.contains { $0 > 0 } }
+    /// Exercise minutes on `day`, added up by the app so they work without an Apple
+    /// Watch: Set Counter's own strength sessions plus every workout other apps saved
+    /// to Health (ours are already left out of `cardio`), overlaps counted once.
+    func exerciseMinutes(on day: Date, records: [WorkoutRecord]) -> Double {
+        let calendar = Calendar.current
+        let strength = records
+            .filter { calendar.isDate($0.date, inSameDayAs: day) && $0.duration > 0 }
+            .map { DateInterval(start: $0.date, duration: $0.duration) }
+        let others = cardio
+            .filter { calendar.isDate($0.start, inSameDayAs: day) && $0.end > $0.start }
+            .map { DateInterval(start: $0.start, end: $0.end) }
+        return coveredDuration(strength + others) / 60
+    }
     var latestWeight: WeightEntry? { weights.last }
 
     private static let readTypes: Set<HKObjectType> = [
@@ -137,7 +146,6 @@ final class HealthData {
         HKQuantityType(.distanceWalkingRunning),
         HKQuantityType(.distanceCycling),
         HKQuantityType(.distanceSwimming),
-        HKQuantityType(.appleExerciseTime),
         HKQuantityType(.bodyMass),
         HKQuantityType(.dietaryEnergyConsumed),
     ]
@@ -201,7 +209,6 @@ final class HealthData {
         async let steps = dailySums(.stepCount, unit: .count(), since: fourWeeksAgo, anchor: today)
         async let active = dailySums(.activeEnergyBurned, unit: .kilocalorie(), since: fourWeeksAgo, anchor: today)
         async let eaten = dailySums(.dietaryEnergyConsumed, unit: .kilocalorie(), since: fourWeeksAgo, anchor: today)
-        async let exercise = dailySums(.appleExerciseTime, unit: .minute(), since: fourWeeksAgo, anchor: today)
         async let meals = fetchMeals(since: fourWeeksAgo)
 
         self.cardio = await cardio
@@ -213,8 +220,6 @@ final class HealthData {
         todaySteps = dailySteps[today] ?? 0
         todayActive = dailyActive[today] ?? 0
         todayEaten = dailyEaten[today] ?? 0
-        dailyExercise = await exercise
-        todayExerciseMinutes = dailyExercise[today] ?? 0
         lastRefresh = now
 
         // Keep the calorie estimates on the latest measured weight.

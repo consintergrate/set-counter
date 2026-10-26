@@ -89,6 +89,22 @@ struct CalorieBudget {
     }
 }
 
+/// Total time the intervals cover, counting overlaps once (a Set Counter session
+/// and an Apple Watch workout running at the same time are one workout).
+func coveredDuration(_ intervals: [DateInterval]) -> TimeInterval {
+    var total: TimeInterval = 0
+    var current: DateInterval?
+    for interval in intervals.sorted(by: { $0.start < $1.start }) {
+        if let open = current, interval.start <= open.end {
+            current = DateInterval(start: open.start, end: max(open.end, interval.end))
+        } else {
+            total += current?.duration ?? 0
+            current = interval
+        }
+    }
+    return total + (current?.duration ?? 0)
+}
+
 /// Running burns about 9.8 METs; used to turn extra calories into minutes of running.
 func runningMinutes(toBurn kcal: Double, weight: Double) -> Int {
     guard kcal > 0, weight > 0 else { return 0 }

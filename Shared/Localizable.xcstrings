@@ -1763,22 +1763,34 @@
         }
       }
     },
+    "근력 %lld일": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Strength %lld day"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Strength %lld days"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "근력 운동": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Strength Training"
-          }
-        }
-      }
-    },
-    "근력 운동 시간": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Strength Time"
           }
         }
       }
@@ -2161,22 +2173,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Workouts from Other Apps"
-          }
-        }
-      }
-    },
-    "다른 앱 운동 %lld회 · %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld workouts from other apps · %2$@"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "new",
-            "value": "다른 앱 운동 %1$lld회 · %2$@"
           }
         }
       }
@@ -3753,16 +3749,6 @@
         }
       }
     },
-    "세트 카운터 기록": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "From Set Counter"
-          }
-        }
-      }
-    },
     "세트 카운터 백업 파일이 아니에요.": {
       "localizations": {
         "en": {
@@ -4099,16 +4085,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "Add Meal"
-          }
-        }
-      }
-    },
-    "신기록 %@": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "New record %@"
           }
         }
       }
@@ -4939,6 +4915,16 @@
         }
       }
     },
+    "운동 시간은 세트 카운터의 근력 운동과 다른 앱에서 한 운동을 합쳐서 계산해요. 같은 시간에 겹친 운동은 한 번만 세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Exercise time adds up Set Counter strength workouts and workouts from other apps. Workouts that overlap count once."
+          }
+        }
+      }
+    },
     "운동 시작": {
       "localizations": {
         "en": {
@@ -5215,6 +5201,28 @@
         }
       }
     },
+    "유산소 %lld회": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Cardio %lld time"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Cardio %lld times"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
     "유지": {
       "localizations": {
         "en": {
@@ -5411,22 +5419,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "This Month"
-          }
-        }
-      }
-    },
-    "이번 달 %lld일 운동 · %lld개 기록 · %lld kcal": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "%1$lld workout days · %2$lld records · %3$lld kcal this month"
-          }
-        },
-        "ko": {
-          "stringUnit": {
-            "state": "new",
-            "value": "이번 달 %1$lld일 운동 · %2$lld개 기록 · %3$lld kcal"
           }
         }
       }

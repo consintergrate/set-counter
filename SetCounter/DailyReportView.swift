@@ -69,7 +69,7 @@ struct DailyReportView: View {
     private func activityTiles(goals: Goals) -> some View {
         let steps = health.dailySteps[day]
         let active = health.dailyActive[day]
-        let minutes = health.dailyExercise[day]
+        let minutes = health.exerciseMinutes(on: day, records: records)
         let eaten = health.dailyEaten[day]
         let target = goals.intakeTarget(profile: .saved)
         return LazyVGrid(columns: [GridItem(.flexible(), spacing: 10), GridItem(.flexible(), spacing: 10)], spacing: 10) {
@@ -79,16 +79,9 @@ struct DailyReportView: View {
             ReportTile(title: "걸음", value: steps.map { Int($0).formatted() } ?? "–",
                        detail: String(localized: "목표 \(goals.steps.formatted())보"),
                        progress: steps.map { $0 / Double(max(goals.steps, 1)) }, color: .cyan)
-            if health.hasExerciseMinutes {
-                ReportTile(title: "운동 시간", value: minutes.map { String(localized: "\(Int($0))분") } ?? "–",
-                           detail: String(localized: "목표 \(goals.exerciseMinutes)분"),
-                           progress: minutes.map { $0 / Double(max(goals.exerciseMinutes, 1)) }, color: .green)
-            } else {
-                // No Watch, no exercise minutes: show the day's strength time instead.
-                let strength = records.filter { calendar.isDate($0.date, inSameDayAs: day) }.reduce(0) { $0 + $1.duration }
-                ReportTile(title: "근력 운동 시간", value: strength > 0 ? formatClock(strength) : "–",
-                           detail: String(localized: "세트 카운터 기록"), color: .green)
-            }
+            ReportTile(title: "운동 시간", value: String(localized: "\(Int(minutes))분"),
+                       detail: String(localized: "목표 \(goals.exerciseMinutes)분"),
+                       progress: minutes / Double(max(goals.exerciseMinutes, 1)), color: .green)
             ReportTile(title: "먹은 칼로리", value: eaten.map { "\(Int($0).formatted())kcal" } ?? "–",
                        detail: String(localized: "목표 \(Int(target + (active ?? 0)).formatted())kcal"),
                        progress: eaten.map { $0 / max(target + (active ?? 0), 1) }, color: .orange, goalIsLimit: true)

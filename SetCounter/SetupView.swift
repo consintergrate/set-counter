@@ -18,7 +18,6 @@ struct SetupView: View {
     @AppStorage("routineOverrideIndex") private var overrideIndex = 0
 
     @Query(sort: \WorkoutRecord.date, order: .reverse) private var records: [WorkoutRecord]
-    @State private var showingPicker = false
 
     private let restPresets = [30, 60, 90, 120, 180]
 
@@ -70,19 +69,17 @@ struct SetupView: View {
                 }
 
                 Section("운동") {
-                    Button {
-                        showingPicker = true
+                    // Pushed rather than a sheet: a sheet attached inside a Form row could
+                    // be torn down when the form refreshed, closing the setup screen too.
+                    NavigationLink {
+                        ExercisePickerView(preferred: Coach.muscles(in: todayName)) { pick($0) }
                     } label: {
                         LabeledContent("운동") {
-                            HStack(spacing: 4) {
-                                Text(exercise.isEmpty ? String(localized: "목록에서 선택") : exercise)
-                                    .bold()
-                                    .foregroundStyle(.tint)
-                                Image(systemName: "chevron.right").font(.caption.bold()).foregroundStyle(.tertiary)
-                            }
+                            Text(exercise.isEmpty ? String(localized: "목록에서 선택") : exercise)
+                                .bold()
+                                .foregroundStyle(.tint)
                         }
                     }
-                    .foregroundStyle(.primary)
                     if !recentExercises.isEmpty {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
@@ -101,9 +98,6 @@ struct SetupView: View {
                     WheelPickerRow(title: "반복", values: Array(1...100), selection: $reps) {
                         String(localized: "\($0)회")
                     }
-                }
-                .sheet(isPresented: $showingPicker) {
-                    ExercisePickerView(preferred: Coach.muscles(in: todayName)) { pick($0) }
                 }
 
                 Section("세트") {
