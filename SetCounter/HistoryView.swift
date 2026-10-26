@@ -77,6 +77,7 @@ struct HistoryView: View {
                     .onDelete { offsets in
                         let targets = offsets.map { dayRecords[$0] }
                         targets.forEach(modelContext.delete)
+                        try? modelContext.save()
                     }
                 }
             }

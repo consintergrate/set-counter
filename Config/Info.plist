@@ -11,7 +11,7 @@
 	<key>NSHealthShareUsageDescription</key>
 	<string>걸음 수, 활동 칼로리, 체중, 먹은 칼로리, 심박수와 나이키 런 클럽 같은 다른 앱의 운동 기록을 읽어 하루 칼로리, 활동 목표, 유산소 기록을 보여주기 위해 필요해요.</string>
 	<key>NSHealthUpdateUsageDescription</key>
-	<string>마친 근력 운동과 소모 칼로리, 직접 기록한 체중과 먹은 칼로리를 건강 앱에 저장하기 위해 필요해요.</string>
+	<string>마친 근력 운동과 소모 칼로리, 직접 기록한 체중과 식사(음식 이름·칼로리·메모)를 건강 앱에 저장하기 위해 필요해요.</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>bluetooth-central</string>

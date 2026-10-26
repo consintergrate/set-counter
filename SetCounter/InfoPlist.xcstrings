@@ -75,13 +75,13 @@
         "ko": {
           "stringUnit": {
             "state": "translated",
-            "value": "마친 근력 운동과 소모 칼로리, 직접 기록한 체중과 먹은 칼로리를 건강 앱에 저장하기 위해 필요해요."
+            "value": "마친 근력 운동과 소모 칼로리, 직접 기록한 체중과 식사(음식 이름·칼로리·메모)를 건강 앱에 저장하기 위해 필요해요."
           }
         },
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Needed to save finished strength workouts and calories, and the body weight and meals you log, to the Health app."
+            "value": "Needed to save finished strength workouts and calories, and the body weight and meals (food names, calories, memo) you log, to the Health app."
           }
         }
       }

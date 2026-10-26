@@ -144,7 +144,8 @@ struct WeightEntrySheet: View {
 
     init(initialKg: Double, unit: WeightUnit) {
         self.unit = unit
-        let value = (unit.fromKg(initialKg) * 10).rounded() / 10
+        let range: ClosedRange<Double> = unit == .kg ? 30...200.9 : 66...440.9
+        let value = min(max((unit.fromKg(initialKg) * 10).rounded() / 10, range.lowerBound), range.upperBound)
         _whole = State(initialValue: Int(value))
         _tenth = State(initialValue: Int(((value - Double(Int(value))) * 10).rounded()) % 10)
     }

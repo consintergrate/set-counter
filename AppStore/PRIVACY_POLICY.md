@@ -1,6 +1,6 @@
 # 세트 카운터 개인정보 처리방침
 
-시행일: 2026년 10월 25일
+시행일: 2026년 10월 26일
 
 세트 카운터(이하 "앱")는 사용자의 개인정보를 수집하거나 외부 서버로 전송하지 않습니다.
 
@@ -16,7 +16,7 @@
 사용자가 허용한 경우에만 다음을 이용합니다.
 
 - **읽기**: 심박수, 걸음 수, 활동 칼로리, 운동 시간, 걷기·달리기·사이클·수영 거리, 체중, 섭취 칼로리, 그리고 다른 앱(나이키 런 클럽, 피트니스 등)이 저장한 운동 기록 — 운동 중 칼로리 계산, 하루 칼로리·활동 목표, 유산소 기록, 코치 안내와 주간 리포트를 기기 안에서 계산하고 보여주는 데에만 사용합니다.
-- **쓰기**: 마친 근력 운동과 소모 칼로리, 사용자가 직접 기록한 체중과 섭취 칼로리를 건강 앱에 저장합니다.
+- **쓰기**: 마친 근력 운동과 소모 칼로리, 사용자가 직접 기록한 체중과 식사(음식 이름, 섭취 칼로리, 메모)를 건강 앱에 저장합니다. 앱에서 직접 입력한 음식 이름과 최근 먹은 음식 목록은 빠른 선택을 위해 기기 안에만 저장됩니다.
 
 HealthKit 데이터는 광고, 마케팅, 데이터 판매에 사용하지 않으며, iCloud나 외부 서버에 저장하지 않습니다. 권한은 언제든지 iPhone 설정 → 건강 → 데이터 접근 및 기기에서 해제할 수 있습니다.
 
@@ -46,13 +46,13 @@ andykim0706@naver.com
 
 # Set Counter Privacy Policy
 
-Effective: October 25, 2026
+Effective: October 26, 2026
 
 Set Counter ("the app") does not collect personal information or send it to any server.
 
 **What stays on your iPhone.** Workout records (exercise, weight, reps, sets, duration, routine), body info and goals (weight, height, age, sex, goal weight, activity goals — used only for calorie and goal calculations), heart rate and calorie estimates, and app settings are stored only on your device. Nothing is sent to the developer or third parties.
 
-**Health (HealthKit).** Only if you allow it, the app reads heart rate, steps, active energy, exercise time, walking/running/cycling/swimming distance, body weight, dietary energy, and workouts saved by other apps (such as Nike Run Club or Fitness). It uses them only on the device to estimate workout calories and to show daily calories, activity goals, cardio history, coaching tips, and the weekly report. It writes finished strength workouts and calories, plus the body weight and meals you log, to the Health app. HealthKit data is never used for advertising or marketing, never sold, and never stored in iCloud or on any server. You can revoke access anytime in Settings → Health → Data Access & Devices.
+**Health (HealthKit).** Only if you allow it, the app reads heart rate, steps, active energy, exercise time, walking/running/cycling/swimming distance, body weight, dietary energy, and workouts saved by other apps (such as Nike Run Club or Fitness). It uses them only on the device to estimate workout calories and to show daily calories, activity goals, cardio history, coaching tips, and the weekly report. It writes finished strength workouts and calories, plus the body weight and meals you log (food names, calories, and memo), to the Health app. Foods you type in and your recent foods are kept on the device for quick picking. HealthKit data is never used for advertising or marketing, never sold, and never stored in iCloud or on any server. You can revoke access anytime in Settings → Health → Data Access & Devices.
 
 **Bluetooth and Apple Watch.** Bluetooth is used only to receive heart rate from a Bluetooth heart rate sensor. The Apple Watch app exchanges workout heart rate and set progress directly with your iPhone and saves the strength workout it measures to the Health app. This stays between your own devices and is never sent anywhere else.
 

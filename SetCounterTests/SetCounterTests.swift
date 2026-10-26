@@ -185,3 +185,19 @@ struct MealTests {
         #expect(all.allSatisfy { (0...1500).contains($0.kcal) })
     }
 }
+
+@Suite("CSV")
+struct CSVTests {
+    @Test func formulasAreDefusedOnExport() {
+        #expect(CSVExporter.escape("=HYPERLINK(\"x\")").hasPrefix("\"'="))
+        #expect(CSVExporter.escape("+1") == "'+1")
+        #expect(CSVExporter.escape("벤치프레스") == "벤치프레스")
+        #expect(CSVExporter.escape("a,b") == "\"a,b\"")
+    }
+
+    @Test func importRestoresTheOriginalName() throws {
+        let csv = "date,exercise,weight_kg,reps,sets\n2026-10-25T10:00:00+09:00,'=SUM(A1),60,10,3\n"
+        let records = try CSVImporter.records(from: Data(csv.utf8))
+        #expect(records.first?.exercise == "=SUM(A1)")
+    }
+}

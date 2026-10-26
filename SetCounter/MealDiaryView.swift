@@ -95,7 +95,8 @@ struct MealDiaryView: View {
                     Section {
                         ForEach(typed) { meal in
                             MealRow(meal: meal)
-                                .swipeActions {
+                                // No full-swipe delete: removing Health data takes a deliberate tap.
+                                .swipeActions(allowsFullSwipe: false) {
                                     if meal.isOwn {
                                         Button("삭제", role: .destructive) { delete(meal) }
                                     }

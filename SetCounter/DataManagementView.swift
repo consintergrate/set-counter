@@ -194,8 +194,15 @@ enum CSVExporter {
         FileManager.default.temporaryDirectory.appendingPathComponent("SetCounter-workouts.csv")
     }
 
-    private static func escape(_ value: String) -> String {
-        guard value.contains(where: { $0 == "," || $0 == "\"" || $0 == "\n" }) else { return value }
+    /// Starts that a spreadsheet would run as a formula ("=HYPERLINK(…)").
+    static let formulaStarts: Set<Character> = ["=", "+", "-", "@", "\t", "\r"]
+
+    static func escape(_ value: String) -> String {
+        // A leading apostrophe makes Excel and Numbers show the text as is; the
+        // importer strips it again.
+        var value = value
+        if let first = value.first, formulaStarts.contains(first) { value = "'" + value }
+        guard value.contains(where: { $0 == "," || $0 == "\"" || $0 == "\n" || $0 == "\r" }) else { return value }
         return "\"" + value.replacingOccurrences(of: "\"", with: "\"\"") + "\""
     }
 }
@@ -216,7 +223,12 @@ enum CSVImporter {
         return rows.dropFirst().compactMap { row in
             func field(_ index: Int?) -> String? {
                 guard let index, row.indices.contains(index) else { return nil }
-                return row[index]
+                let value = row[index]
+                // Undo the export's formula guard ("'=…" back to "=…").
+                if value.hasPrefix("'"), let next = value.dropFirst().first, CSVExporter.formulaStarts.contains(next) {
+                    return String(value.dropFirst())
+                }
+                return value
             }
             guard let date = field(dateColumn).flatMap(iso.date(from:)),
                   let exercise = field(exerciseColumn), !exercise.isEmpty else { return nil }

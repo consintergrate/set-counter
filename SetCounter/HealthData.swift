@@ -120,6 +120,9 @@ final class HealthData {
 
     @ObservationIgnored private let store = HKHealthStore()
     @ObservationIgnored private var refreshing = false
+    /// A refresh asked for while one was running (say, right after saving a meal);
+    /// it runs again when the current one finishes so the new data shows up.
+    @ObservationIgnored private var refreshAgain = false
 
     var isAvailable: Bool { HKHealthStore.isHealthDataAvailable() }
     /// Exercise minutes come from Apple Watch; without one they stay at zero.
@@ -169,9 +172,22 @@ final class HealthData {
     }
 
     func refresh(now: Date = Date()) async {
-        guard isAvailable, !refreshing else { return }
+        guard isAvailable else { return }
+        guard !refreshing else {
+            refreshAgain = true
+            return
+        }
         refreshing = true
-        defer { refreshing = false }
+        var date = now
+        repeat {
+            refreshAgain = false
+            await load(now: date)
+            date = Date()
+        } while refreshAgain
+        refreshing = false
+    }
+
+    private func load(now: Date) async {
         await checkAuthorization()
         guard !needsAuthorization else { return }
 
