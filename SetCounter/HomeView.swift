@@ -82,11 +82,22 @@ struct HomeView: View {
                         onEdit: { editingRoutine = true }
                     )
                     if hasHealth {
-                        ActivityRingsCard(health: health, goals: goals, records: records)
+                        NavigationLink {
+                            ActivityDetailView()
+                        } label: {
+                            ActivityRingsCard(health: health, goals: goals, records: records)
+                        }
+                        .buttonStyle(.plain)
                         CalorieCard(health: health, goals: goals, profile: profile) { showingFood = true }
                         CardioCard(health: health, goals: goals)
                     }
                     WeekCard(records: records, goal: weeklyGoal, color: accentColor)
+                    NavigationLink {
+                        BadgeCollectionView()
+                    } label: {
+                        BadgeHomeCard()
+                    }
+                    .buttonStyle(.plain)
                     recentSection
                 }
                 .padding()

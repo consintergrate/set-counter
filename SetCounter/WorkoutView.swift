@@ -18,6 +18,8 @@ struct WorkoutView: View {
     @State private var saved = false
     @State private var shownAlert: WorkoutSession.RecordAlert?
     @State private var showingGuide = false
+    /// Badges this workout earned, worked out once it's saved.
+    @State private var newBadges: [BadgeDefinition] = []
 
     private var isAlarming: Bool { session.phase == .alarming }
     private var accentColor: Color { (AccentChoice(rawValue: accent) ?? .blue).color }
@@ -243,9 +245,12 @@ struct WorkoutView: View {
     private var finished: some View {
         VStack(spacing: 24) {
             Image(systemName: "trophy.fill")
-                .font(.system(size: 72))
+                .font(.system(size: newBadges.isEmpty ? 72 : 48))
                 .foregroundStyle(.yellow)
-            Text("운동 완료!").font(.system(size: 44, weight: .bold, design: .rounded))
+            Text("운동 완료!").font(.system(size: newBadges.isEmpty ? 44 : 36, weight: .bold, design: .rounded))
+            if !newBadges.isEmpty {
+                NewBadgesBanner(badges: newBadges, hapticsOn: hapticsOn)
+            }
             VStack(spacing: 12) {
                 SummaryRow(title: "운동", value: exerciseName)
                 SummaryRow(title: "세트", value: setsSummary(session.entries))
@@ -295,12 +300,23 @@ struct WorkoutView: View {
         record.replaceSets(session.entries, in: modelContext)
         // Write now rather than at the next autosave, in case the app is closed right away.
         try? modelContext.save()
+        checkBadges(including: record)
     }
 
     private func close() {
         session.end()
         save()
+        BadgeCenter.shared.markSeen(newBadges.map(\.id))
         dismiss()
+    }
+
+    /// After saving, finds the badges reached by this workout to celebrate them here.
+    /// The query may not have picked up the new record yet, so it's added if missing.
+    private func checkBadges(including record: WorkoutRecord) {
+        guard let startedAt = session.startedAt else { return }
+        let all = records.contains { $0.persistentModelID == record.persistentModelID } ? records : [record] + records
+        BadgeCenter.shared.update(records: all, health: HealthData.shared)
+        withAnimation { newBadges = BadgeCenter.shared.unseen(since: startedAt) }
     }
 }
 

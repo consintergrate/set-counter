@@ -82,6 +82,11 @@ struct RootView: View {
             // Anything derived from records: reminders and the home screen widget.
             await RoutineNotifications.reschedule(records: records)
             WidgetSnapshot.write(records: records)
+            BadgeCenter.shared.update(records: records, health: HealthData.shared)
+        }
+        // Cardio, meals, and weight arrive from Health; they can earn badges too.
+        .onChange(of: HealthData.shared.lastRefresh) {
+            BadgeCenter.shared.update(records: records, health: HealthData.shared)
         }
         // Runs from Nike Run Club and friends land in Health while we're in the background.
         .onChange(of: scenePhase) { _, phase in

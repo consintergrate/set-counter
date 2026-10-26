@@ -195,21 +195,9 @@ struct ActivityRingsCard: View {
     var body: some View {
         let rings = rings
         HStack(spacing: 20) {
-            ZStack {
-                ForEach(Array(rings.enumerated()), id: \.element.id) { index, ring in
-                    let size = 108 - CGFloat(index) * 30
-                    Circle()
-                        .stroke(ring.color.opacity(0.18), lineWidth: 12)
-                        .frame(width: size, height: size)
-                    Circle()
-                        .trim(from: 0, to: min(ring.progress, 1))
-                        .stroke(ring.color, style: StrokeStyle(lineWidth: 12, lineCap: .round))
-                        .rotationEffect(.degrees(-90))
-                        .frame(width: size, height: size)
-                }
-            }
-            .frame(width: 120, height: 120)
-            .animation(.easeOut(duration: 0.6), value: health.lastRefresh)
+            ActivityRingsGraphic(rings: rings.map { ($0.progress, $0.color) }, diameter: 108, lineWidth: 12)
+                .frame(width: 120, height: 120)
+                .animation(.easeOut(duration: 0.6), value: health.lastRefresh)
 
             VStack(alignment: .leading, spacing: 10) {
                 ForEach(rings) { ring in
@@ -221,8 +209,34 @@ struct ActivityRingsCard: View {
                 }
             }
             Spacer(minLength: 0)
+            Image(systemName: "chevron.right").font(.caption.bold()).foregroundStyle(.tertiary)
         }
         .homeCard()
+    }
+}
+
+/// Concentric rings, outermost first, like the Fitness app's.
+struct ActivityRingsGraphic: View {
+    let rings: [(progress: Double, color: Color)]
+    let diameter: CGFloat
+    let lineWidth: CGFloat
+
+    var body: some View {
+        ZStack {
+            ForEach(rings.indices, id: \.self) { index in
+                let ring = rings[index]
+                let size = diameter - CGFloat(index) * (lineWidth * 2 + 6)
+                Circle()
+                    .stroke(ring.color.opacity(0.18), lineWidth: lineWidth)
+                    .frame(width: size, height: size)
+                Circle()
+                    .trim(from: 0, to: min(ring.progress, 1))
+                    .stroke(ring.color, style: StrokeStyle(lineWidth: lineWidth, lineCap: .round))
+                    .rotationEffect(.degrees(-90))
+                    .frame(width: size, height: size)
+            }
+        }
+        .accessibilityHidden(true)
     }
 }
 

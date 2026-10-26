@@ -147,6 +147,7 @@ struct DataManagementView: View {
         pendingBackup = nil
         do {
             let added = try Backup.restore(backup, replacing: replacing, into: modelContext)
+            BadgeCenter.shared.reload()
             resultMessage = String(localized: "기록 \(added)개를 복원했어요.")
         } catch {
             resultMessage = error.localizedDescription

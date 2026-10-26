@@ -175,6 +175,22 @@
         }
       }
     },
+    "%@ – %@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ – %2$@ · %3$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ – %2$@ · %3$@"
+          }
+        }
+      }
+    },
     "%@ → %@": {
       "localizations": {
         "en": {
@@ -341,6 +357,22 @@
         }
       }
     },
+    "%@, %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@, %2$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@, %2$@"
+          }
+        }
+      }
+    },
     "%@kcal": {
       "localizations": {
         "en": {
@@ -433,6 +465,16 @@
         }
       }
     },
+    "%lld%%": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%%"
+          }
+        }
+      }
+    },
     "%lld.%lldk": {
       "localizations": {
         "en": {
@@ -477,6 +519,32 @@
           "stringUnit": {
             "state": "new",
             "value": "%1$lld/%2$lld일"
+          }
+        }
+      }
+    },
+    "%lld/%lld주": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$lld/%2$lld weeks"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$lld/%2$lld주"
+          }
+        }
+      }
+    },
+    "%lld/7일": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld/7 days"
           }
         }
       }
@@ -549,6 +617,16 @@
           "stringUnit": {
             "state": "new",
             "value": "%1$lld분 %2$lld초"
+          }
+        }
+      }
+    },
+    "%lld분 남음": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min left"
           }
         }
       }
@@ -871,12 +949,32 @@
         }
       }
     },
+    "/ %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "/ %@"
+          }
+        }
+      }
+    },
     "/ %@kcal": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "/ %@ kcal"
+          }
+        }
+      }
+    },
+    "/ %lld개 획득": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "/ %lld earned"
           }
         }
       }
@@ -1133,6 +1231,195 @@
           "stringUnit": {
             "state": "translated",
             "value": "[Set Counter] Feedback"
+          }
+        }
+      }
+    },
+    "badge.cardioKm": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld km of Cardio"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "유산소 %lldkm"
+          }
+        }
+      }
+    },
+    "badge.dayStreak": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld Days in a Row"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%lld일 연속 운동"
+          }
+        }
+      }
+    },
+    "badge.lift": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%1$@ at %2$@× Body Weight"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%1$@ 체중의 %2$@배"
+          }
+        }
+      }
+    },
+    "badge.liftProgress": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Now %@×"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "지금 %@배"
+          }
+        }
+      }
+    },
+    "badge.recordCount": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Record"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Records"
+                }
+              }
+            }
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "신기록 %lld개"
+          }
+        }
+      }
+    },
+    "badge.totalSets": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@ Sets"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "세트 %@개"
+          }
+        }
+      }
+    },
+    "badge.totalVolume": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@-Ton Club"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%@톤 클럽"
+          }
+        }
+      }
+    },
+    "badge.weekStreak": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Goal %lld Week in a Row"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "Goal %lld Weeks in a Row"
+                }
+              }
+            }
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "%lld주 연속 목표"
+          }
+        }
+      }
+    },
+    "badge.workoutDays": {
+      "extractionState": "extracted_with_value",
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Workout Day"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld Workout Days"
+                }
+              }
+            }
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "운동 %lld일"
           }
         }
       }
@@ -1503,6 +1790,16 @@
         }
       }
     },
+    "건강 앱에 저장된 최근 1년의 러닝·걷기·사이클 거리를 더해요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adds up run, walk, and ride distance saved to Health over the past year."
+          }
+        }
+      }
+    },
     "건강 앱에서 세트 카운터의 식이 에너지 쓰기 권한을 켜주세요.": {
       "localizations": {
         "en": {
@@ -1643,6 +1940,16 @@
         }
       }
     },
+    "겹친 시간 %lld분은 한 번만 셌어요. 세트 카운터 근력 운동과 다른 앱(나이키 런 클럽, 피트니스 등)의 운동을 합친 시간이에요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld min of overlap was counted once. This adds up Set Counter strength workouts and workouts from other apps (Nike Run Club, Fitness, and others)."
+          }
+        }
+      }
+    },
     "계단 오르기": {
       "localizations": {
         "en": {
@@ -1679,6 +1986,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Sweet potato"
+          }
+        }
+      }
+    },
+    "골드": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Gold"
           }
         }
       }
@@ -2011,6 +2328,16 @@
         }
       }
     },
+    "꾸준함": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Consistency"
+          }
+        }
+      }
+    },
     "나이": {
       "localizations": {
         "en": {
@@ -2167,6 +2494,16 @@
         }
       }
     },
+    "누적": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Totals"
+          }
+        }
+      }
+    },
     "다른 앱 운동": {
       "localizations": {
         "en": {
@@ -2187,6 +2524,16 @@
         }
       }
     },
+    "다른 앱에서 한 러닝·걷기가 처음 들어왔어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your first run or walk from another app came in."
+          }
+        }
+      }
+    },
     "다른 운동과 합치기": {
       "localizations": {
         "en": {
@@ -2203,6 +2550,22 @@
           "stringUnit": {
             "state": "translated",
             "value": "Next"
+          }
+        }
+      }
+    },
+    "다음: %@ · %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next: %1$@ · %2$@"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "다음: %1$@ · %2$@"
           }
         }
       }
@@ -2747,6 +3110,16 @@
         }
       }
     },
+    "먹은 것을 처음 기록했어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You logged a meal for the first time."
+          }
+        }
+      }
+    },
     "먹은 시간": {
       "localizations": {
         "en": {
@@ -2813,6 +3186,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Delete All Records"
+          }
+        }
+      }
+    },
+    "모든 배지를 모았어요!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You've collected every badge!"
           }
         }
       }
@@ -2929,6 +3312,16 @@
         }
       }
     },
+    "목표 달성": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Goal Reached"
+          }
+        }
+      }
+    },
     "목표 달성 연속": {
       "localizations": {
         "en": {
@@ -3035,6 +3428,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Weight"
+          }
+        }
+      }
+    },
+    "무게 × 횟수를 모든 세트에서 더한 총 볼륨이에요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Total volume: weight × reps across every set."
           }
         }
       }
@@ -3185,6 +3588,32 @@
           "stringUnit": {
             "state": "translated",
             "value": "Set %lld you just did"
+          }
+        }
+      }
+    },
+    "배지": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Badges"
+          }
+        }
+      }
+    },
+    "배지 %lld/%lld": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Badges %1$lld/%2$lld"
+          }
+        },
+        "ko": {
+          "stringUnit": {
+            "state": "new",
+            "value": "배지 %1$lld/%2$lld"
           }
         }
       }
@@ -3479,6 +3908,16 @@
         }
       }
     },
+    "브론즈": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bronze"
+          }
+        }
+      }
+    },
     "블루베리 1컵": {
       "localizations": {
         "en": {
@@ -3649,6 +4088,48 @@
         }
       }
     },
+    "새 배지 %lld개!": {
+      "localizations": {
+        "en": {
+          "variations": {
+            "plural": {
+              "one": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld New Badge!"
+                }
+              },
+              "other": {
+                "stringUnit": {
+                  "state": "translated",
+                  "value": "%lld New Badges!"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "새 배지 %lld개를 받았어요!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You earned %lld new badges!"
+          }
+        }
+      }
+    },
+    "새 배지를 받았어요!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You earned a new badge!"
+          }
+        }
+      }
+    },
     "새 이름": {
       "localizations": {
         "en": {
@@ -3749,12 +4230,42 @@
         }
       }
     },
+    "세트 카운터 근력 운동과 다른 앱(나이키 런 클럽, 피트니스 등)의 운동을 합친 시간이에요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This adds up Set Counter strength workouts and workouts from other apps (Nike Run Club, Fitness, and others)."
+          }
+        }
+      }
+    },
     "세트 카운터 백업 파일이 아니에요.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "This isn't a Set Counter backup file."
+          }
+        }
+      }
+    },
+    "세트 카운터로 운동한 날을 세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Counts the days you worked out with Set Counter."
+          }
+        }
+      }
+    },
+    "세트 카운터로 첫 운동을 기록했어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You logged your first workout with Set Counter."
           }
         }
       }
@@ -3959,6 +4470,16 @@
         }
       }
     },
+    "스페셜": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Special"
+          }
+        }
+      }
+    },
     "시간": {
       "localizations": {
         "en": {
@@ -4095,6 +4616,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No signal"
+          }
+        }
+      }
+    },
+    "실버": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Silver"
           }
         }
       }
@@ -4265,6 +4796,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No Stats Yet"
+          }
+        }
+      }
+    },
+    "아직이에요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Not yet"
           }
         }
       }
@@ -5035,6 +5576,16 @@
         }
       }
     },
+    "운동별 최고 무게(맨몸은 최고 횟수)를 넘긴 횟수예요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "How many times you beat an exercise's best weight (best reps for bodyweight)."
+          }
+        }
+      }
+    },
     "운동을 기록하면 여기서 이름과 부위를 관리할 수 있어요.": {
       "localizations": {
         "en": {
@@ -5359,6 +5910,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No workouts on this day"
+          }
+        }
+      }
+    },
+    "이 날은 운동 기록이 없어요. 세트 카운터로 운동하거나 다른 앱에서 러닝·걷기를 하면 여기에 쌓여요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No workouts on this day. Workouts in Set Counter and runs or walks in other apps show up here."
           }
         }
       }
@@ -5925,6 +6486,16 @@
         }
       }
     },
+    "주간 목표 일수를 채운 주가 이어진 최고 기록이에요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your longest run of weeks that met the weekly workout goal."
+          }
+        }
+      }
+    },
     "주간 유산소": {
       "localizations": {
         "en": {
@@ -5991,6 +6562,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Keep up this pace."
+          }
+        }
+      }
+    },
+    "지금까지 마친 모든 세트를 더해요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Adds up every set you've finished."
           }
         }
       }
@@ -6165,6 +6746,16 @@
         }
       }
     },
+    "처음으로 개인 기록을 깼어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You broke a personal record for the first time."
+          }
+        }
+      }
+    },
     "처음이면 가볍게 시작해요": {
       "localizations": {
         "en": {
@@ -6185,12 +6776,72 @@
         }
       }
     },
+    "첫 식단 기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First Meal Logged"
+          }
+        }
+      }
+    },
+    "첫 신기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First Record"
+          }
+        }
+      }
+    },
+    "첫 운동": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First Workout"
+          }
+        }
+      }
+    },
     "첫 운동을 기록해보세요": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Log Your First Workout"
+          }
+        }
+      }
+    },
+    "첫 유산소 연동": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First Cardio Synced"
+          }
+        }
+      }
+    },
+    "첫 체중 기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First Weigh-In"
+          }
+        }
+      }
+    },
+    "첫걸음": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "First Steps"
           }
         }
       }
@@ -6241,6 +6892,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Log Your Weight"
+          }
+        }
+      }
+    },
+    "체중을 처음 기록했어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You logged your weight for the first time."
           }
         }
       }
@@ -6367,6 +7028,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld workout days in the past year · Tap a square to see that day's sets"
+          }
+        }
+      }
+    },
+    "최근 7일": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Last 7 Days"
           }
         }
       }
@@ -6907,6 +7578,16 @@
         }
       }
     },
+    "플래티넘": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Platinum"
+          }
+        }
+      }
+    },
     "피드백 보내기": {
       "localizations": {
         "en": {
@@ -6967,6 +7648,16 @@
         }
       }
     },
+    "하루 평균": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Daily Average"
+          }
+        }
+      }
+    },
     "하루 평균 섭취": {
       "localizations": {
         "en": {
@@ -6983,6 +7674,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Daily Activity Goals"
+          }
+        }
+      }
+    },
+    "하루도 빠짐없이 운동한 최고 연속 일수예요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your longest streak of working out every day."
           }
         }
       }
@@ -7013,6 +7714,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Legs · Shoulders"
+          }
+        }
+      }
+    },
+    "한 세트라도 이 무게를 들면 받아요. 기준 체중은 설정의 내 정보예요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earned with a single set at this weight. Body weight comes from My Info in Settings."
           }
         }
       }
@@ -7223,6 +7934,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "For recovery, get %lld g of protein (1.6 g per kg of body weight)."
+          }
+        }
+      }
+    },
+    "획득": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Earned"
           }
         }
       }

@@ -224,3 +224,105 @@ struct ExerciseMinuteTests {
         #expect(coveredDuration([]) == 0)
     }
 }
+
+@Suite("Badges")
+struct BadgeTests {
+    private let calendar: Calendar = {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone(identifier: "Asia/Seoul")!
+        calendar.firstWeekday = 1
+        return calendar
+    }()
+
+    /// Noon on 2026-09-06 (a Sunday) plus `day` days.
+    private func date(_ day: Int) -> Date {
+        let start = calendar.date(from: DateComponents(year: 2026, month: 9, day: 6, hour: 12))!
+        return calendar.date(byAdding: .day, value: day, to: start)!
+    }
+
+    private func workout(_ day: Int, _ exercise: String = "벤치프레스", weight: Double = 60, reps: Int = 10, sets: Int = 5) -> BadgeInput.Workout {
+        BadgeInput.Workout(date: date(day), exercise: exercise, sets: sets, volume: weight * Double(reps * sets),
+                           bestWeight: weight, maxReps: reps)
+    }
+
+    private func progress(_ input: BadgeInput) -> [String: BadgeProgress] {
+        BadgeEngine.progress(input, calendar: calendar)
+    }
+
+    @Test func everyBadgeHasAUniqueId() {
+        let ids = BadgeDefinition.all.map(\.id)
+        #expect(Set(ids).count == ids.count)
+        #expect(ids.count >= 30)
+    }
+
+    @Test func workoutDaysCountDaysNotRecords() {
+        // Two exercises on each of 10 days: 10 days, earned on the 10th day.
+        let workouts = (0..<10).flatMap { [workout($0), workout($0, "스쿼트")] }
+        let result = progress(BadgeInput(workouts: workouts, now: date(20)))
+        #expect(result["workout-days-10"]?.value == 10)
+        #expect(result["workout-days-10"]?.achievedAt == date(9))
+        #expect(result["workout-days-30"]?.achievedAt == nil)
+        #expect(result["first-workout"]?.achievedAt == date(0))
+    }
+
+    @Test func setsAndVolumeAddUp() {
+        let workouts = (0..<20).map { workout($0, sets: 5) }   // 100 sets, 60 × 10 × 5 = 3,000 kg each
+        let result = progress(BadgeInput(workouts: workouts, now: date(30)))
+        #expect(result["sets-100"]?.achievedAt == date(19))
+        #expect(result["volume-10000"]?.achievedAt == date(3))
+    }
+
+    @Test func recordsCountOnlyBeatingEarlierSessions() {
+        let workouts = [workout(0, weight: 60), workout(2, weight: 62.5), workout(4, weight: 62.5), workout(6, weight: 65)]
+        let result = progress(BadgeInput(workouts: workouts, now: date(10)))
+        #expect(result["records-10"]?.value == 2)
+        #expect(result["first-record"]?.achievedAt == date(2))
+    }
+
+    @Test func dayStreakTakesTheBestRun() {
+        let days = [0, 1, 2, 5, 6, 7, 8, 9, 10, 11]   // 3 in a row, then 7 in a row
+        let result = progress(BadgeInput(workouts: days.map { workout($0) }, now: date(15)))
+        #expect(result["day-streak-3"]?.achievedAt == date(2))
+        #expect(result["day-streak-7"]?.achievedAt == date(11))
+    }
+
+    @Test func weekStreakNeedsTheWeeklyGoalEachWeek() {
+        // Weeks start on Sunday (day 0, 7, 14…). Two days a week for 4 weeks, goal 2.
+        let days = [0, 2, 7, 9, 14, 16, 21, 23]
+        let result = progress(BadgeInput(workouts: days.map { workout($0) }, weeklyGoal: 2, now: date(27)))
+        #expect(result["week-streak-2"]?.achievedAt == date(9))
+        #expect(result["week-streak-4"]?.achievedAt == date(23))
+    }
+
+    @Test func theWeekInProgressDoesNotBreakAStreak() {
+        let days = [0, 2, 7, 9]
+        // Day 15 is in the third week, with nothing logged yet: the streak is still 2.
+        let result = progress(BadgeInput(workouts: days.map { workout($0) }, weeklyGoal: 2, now: date(15)))
+        #expect(result["week-streak-2"]?.value == 2)
+    }
+
+    @Test func liftsCompareWithBodyWeight() {
+        let workouts = [workout(0, "벤치프레스", weight: 60), workout(3, "인클라인 벤치프레스", weight: 90), workout(5, "벤치프레스", weight: 80)]
+        let result = progress(BadgeInput(workouts: workouts, bodyWeight: 80, now: date(10)))
+        // 60/80 = 0.75 on day 0, 80/80 = 1.0 on day 5; the incline set doesn't count.
+        #expect(result["bench-0.75"]?.achievedAt == date(0))
+        #expect(result["bench-1"]?.achievedAt == date(5))
+        #expect(result["bench-1.25"]?.achievedAt == nil)
+    }
+
+    @Test(arguments: [
+        ("벤치프레스", BigLift.bench, true), ("바벨 벤치 프레스", .bench, true), ("인클라인 벤치프레스", .bench, false),
+        ("덤벨 벤치프레스", .bench, false), ("스쿼트", .squat, true), ("불가리안 스플릿 스쿼트", .squat, false),
+        ("데드리프트", .deadlift, true), ("루마니안 데드리프트", .deadlift, false), ("Deadlift", .deadlift, true),
+    ])
+    func bigLiftsSkipVariations(name: String, lift: BigLift, matches: Bool) {
+        #expect(lift.matches(name) == matches)
+    }
+
+    @Test func cardioDistanceAddsUp() {
+        let cardio = [(date(0), 5.2), (date(3), 4.8), (date(6), 3.0)]
+        let result = progress(BadgeInput(cardio: cardio, now: date(10)))
+        #expect(result["first-cardio"]?.achievedAt == date(0))
+        #expect(result["cardio-km-10"]?.achievedAt == date(3))
+    }
+}

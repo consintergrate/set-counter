@@ -84,6 +84,16 @@ struct MealEntry: Identifiable, Hashable {
     static let memoKey = "SetCounterMemo"
 }
 
+/// One workout that counts toward the exercise ring.
+struct ExerciseSession: Identifiable {
+    let id: String
+    let title: String
+    let detail: String
+    let systemImage: String
+    let isCardio: Bool
+    let interval: DateInterval
+}
+
 struct WeightEntry: Identifiable, Hashable {
     let date: Date
     let kg: Double
@@ -127,14 +137,28 @@ final class HealthData {
     /// Watch: Set Counter's own strength sessions plus every workout other apps saved
     /// to Health (ours are already left out of `cardio`), overlaps counted once.
     func exerciseMinutes(on day: Date, records: [WorkoutRecord]) -> Double {
+        coveredDuration(exerciseSessions(on: day, records: records).map(\.interval)) / 60
+    }
+
+    /// Everything that counts toward the day's exercise minutes, earliest first.
+    func exerciseSessions(on day: Date, records: [WorkoutRecord]) -> [ExerciseSession] {
         let calendar = Calendar.current
         let strength = records
             .filter { calendar.isDate($0.date, inSameDayAs: day) && $0.duration > 0 }
-            .map { DateInterval(start: $0.date, duration: $0.duration) }
+            .map { record in
+                ExerciseSession(id: String(describing: record.persistentModelID),
+                                title: record.exercise.isEmpty ? String(localized: "운동") : record.exercise,
+                                detail: setsSummary(record.setValues), systemImage: "dumbbell.fill", isCardio: false,
+                                interval: DateInterval(start: record.date, duration: record.duration))
+            }
         let others = cardio
             .filter { calendar.isDate($0.start, inSameDayAs: day) && $0.end > $0.start }
-            .map { DateInterval(start: $0.start, end: $0.end) }
-        return coveredDuration(strength + others) / 60
+            .map { workout in
+                ExerciseSession(id: workout.id.uuidString, title: workout.title, detail: workout.source,
+                                systemImage: workout.systemImage, isCardio: workout.isCardio,
+                                interval: DateInterval(start: workout.start, end: workout.end))
+            }
+        return (strength + others).sorted { $0.interval.start < $1.interval.start }
     }
     var latestWeight: WeightEntry? { weights.last }
 
