@@ -363,6 +363,8 @@ struct ExerciseDetailView: View {
     @AppStorage(WeightUnit.key) private var unitRaw = WeightUnit.kg.rawValue
     @State private var metric: Metric?
 
+    private let store = ProStore.shared
+
     private var unit: WeightUnit { WeightUnit(rawValue: unitRaw) ?? .kg }
     private var records: [WorkoutRecord] { allRecords.filter { $0.exercise == name } }
     private var isBodyweight: Bool { records.allSatisfy { $0.bestWeight == 0 } }
@@ -399,7 +401,7 @@ struct ExerciseDetailView: View {
             }
 
             Section {
-                if metrics.count > 1 {
+                if metrics.count > 1, store.isPro {
                     Picker("지표", selection: Binding(get: { current }, set: { metric = $0 })) {
                         ForEach(metrics) { Text($0.title).tag($0) }
                     }
@@ -428,6 +430,7 @@ struct ExerciseDetailView: View {
                         }
                     }
                     .frame(height: 200)
+                    .proLocked(.stats)
                     if let last = points.last {
                         Text("최근 \(format(value(last, current), current)) · 최근 \(points.count)회 기록")
                             .font(.caption)

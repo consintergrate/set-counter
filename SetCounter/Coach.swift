@@ -184,15 +184,17 @@ enum Coach {
 
     /// Up to six exercises for `part`: the user's own most frequent lifts for those
     /// muscles with a progressive-overload target, topped up from a starter list.
+    /// Without `progresses` (Pro) the numbers are simply last time's.
     static func recommendedRoutine(for part: String, records: [WorkoutRecord], profiles: [ExerciseProfile],
-                                   unit: WeightUnit = .current, now: Date = Date()) -> [RoutineSuggestion] {
+                                   unit: WeightUnit = .current, progresses: Bool = true,
+                                   now: Date = Date()) -> [RoutineSuggestion] {
         let calendar = Calendar.current
         // A routine the user arranged wins; only the numbers are worked out here.
         if let plan = RoutinePlans.plan(for: part) {
             let doneToday = Set(records.filter { calendar.isDate($0.date, inSameDayAs: now) }.map(\.exercise))
             return plan.map { item in
                 let next = progression(for: item.name, muscle: Muscle.lookup(item.name, in: profiles),
-                                       records: records, unit: unit, doneToday: doneToday)
+                                       records: records, unit: unit, progresses: progresses, doneToday: doneToday)
                 return RoutineSuggestion(exercise: next.exercise, muscle: next.muscle, weight: next.weight, reps: next.reps,
                                          sets: item.sets, note: next.note, isNew: next.isNew, doneToday: next.doneToday)
             }
@@ -213,13 +215,18 @@ enum Coach {
             // A custom part name: fall back to whatever was done on that part's days.
             let names = Set(recent.filter { $0.routineName == part }.map(\.exercise))
             queues = [names.sorted { score[$0, default: 0] > score[$1, default: 0] }
-                .map { progression(for: $0, muscle: Muscle.lookup($0, in: profiles), records: records, unit: unit, doneToday: doneToday) }]
+                .map {
+                    progression(for: $0, muscle: Muscle.lookup($0, in: profiles), records: records, unit: unit,
+                                progresses: progresses, doneToday: doneToday)
+                }]
         } else {
             queues = muscles.map { muscle in
                 let own = Set(recent.map(\.exercise))
                     .filter { Muscle.lookup($0, in: profiles) == muscle }
                     .sorted { score[$0, default: 0] > score[$1, default: 0] }
-                let ownSuggestions = own.map { progression(for: $0, muscle: muscle, records: records, unit: unit, doneToday: doneToday) }
+                let ownSuggestions = own.map {
+                    progression(for: $0, muscle: muscle, records: records, unit: unit, progresses: progresses, doneToday: doneToday)
+                }
                 let starters = library(for: muscle)
                     .filter { name, _ in !known.contains(ExerciseLibrary.normalized(name)) }
                     .map { name, weight in
@@ -246,7 +253,7 @@ enum Coach {
     /// Next target from the latest session: 12+ reps on the top weight → add weight and
     /// drop to 8 reps; 8+ reps → one more rep; fewer → repeat the same numbers.
     private static func progression(for exercise: String, muscle: Muscle, records: [WorkoutRecord],
-                                    unit: WeightUnit, doneToday: Set<String>) -> RoutineSuggestion {
+                                    unit: WeightUnit, progresses: Bool, doneToday: Set<String>) -> RoutineSuggestion {
         guard let last = records.first(where: { $0.exercise == exercise }) else {
             return RoutineSuggestion(exercise: exercise, muscle: muscle, weight: ExerciseLibrary.find(exercise)?.startWeight ?? 0,
                                      reps: 10, sets: 3, note: String(localized: "처음이면 가볍게 시작해요"),
@@ -260,7 +267,9 @@ enum Coach {
         let step = unit == .kg ? 2.5 : unit.toKg(5)
 
         let weight: Double, nextReps: Int, note: String
-        if top == 0 {
+        if !progresses {
+            (weight, nextReps, note) = (top, max(reps, 1), "")
+        } else if top == 0 {
             (weight, nextReps, note) = (0, reps + (reps >= 12 ? 2 : 1), String(localized: "지난번보다 한두 개 더"))
         } else if reps >= 12 {
             (weight, nextReps, note) = (top + step, 8, String(localized: "+\(formatMass(step, unit: unit)) 올려볼 때예요"))

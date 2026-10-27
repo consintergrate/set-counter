@@ -21,7 +21,7 @@ extension WidgetSnapshot {
             weekStart: weekStart,
             weekDone: weekDone,
             weeklyGoal: defaults.object(forKey: "weeklyGoal") as? Int ?? 4,
-            accent: defaults.string(forKey: "accent") ?? "blue"
+            accent: ProStatus.isUnlocked ? defaults.string(forKey: "accent") ?? "blue" : "blue"
         ).save()
         WidgetCenter.shared.reloadAllTimelines()
     }

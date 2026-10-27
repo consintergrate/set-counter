@@ -67,9 +67,9 @@ final class HealthWorkout: NSObject {
         configuration.locationType = .indoor
         startWatchQuery(from: date)
 
-        // Ask the Watch app to run the workout. If there's no Watch (or no app on it),
-        // or its session never shows up, use the iPhone's own session instead.
-        if UserDefaults.standard.object(forKey: Self.useWatchKey) as? Bool ?? true {
+        // Ask the Watch app (a Pro feature) to run the workout. If there's no Watch (or no
+        // app on it), or its session never shows up, use the iPhone's own session instead.
+        if ProStore.shared.isPro, UserDefaults.standard.object(forKey: Self.useWatchKey) as? Bool ?? true {
             let launched = await withCheckedContinuation { continuation in
                 store.startWatchApp(with: configuration) { success, _ in continuation.resume(returning: success) }
             }

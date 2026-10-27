@@ -10,7 +10,7 @@ struct OnboardingView: View {
     @AppStorage("accent") private var accent = AccentChoice.blue.rawValue
     @State private var page = 0
 
-    private var color: Color { (AccentChoice(rawValue: accent) ?? .blue).color }
+    private var color: Color { AccentChoice.effective(accent).color }
 
     private struct Page {
         let title: LocalizedStringKey

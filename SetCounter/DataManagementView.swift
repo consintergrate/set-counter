@@ -29,10 +29,14 @@ struct DataManagementView: View {
                 if let first = records.last {
                     LabeledContent("첫 기록", value: first.date.formatted(date: .abbreviated, time: .omitted))
                 }
-                NavigationLink {
-                    ExerciseNamesView()
-                } label: {
-                    Label("운동 이름 관리", systemImage: "character.cursor.ibeam")
+                if ProStore.shared.isPro {
+                    NavigationLink {
+                        ExerciseNamesView()
+                    } label: {
+                        Label("운동 이름 관리", systemImage: "character.cursor.ibeam")
+                    }
+                } else {
+                    ProLockedButton(title: "운동 이름 관리", systemImage: "character.cursor.ibeam", feature: .data)
                 }
             }
 
@@ -46,8 +50,13 @@ struct DataManagementView: View {
             }
 
             Section {
-                exportRow("CSV로 내보내기", systemImage: "square.and.arrow.up", url: csvURL)
-                Button("CSV 가져오기", systemImage: "square.and.arrow.down") { importKind = .csv }
+                if ProStore.shared.isPro {
+                    exportRow("CSV로 내보내기", systemImage: "square.and.arrow.up", url: csvURL)
+                    Button("CSV 가져오기", systemImage: "square.and.arrow.down") { importKind = .csv }
+                } else {
+                    ProLockedButton(title: "CSV로 내보내기", systemImage: "square.and.arrow.up", feature: .data)
+                    ProLockedButton(title: "CSV 가져오기", systemImage: "square.and.arrow.down", feature: .data)
+                }
                 Button("건강 앱에서 운동 보기", systemImage: "heart.text.square") {
                     if let url = URL(string: "x-apple-health://") { openURL(url) }
                 }

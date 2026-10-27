@@ -31,7 +31,11 @@ struct HeartRateSettingsView: View {
                         if isOn { Task { await HealthWorkout.shared.requestAuthorization() } }
                     }
                 if useHealthKit {
-                    Toggle("Apple Watch 앱으로 실시간 측정", isOn: $useWatch)
+                    if ProStore.shared.isPro {
+                        Toggle("Apple Watch 앱으로 실시간 측정", isOn: $useWatch)
+                    } else {
+                        ProLockedButton(title: "Apple Watch 앱으로 실시간 측정", feature: .watch)
+                    }
                 }
             } header: {
                 Text("Apple 기기")

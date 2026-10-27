@@ -1,0 +1,122 @@
+{
+  "identifier" : "5E0C2B7A",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+    {
+      "displayPrice" : "49000",
+      "familyShareable" : false,
+      "internalID" : "6740000003",
+      "localizations" : [
+        {
+          "description" : "세트 카운터 Pro를 한 번 결제로 계속 써요.",
+          "displayName" : "세트 카운터 Pro 평생",
+          "locale" : "ko"
+        },
+        {
+          "description" : "Set Counter Pro for life, paid once.",
+          "displayName" : "Set Counter Pro Lifetime",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "com.andykim.SetCounter.pro.lifetime",
+      "referenceName" : "Pro Lifetime",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : false,
+    "_billingIssuesEnabled" : false,
+    "_disableDialogs" : false,
+    "_failTransactionsEnabled" : false,
+    "_locale" : "ko_KR",
+    "_renewalBillingIssuesEnabled" : false,
+    "_storefront" : "KOR",
+    "_storeKitErrors" : [
+
+    ],
+    "_timeRate" : 0
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "21500001",
+      "localizations" : [
+
+      ],
+      "name" : "Pro",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "22000",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "6740000001",
+          "introductoryOffer" : {
+            "internalID" : "6740000011",
+            "numberOfPeriods" : 1,
+            "paymentMode" : "free",
+            "subscriptionPeriod" : "P1W"
+          },
+          "localizations" : [
+            {
+              "description" : "세트 카운터 Pro 1년 구독",
+              "displayName" : "세트 카운터 Pro 연간",
+              "locale" : "ko"
+            },
+            {
+              "description" : "Set Counter Pro for a year.",
+              "displayName" : "Set Counter Pro Yearly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.andykim.SetCounter.pro.yearly",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Pro Yearly",
+          "subscriptionGroupID" : "21500001",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [
+
+          ],
+          "codeOffers" : [
+
+          ],
+          "displayPrice" : "2900",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "6740000002",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "세트 카운터 Pro 1개월 구독",
+              "displayName" : "세트 카운터 Pro 월간",
+              "locale" : "ko"
+            },
+            {
+              "description" : "Set Counter Pro for a month.",
+              "displayName" : "Set Counter Pro Monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.andykim.SetCounter.pro.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Pro Monthly",
+          "subscriptionGroupID" : "21500001",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

@@ -127,7 +127,11 @@ struct FoodLogSheet: View {
                 } header: {
                     Text("직접 입력")
                 } footer: {
-                    Text("이름을 적으면 '내 음식'에 저장돼서 다음부터 바로 고를 수 있어요.")
+                    if ProStore.shared.isPro {
+                        Text("이름을 적으면 '내 음식'에 저장돼서 다음부터 바로 고를 수 있어요.")
+                    } else {
+                        Text("Pro에서는 이름을 적은 음식이 '내 음식'에 저장돼서 다음부터 바로 고를 수 있어요.")
+                    }
                 }
             }
             .searchable(text: $search, placement: .navigationBarDrawer(displayMode: .always), prompt: "음식 검색")
@@ -300,7 +304,8 @@ struct FoodLogSheet: View {
         guard let kcal = customKcal, kcal >= 0 else { return }
         let name = customName.trimmingCharacters(in: .whitespaces)
         let food = FoodItem(name: name.isEmpty ? String(localized: "직접 입력") : name, kcal: kcal)
-        if !name.isEmpty {
+        // Saving to "내 음식" is Pro; the food still goes into this meal.
+        if !name.isEmpty, ProStore.shared.isPro {
             FoodCatalog.addCustom(food)
             customVersion += 1
         }

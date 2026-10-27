@@ -71,6 +71,9 @@ struct ReportTile: View {
                         .foregroundStyle(delta.isUp == delta.upIsGood ? .green : .orange)
                 } else if let detail {
                     Text(detail).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
+                } else {
+                    // Keeps the tiles in a row the same height.
+                    Text(" ").font(.caption2)
                 }
             }
             Spacer(minLength: 0)
@@ -88,6 +91,8 @@ struct PeriodSwitcher: View {
     var subtitle: String?
     let canGoBack: Bool
     let canGoForward: Bool
+    /// Going further back needs Pro; the button opens the paywall instead.
+    var backIsLocked = false
     let onBack: () -> Void
     let onForward: () -> Void
 
@@ -95,9 +100,17 @@ struct PeriodSwitcher: View {
         HStack {
             Button(action: onBack) {
                 Image(systemName: "chevron.left").font(.headline).frame(width: 44, height: 44)
+                    .overlay(alignment: .topTrailing) {
+                        if backIsLocked {
+                            Image(systemName: "lock.fill")
+                                .font(.system(size: 9, weight: .bold))
+                                .foregroundStyle(.orange)
+                                .offset(x: -6, y: 8)
+                        }
+                    }
             }
             .disabled(!canGoBack)
-            .accessibilityLabel("이전")
+            .accessibilityLabel(backIsLocked ? Text("이전 · Pro 기능") : Text("이전"))
             Spacer()
             VStack(spacing: 2) {
                 Text(title).font(.headline).monospacedDigit()

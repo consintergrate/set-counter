@@ -373,6 +373,26 @@
         }
       }
     },
+    "%@/년": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@/yr"
+          }
+        }
+      }
+    },
+    "%@/월": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%@/mo"
+          }
+        }
+      }
+    },
     "%@kcal": {
       "localizations": {
         "en": {
@@ -409,6 +429,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "%@ steps"
+          }
+        }
+      }
+    },
+    "%@에 갱신돼요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Renews %@"
+          }
+        }
+      }
+    },
+    "%@에 끝나요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Ends %@"
           }
         }
       }
@@ -471,6 +511,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld%%"
+          }
+        }
+      }
+    },
+    "%lld%% 할인": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Save %lld%%"
           }
         }
       }
@@ -1065,6 +1115,36 @@
         }
       }
     },
+    "7일 무료": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7 days free"
+          }
+        }
+      }
+    },
+    "7일 무료 체험이 끝나면 연 %@이 결제되고 매년 자동으로 갱신돼요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After the 7-day free trial, you're charged %@ a year and it renews automatically."
+          }
+        }
+      }
+    },
+    "7일 무료로 시작하기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Start 7-Day Free Trial"
+          }
+        }
+      }
+    },
     "AB 롤아웃": {
       "localizations": {
         "en": {
@@ -1085,12 +1165,32 @@
         }
       }
     },
+    "App Store에서 구매를 확인하지 못했어요. 잠시 후 '구매 복원'을 눌러 주세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn't verify the purchase with the App Store. Try Restore Purchases in a moment."
+          }
+        }
+      }
+    },
     "Apple Watch · AirPods 심박수": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Apple Watch · AirPods Heart Rate"
+          }
+        }
+      }
+    },
+    "Apple Watch 앱": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Watch App"
           }
         }
       }
@@ -1155,6 +1255,16 @@
         }
       }
     },
+    "CSV 내보내기·가져오기, 운동 이름 합치기·부위 지정": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "CSV export and import, merging exercise names, and setting muscle groups"
+          }
+        }
+      }
+    },
     "CSV 파일은 엑셀·Numbers·구글 시트에서 열 수 있어요. 이 앱에서 내보낸 CSV를 가져오면 이미 있는 기록은 건너뛰어요.": {
       "localizations": {
         "en": {
@@ -1205,12 +1315,102 @@
         }
       }
     },
+    "PRO": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "PRO"
+          }
+        }
+      }
+    },
     "Polar·Garmin 같은 가슴 스트랩이나 심박 방송 기능이 있는 기기를 연결할 수 있어요. 한 번 연결하면 다음부터 자동으로 연결돼요.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Connect a chest strap like Polar or Garmin, or any device that broadcasts heart rate. Once paired, it reconnects automatically."
+          }
+        }
+      }
+    },
+    "Pro 기능": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro feature"
+          }
+        }
+      }
+    },
+    "Pro 사용 중": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro is on"
+          }
+        }
+      }
+    },
+    "Pro 위젯": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pro Widget"
+          }
+        }
+      }
+    },
+    "Pro가 없으면 iPhone의 라이트·다크 설정을 따라가요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Without Pro, the app follows your iPhone's light or dark setting."
+          }
+        }
+      }
+    },
+    "Pro로 보기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Unlock with Pro"
+          }
+        }
+      }
+    },
+    "Pro를 쓰고 있어요. 응원해 줘서 고마워요!": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have Pro. Thanks for the support!"
+          }
+        }
+      }
+    },
+    "Pro에서 쓸 수 있는 기능이에요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This is a Pro feature"
+          }
+        }
+      }
+    },
+    "Pro에서는 이름을 적은 음식이 '내 음식'에 저장돼서 다음부터 바로 고를 수 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "With Pro, foods you name are saved to My Foods so you can pick them next time."
           }
         }
       }
@@ -1710,6 +1910,26 @@
         }
       }
     },
+    "개발 빌드라 App Store에 상품이 아직 없어요. Xcode에서 실행하면 StoreKit 테스트 결제를 해볼 수 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This development build has no App Store products yet. Run it from Xcode to try StoreKit test purchases."
+          }
+        }
+      }
+    },
+    "개발 빌드에만 있어요. 결제 없이 Pro 화면을 확인할 때 써요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only in development builds, for checking Pro screens without paying."
+          }
+        }
+      }
+    },
     "개인 기록": {
       "localizations": {
         "en": {
@@ -2030,6 +2250,46 @@
         }
       }
     },
+    "구독 관리": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Manage Subscription"
+          }
+        }
+      }
+    },
+    "구매 복원": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Restore Purchases"
+          }
+        }
+      }
+    },
+    "구매 승인을 기다리고 있어요. 승인되면 Pro가 자동으로 켜져요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Waiting for approval. Pro turns on as soon as it's approved."
+          }
+        }
+      }
+    },
+    "구매를 복원했어요. Pro가 켜졌어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Purchases restored. Pro is on."
+          }
+        }
+      }
+    },
     "권장 끝": {
       "localizations": {
         "en": {
@@ -2338,6 +2598,16 @@
         }
       }
     },
+    "끝나기 24시간 전까지 iPhone 설정 → Apple 계정 → 구독에서 해지하면 더 결제되지 않아요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel at least 24 hours before it ends in Settings → Apple Account → Subscriptions and you won't be charged again."
+          }
+        }
+      }
+    },
     "나이": {
       "localizations": {
         "en": {
@@ -2430,6 +2700,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Shows calories left and this week's cardio. Updates whenever you open the app."
+          }
+        }
+      }
+    },
+    "내 루틴과 다음 목표": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your Routines & Next Targets"
           }
         }
       }
@@ -2540,6 +2820,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Merge with Another Exercise"
+          }
+        }
+      }
+    },
+    "다시 시도": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try Again"
           }
         }
       }
@@ -2756,6 +3046,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Data"
+          }
+        }
+      }
+    },
+    "데이터 도구": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Data Tools"
           }
         }
       }
@@ -3818,6 +4118,16 @@
         }
       }
     },
+    "부위별 내 루틴 편집, 다음 무게·횟수 자동 추천": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Edit each day's routine, with the next weight and reps worked out for you"
+          }
+        }
+      }
+    },
     "부족": {
       "localizations": {
         "en": {
@@ -3994,6 +4304,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Apple"
+          }
+        }
+      }
+    },
+    "사용 중이에요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active"
           }
         }
       }
@@ -4230,6 +4550,26 @@
         }
       }
     },
+    "세트 카운터 Pro": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Counter Pro"
+          }
+        }
+      }
+    },
+    "세트 카운터 Pro에서 쓸 수 있어요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Available with Set Counter Pro"
+          }
+        }
+      }
+    },
     "세트 카운터 근력 운동과 다른 앱(나이키 런 클럽, 피트니스 등)의 운동을 합친 시간이에요.": {
       "localizations": {
         "en": {
@@ -4376,6 +4716,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Bottle of soju"
+          }
+        }
+      }
+    },
+    "손목에서 보는 실시간 심박수, 휴식이 끝나면 손목 알림": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Live heart rate on your wrist, and a tap when rest is over"
           }
         }
       }
@@ -4566,6 +4916,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Meal Diary"
+          }
+        }
+      }
+    },
+    "식단·체중 전체 기록": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Full Meal & Weight History"
           }
         }
       }
@@ -4960,6 +5320,16 @@
         }
       }
     },
+    "언제든 해지": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Cancel anytime"
+          }
+        }
+      }
+    },
     "없음": {
       "localizations": {
         "en": {
@@ -4976,6 +5346,46 @@
           "stringUnit": {
             "state": "translated",
             "value": "Female"
+          }
+        }
+      }
+    },
+    "연 %@이 결제되고 매년 자동으로 갱신돼요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're charged %@ a year and it renews automatically."
+          }
+        }
+      }
+    },
+    "연간": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yearly"
+          }
+        }
+      }
+    },
+    "연간 구독 시작하기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subscribe Yearly"
+          }
+        }
+      }
+    },
+    "연간 구독 중": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Yearly plan"
           }
         }
       }
@@ -5416,6 +5826,16 @@
         }
       }
     },
+    "운동 기록은 그대로 무료예요.\nPro는 기록을 더 깊이 보고, 내 방식대로 관리하게 해줘요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logging workouts stays free.\nPro lets you dig deeper into your records and run things your way."
+          }
+        }
+      }
+    },
     "운동 목록에서 고르기": {
       "localizations": {
         "en": {
@@ -5576,6 +5996,16 @@
         }
       }
     },
+    "운동별 1RM·볼륨 추이, 부위 밸런스, 운동 잔디, 개인 기록 보드, 유산소 차트": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1RM and volume trends for each exercise, muscle balance, the workout heatmap, the PR board, and cardio charts"
+          }
+        }
+      }
+    },
     "운동별 최고 무게(맨몸은 최고 횟수)를 넘긴 횟수예요.": {
       "localizations": {
         "en": {
@@ -5676,12 +6106,52 @@
         }
       }
     },
+    "월 %@꼴": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "About %@/mo"
+          }
+        }
+      }
+    },
+    "월 %@이 결제되고 매달 자동으로 갱신돼요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You're charged %@ a month and it renews automatically."
+          }
+        }
+      }
+    },
     "월간": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Monthly"
+          }
+        }
+      }
+    },
+    "월간 구독 시작하기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Subscribe Monthly"
+          }
+        }
+      }
+    },
+    "월간 구독 중": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Monthly plan"
           }
         }
       }
@@ -5712,6 +6182,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "How to Add"
+          }
+        }
+      }
+    },
+    "위젯과 테마": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Widgets & Themes"
           }
         }
       }
@@ -5854,6 +6334,16 @@
         }
       }
     },
+    "이 Apple 계정으로 산 Pro를 찾지 못했어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No Pro purchase found for this Apple Account."
+          }
+        }
+      }
+    },
     "이 기간에는 기록이 없어요": {
       "localizations": {
         "en": {
@@ -5920,6 +6410,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "No workouts on this day. Workouts in Set Counter and runs or walks in other apps show up here."
+          }
+        }
+      }
+    },
+    "이 위젯은 Pro에서 쓸 수 있어요. 눌러서 앱을 열어 보세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "This widget needs Pro. Tap to open the app."
           }
         }
       }
@@ -6124,12 +6624,32 @@
         }
       }
     },
+    "이용약관": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terms of Use"
+          }
+        }
+      }
+    },
     "이전": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Previous"
+          }
+        }
+      }
+    },
+    "이전 · Pro 기능": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previous · Pro feature"
           }
         }
       }
@@ -6180,6 +6700,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Elliptical"
+          }
+        }
+      }
+    },
+    "자세한 통계": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detailed Stats"
+          }
+        }
+      }
+    },
+    "자세한 통계, Apple Watch 앱, 내 루틴": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Detailed stats, the Watch app, your routines"
           }
         }
       }
@@ -6586,6 +7126,36 @@
         }
       }
     },
+    "지난 날짜 식단, 내 음식 저장, 체중 1년 추세·BMI": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Meals from past days, saved foods, and a year of weight with BMI"
+          }
+        }
+      }
+    },
+    "지난 날짜·지난 12주 리포트, 지난주 대비 증감": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Reports for past days and the last 12 weeks, with changes from the week before"
+          }
+        }
+      }
+    },
+    "지난 리포트와 비교": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Past Reports & Comparisons"
+          }
+        }
+      }
+    },
     "지난번": {
       "localizations": {
         "en": {
@@ -6606,6 +7176,16 @@
         }
       }
     },
+    "지난번 무게와 횟수예요. Pro는 다음에 올릴 무게·횟수를 잡아 주고, 루틴을 내 마음대로 바꿀 수 있어요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These are last time's weights and reps. Pro works out what to lift next and lets you change the routine your way."
+          }
+        }
+      }
+    },
     "지난번보다 한두 개 더": {
       "localizations": {
         "en": {
@@ -6622,6 +7202,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Last Week"
+          }
+        }
+      }
+    },
+    "지난주와 비교해 보기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Compare with Last Week"
           }
         }
       }
@@ -7218,6 +7808,46 @@
         }
       }
     },
+    "칼로리 위젯 · 잠금 화면 위젯": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calorie Widget · Lock Screen Widgets"
+          }
+        }
+      }
+    },
+    "칼로리 위젯, 잠금 화면 위젯, 화면 모드·강조 색": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The calorie widget, Lock Screen widgets, appearance, and accent colors"
+          }
+        }
+      }
+    },
+    "칼로리 위젯과 잠금 화면 위젯을 쓸 수 있어요": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calorie and Lock Screen widgets are unlocked"
+          }
+        }
+      }
+    },
+    "칼로리 위젯은 오늘 먹은 칼로리와 남은 양을, 잠금 화면 위젯은 오늘의 루틴과 칼로리를 보여줘요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The calorie widget shows what you've eaten today and what's left. Lock Screen widgets show today's routine and calories."
+          }
+        }
+      }
+    },
     "칼로리 초과": {
       "localizations": {
         "en": {
@@ -7378,6 +8008,16 @@
         }
       }
     },
+    "테스트용 Pro 켜기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Turn On Pro for Testing"
+          }
+        }
+      }
+    },
     "통계": {
       "localizations": {
         "en": {
@@ -7504,6 +8144,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Avg. Active Energy"
+          }
+        }
+      }
+    },
+    "평생": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lifetime"
+          }
+        }
+      }
+    },
+    "평생 이용권": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Lifetime"
+          }
+        }
+      }
+    },
+    "평생 이용권 구매하기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Buy Lifetime"
           }
         }
       }
@@ -7718,6 +8388,26 @@
         }
       }
     },
+    "한 번 결제": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pay once"
+          }
+        }
+      }
+    },
+    "한 번 결제하면 계속 쓸 수 있어요. 같은 Apple 계정의 다른 기기에서는 '구매 복원'을 눌러 주세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Pay once and keep it. On other devices with the same Apple Account, tap Restore Purchases."
+          }
+        }
+      }
+    },
     "한 세트라도 이 무게를 들면 받아요. 기준 체중은 설정의 내 정보예요.": {
       "localizations": {
         "en": {
@@ -7894,6 +8584,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "OK"
+          }
+        }
+      }
+    },
+    "확인 중…": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Checking…"
           }
         }
       }

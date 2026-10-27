@@ -1,6 +1,6 @@
 # 세트 카운터 개인정보 처리방침
 
-시행일: 2026년 10월 26일
+시행일: 2026년 10월 27일
 
 세트 카운터(이하 "앱")는 사용자의 개인정보를 수집하거나 외부 서버로 전송하지 않습니다.
 
@@ -30,23 +30,26 @@ HealthKit 데이터는 광고, 마케팅, 데이터 판매에 사용하지 않�
 - 설정 → 데이터 관리에서 운동 기록을 CSV 파일로 내보낼 수 있습니다. 파일은 사용자가 직접 공유를 선택한 곳으로만 전달됩니다.
 - 같은 화면에서 모든 운동 기록을 삭제할 수 있습니다. 앱을 삭제하면 앱 안의 모든 데이터도 함께 삭제됩니다.
 
-## 6. 문의 메일
+## 6. 앱 내 구매 (세트 카운터 Pro)
+세트 카운터 Pro 구독과 평생 이용권은 Apple의 App Store가 결제를 처리합니다. 앱과 개발자는 카드 번호 같은 결제 정보를 받지 않습니다. 앱은 Pro를 쓸 수 있는지 확인하려고 App Store가 기기에 보관하는 구매 기록을 기기 안에서만 확인하며, 이 정보를 외부로 보내지 않습니다. 구독은 iPhone 설정 → Apple 계정 → 구독에서 관리하거나 해지할 수 있습니다.
+
+## 7. 문의 메일
 "지원 및 피드백"에서 메일을 보내면, 메일 본문에 앱 버전과 기기 모델·iOS 버전이 자동으로 들어갑니다. 보내기 전에 직접 확인하고 지울 수 있습니다. 받은 메일은 문의 답변에만 사용합니다.
 
-## 7. 어린이
+## 8. 어린이
 앱은 어린이를 대상으로 하지 않으며, 어린이의 정보를 따로 수집하지 않습니다.
 
-## 8. 변경
+## 9. 변경
 이 방침이 바뀌면 이 페이지에 시행일과 함께 게시합니다.
 
-## 9. 연락처
+## 10. 연락처
 andykim0706@naver.com
 
 ---
 
 # Set Counter Privacy Policy
 
-Effective: October 26, 2026
+Effective: October 27, 2026
 
 Set Counter ("the app") does not collect personal information or send it to any server.
 
@@ -59,6 +62,8 @@ Set Counter ("the app") does not collect personal information or send it to any 
 **Notifications and alarms** are scheduled and delivered on the device.
 
 **Export and deletion.** You can export your records as a CSV file (shared only where you choose) and delete all records in Settings → Data. Deleting the app removes all of its data.
+
+**In-app purchases.** Set Counter Pro subscriptions and the lifetime purchase are processed by Apple through the App Store. The app and the developer never receive your payment details. To check whether Pro is unlocked, the app reads the purchase record the App Store keeps on your device, on the device only, and never sends it anywhere. You can manage or cancel subscriptions in Settings → Apple Account → Subscriptions.
 
 **Support email.** Emails sent from "Support & Feedback" include the app version, device model, and iOS version, which you can review or remove before sending. They are used only to reply.
 

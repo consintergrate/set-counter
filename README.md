@@ -6,7 +6,7 @@
 
 <p align="center">
   세트를 마칠 때 한 번 누르면 카운트가 오르고 휴식 타이머가 시작되는 iPhone 운동 앱<br>
-  SwiftUI · SwiftData · HealthKit · watchOS · Core Bluetooth · AlarmKit · WidgetKit · Swift Testing
+  SwiftUI · SwiftData · HealthKit · watchOS · Core Bluetooth · AlarmKit · WidgetKit · StoreKit 2 · Swift Testing
 </p>
 
 <p align="center">
@@ -34,6 +34,16 @@
 - **위젯**: 오늘의 루틴, 오늘의 칼로리(남은 칼로리·주간 유산소) — 홈 화면(소·중), 잠금 화면(직사각형·원형)
 - **그 밖에**: 한국어/English, 라이트·다크 테마와 강조 색, kg/lb, CSV 내보내기
 
+## 세트 카운터 Pro
+
+운동을 하는 기능(세트 카운트, 휴식 알람, 기록, 백업, 배지)은 무료이고, 기록을 분석·관리·꾸미는 기능은 Pro입니다.
+
+- **Pro 기능**: 자세한 통계(운동별 1RM·볼륨 추이, 부위 밸런스, 운동 잔디, 개인 기록), 지난 리포트와 지난주 대비 증감, Apple Watch 앱, 내 루틴 편집과 다음 무게·횟수 추천, 지난 식단·내 음식·체중 1년 추세, CSV와 운동 이름 관리, 칼로리·잠금 화면 위젯, 테마
+- **가격**: 연간 ₩22,000 (7일 무료 체험) · 월간 ₩2,900 · 평생 ₩49,000
+- **구현**: StoreKit 2 (`Transaction.currentEntitlements`, `Transaction.updates`, SwiftUI `PurchaseAction`). 잠긴 기능은 숨기지 않고 흐리게 미리 보여준 뒤 결제 화면으로 안내 ([ProStore.swift](SetCounter/ProStore.swift), [ProViews.swift](SetCounter/ProViews.swift))
+- **테스트**: 스킴에 연결된 [SetCounter.storekit](Config/SetCounter.storekit)으로 Xcode에서 실제 결제 없이 구매·환불·만료를 시험하고, `ProTests`가 같은 파일로 구매 흐름을 자동 검증
+- App Store Connect 설정과 출시 체크리스트: [docs/PRO_SETUP.md](docs/PRO_SETUP.md)
+
 ## 구현하면서 해결한 문제
 
 | 문제 | 해결 |
@@ -60,7 +70,7 @@ SetCounterWatch/     Apple Watch 앱 (워크아웃 세션, 실시간 심박수 �
 SetCounterWidget/    위젯 확장
 SetCounterTests/     단위 테스트 (칼로리 계산, 추천 루틴, 운동 분류, 위젯·워치 데이터)
 Shared/              앱과 위젯이 함께 쓰는 코드, 다국어 String Catalog
-Config/              Info.plist, entitlements
+Config/              Info.plist, entitlements, StoreKit 테스트 설정
 AppStore/            스크린샷, 아이콘 생성 스크립트, 개인정보 처리방침, 배포 체크리스트
 ```
 

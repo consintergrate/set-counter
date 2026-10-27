@@ -43,6 +43,7 @@ struct MealDiaryView: View {
     @State private var dayOffset = 0
     @State private var adding = false
     @State private var deleteFailed = false
+    @State private var paywall: ProFeature?
 
     private let health = HealthData.shared
     private var calendar: Calendar { .current }
@@ -63,7 +64,9 @@ struct MealDiaryView: View {
                     subtitle: dayOffset == 0 ? String(localized: "오늘") : dayOffset == -1 ? String(localized: "어제") : nil,
                     canGoBack: dayOffset > -27,
                     canGoForward: dayOffset < 0,
-                    onBack: { dayOffset -= 1 },
+                    // Today is free; earlier days are Pro.
+                    backIsLocked: !ProStore.shared.isPro,
+                    onBack: { if ProStore.shared.isPro { dayOffset -= 1 } else { paywall = .diet } },
                     onForward: { dayOffset += 1 }
                 )
                 VStack(alignment: .leading, spacing: 6) {
@@ -118,6 +121,7 @@ struct MealDiaryView: View {
             }
         }
         .navigationTitle("식단 기록")
+        .proPaywall($paywall)
         .toolbar {
             Button("식사 추가", systemImage: "plus") { adding = true }
         }

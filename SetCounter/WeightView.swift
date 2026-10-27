@@ -10,8 +10,15 @@ struct WeightView: View {
 
     @State private var range = Range.threeMonths
     @State private var showingAdd = false
+    @State private var paywall: ProFeature?
 
     private let health = HealthData.shared
+    private let store = ProStore.shared
+
+    /// The year view is Pro; picking it without Pro opens the paywall.
+    private var rangeSelection: Binding<Range> {
+        Binding(get: { range }, set: { if $0 != .year || store.isPro { range = $0 } else { paywall = .diet } })
+    }
     private var unit: WeightUnit { WeightUnit(rawValue: unitRaw) ?? .kg }
 
     enum Range: CaseIterable, Identifiable {
@@ -39,7 +46,7 @@ struct WeightView: View {
 
             Section {
                 summary(entries)
-                Picker("기간", selection: $range) {
+                Picker("기간", selection: rangeSelection) {
                     ForEach(Range.allCases) { Text($0.title).tag($0) }
                 }
                 .pickerStyle(.segmented)
@@ -77,6 +84,7 @@ struct WeightView: View {
             }
         }
         .navigationTitle("체중")
+        .proPaywall($paywall)
         .toolbar {
             Button("체중 기록", systemImage: "plus") { showingAdd = true }
         }
@@ -94,7 +102,18 @@ struct WeightView: View {
             MiniStat(title: "현재", value: latest.map { formatMass($0.kg, unit: unit) } ?? "–")
             MiniStat(title: "기간 변화", value: change.map { ($0 > 0 ? "+" : "") + formatMass($0, unit: unit) } ?? "–")
             MiniStat(title: "목표까지", value: Goals.hasGoalWeight ? latest.map { formatMass(max($0.kg - goalWeight, 0), unit: unit) } ?? "–" : "–")
-            MiniStat(title: "BMI", value: bmi.map { $0.formatted(.number.precision(.fractionLength(1))) } ?? "–")
+            if store.isPro {
+                MiniStat(title: "BMI", value: bmi.map { $0.formatted(.number.precision(.fractionLength(1))) } ?? "–")
+            } else {
+                Button { paywall = .diet } label: {
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("BMI").font(.caption2).foregroundStyle(.secondary)
+                        ProBadge()
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
+                .buttonStyle(.plain)
+            }
         }
     }
 

@@ -108,13 +108,16 @@ struct RecommendedRoutineCard: View {
     let suggestions: [RoutineSuggestion]
     /// The user arranged this part's exercises in the editor.
     let isCustom: Bool
+    /// Editing and the next-step numbers are Pro.
+    let isPro: Bool
     let onSelect: (RoutineSuggestion) -> Void
     let onEdit: () -> Void
+    let onUpgrade: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 6) {
             CardHeader(title: isCustom ? "\(part) 내 루틴" : "\(part) 추천 루틴", systemImage: "list.bullet.clipboard") {
-                Button("편집", systemImage: "pencil", action: onEdit)
+                Button("편집", systemImage: isPro ? "pencil" : "lock.fill", action: onEdit)
                     .font(.subheadline.weight(.semibold))
             }
             .padding(.bottom, 6)
@@ -155,12 +158,27 @@ struct RecommendedRoutineCard: View {
                 }
                 .buttonStyle(.plain)
             }
-            Text(isCustom
-                 ? "내가 고른 운동이에요. 무게와 횟수는 지난 기록에 맞춰 올려 잡았어요."
-                 : "지난 기록에서 12회를 채운 운동은 무게를, 8회 이상이면 횟수를 하나씩 올려 잡았어요.")
-                .font(.caption)
-                .foregroundStyle(.secondary)
+            if isPro {
+                Text(isCustom
+                     ? "내가 고른 운동이에요. 무게와 횟수는 지난 기록에 맞춰 올려 잡았어요."
+                     : "지난 기록에서 12회를 채운 운동은 무게를, 8회 이상이면 횟수를 하나씩 올려 잡았어요.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 4)
+            } else {
+                Button(action: onUpgrade) {
+                    HStack(alignment: .firstTextBaseline, spacing: 6) {
+                        Text("지난번 무게와 횟수예요. Pro는 다음에 올릴 무게·횟수를 잡아 주고, 루틴을 내 마음대로 바꿀 수 있어요.")
+                            .multilineTextAlignment(.leading)
+                        Spacer(minLength: 0)
+                        ProBadge()
+                    }
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                }
+                .buttonStyle(.plain)
                 .padding(.top, 4)
+            }
         }
         .homeCard()
     }

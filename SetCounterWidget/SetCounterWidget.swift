@@ -4,6 +4,8 @@ import WidgetKit
 struct RoutineEntry: TimelineEntry {
     let date: Date
     let snapshot: WidgetSnapshot
+    /// The lock screen sizes are Pro; the gallery always shows them unlocked.
+    var isPro = true
 }
 
 struct RoutineProvider: TimelineProvider {
@@ -12,7 +14,8 @@ struct RoutineProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (RoutineEntry) -> Void) {
-        completion(RoutineEntry(date: Date(), snapshot: WidgetSnapshot.read() ?? .placeholder))
+        completion(RoutineEntry(date: Date(), snapshot: WidgetSnapshot.read() ?? .placeholder,
+                                isPro: context.isPreview || ProStatus.isUnlocked))
     }
 
     /// The snapshot already knows how to roll over, so one entry now and one at
@@ -21,7 +24,9 @@ struct RoutineProvider: TimelineProvider {
         let snapshot = WidgetSnapshot.read() ?? .placeholder
         let now = Date()
         let midnight = Calendar.current.nextDate(after: now, matching: DateComponents(hour: 0, minute: 0), matchingPolicy: .nextTime) ?? now.addingTimeInterval(86_400)
-        let entries = [RoutineEntry(date: now, snapshot: snapshot), RoutineEntry(date: midnight, snapshot: snapshot)]
+        let isPro = ProStatus.isUnlocked
+        let entries = [RoutineEntry(date: now, snapshot: snapshot, isPro: isPro),
+                       RoutineEntry(date: midnight, snapshot: snapshot, isPro: isPro)]
         completion(Timeline(entries: entries, policy: .after(midnight)))
     }
 }
@@ -48,6 +53,8 @@ struct RoutineWidgetView: View {
 
     var body: some View {
         switch family {
+        case .accessoryRectangular where !entry.isPro, .accessoryCircular where !entry.isPro:
+            ProLockedWidgetView()
         case .accessoryRectangular:
             VStack(alignment: .leading, spacing: 2) {
                 Text("오늘의 루틴").font(.caption2).foregroundStyle(.secondary)

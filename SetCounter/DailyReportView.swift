@@ -8,8 +8,10 @@ struct DailyReportView: View {
     @Environment(\.dismiss) private var dismiss
 
     @State private var dayOffset = 0
+    @State private var paywall: ProFeature?
 
     private let health = HealthData.shared
+    private let store = ProStore.shared
     private var calendar: Calendar { .current }
     /// Health's daily totals cover four weeks.
     private let oldestOffset = -27
@@ -33,7 +35,9 @@ struct DailyReportView: View {
                         subtitle: dayOffset == 0 ? String(localized: "오늘") : dayOffset == -1 ? String(localized: "어제") : nil,
                         canGoBack: dayOffset > oldestOffset,
                         canGoForward: dayOffset < 0,
-                        onBack: { dayOffset -= 1 },
+                        // Today is free; earlier days are Pro.
+                        backIsLocked: !store.isPro,
+                        onBack: { if store.isPro { dayOffset -= 1 } else { paywall = .reports } },
                         onForward: { dayOffset += 1 }
                     )
 
@@ -56,6 +60,7 @@ struct DailyReportView: View {
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("하루 리포트")
+            .proPaywall($paywall)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("닫기") { dismiss() } }

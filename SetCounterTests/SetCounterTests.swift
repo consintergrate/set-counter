@@ -1,4 +1,5 @@
 import Foundation
+import StoreKitTest
 import SwiftData
 import Testing
 @testable import SetCounter
@@ -106,11 +107,11 @@ struct ProgressionTests {
     /// A part name no saved routine plan uses.
     private let part = "테스트 가슴"
 
-    private func suggestion(afterLifting weight: Double, reps: Int) -> RoutineSuggestion? {
+    private func suggestion(afterLifting weight: Double, reps: Int, progresses: Bool = true) -> RoutineSuggestion? {
         let record = WorkoutRecord(date: Date().addingTimeInterval(-86_400), exercise: "벤치프레스", sets: 3,
                                    weight: weight, reps: reps, duration: 600, routineName: part)
         container.mainContext.insert(record)
-        return Coach.recommendedRoutine(for: part, records: [record], profiles: [], unit: .kg)
+        return Coach.recommendedRoutine(for: part, records: [record], profiles: [], unit: .kg, progresses: progresses)
             .first { $0.exercise == "벤치프레스" }
     }
 
@@ -130,6 +131,12 @@ struct ProgressionTests {
         let next = try #require(suggestion(afterLifting: 70, reps: 6))
         #expect(next.weight == 70)
         #expect(next.reps == 6)
+    }
+
+    @Test func withoutProTheNumbersStayAtLastTime() throws {
+        let next = try #require(suggestion(afterLifting: 70, reps: 12, progresses: false))
+        #expect(next.weight == 70)
+        #expect(next.reps == 12)
     }
 
     @Test func emptyHistoryFallsBackToStarters() {
@@ -324,5 +331,76 @@ struct BadgeTests {
         let result = progress(BadgeInput(cardio: cardio, now: date(10)))
         #expect(result["first-cardio"]?.achievedAt == date(0))
         #expect(result["cardio-km-10"]?.achievedAt == date(3))
+    }
+}
+
+@Suite("Pro", .serialized)
+@MainActor
+struct ProTests {
+    private static let configuration = URL(filePath: #filePath)
+        .deletingLastPathComponent().deletingLastPathComponent()
+        .appending(path: "Config/SetCounter.storekit")
+
+    @Test func yearlyPlanSavesAgainstTwelveMonths() {
+        #expect(ProPlan.yearlySavings(yearly: 22000, monthly: 2900) == 37)
+        #expect(ProPlan.yearlySavings(yearly: 40000, monthly: 2900) == nil)
+    }
+
+    @Test func lifetimeWinsAndLapsedPurchasesDoNotCount() {
+        let now = Date()
+        let lapsed = ProStore.Entitlement(productID: ProPlan.monthly.productID, expiration: now.addingTimeInterval(-60))
+        #expect(ProStore.bestPlan([lapsed], now: now) == nil)
+
+        let yearly = ProStore.Entitlement(productID: ProPlan.yearly.productID, expiration: now.addingTimeInterval(86_400))
+        let lifetime = ProStore.Entitlement(productID: ProPlan.lifetime.productID)
+        #expect(ProStore.bestPlan([yearly, lifetime], now: now)?.plan == .lifetime)
+
+        let refunded = ProStore.Entitlement(productID: ProPlan.lifetime.productID, revoked: true)
+        #expect(ProStore.bestPlan([refunded, yearly], now: now)?.plan == .yearly)
+        #expect(ProStore.bestPlan([ProStore.Entitlement(productID: "com.example.other")], now: now) == nil)
+    }
+
+    /// Runs the real StoreKit calls against the local configuration file.
+    @Test func buyingAPlanUnlocksProUntilItIsGone() async throws {
+        let session = try SKTestSession(contentsOf: Self.configuration)
+        session.resetToDefaultState()
+        session.disableDialogs = true
+        session.clearTransactions()
+        defer { session.clearTransactions() }
+
+        let defaults = try #require(UserDefaults(suiteName: "ProTests"))
+        defaults.removePersistentDomain(forName: "ProTests")
+        let store = ProStore(defaults: defaults, updatesWidgets: false)
+        await store.loadProducts()
+        #expect(Set(store.products.keys) == Set(ProPlan.allCases))
+        #expect(store.amount(.yearly) == 22000)
+        #expect(ProPlan.yearlySavings(yearly: store.amount(.yearly) ?? 0, monthly: store.amount(.monthly) ?? 0) == 37)
+        #expect(store.trialEligible)
+        await store.refreshEntitlements()
+        #expect(!store.isPro)
+
+        // A purchase opens Pro at once, before StoreKit lists it as an entitlement.
+        let bought = try await session.buyProduct(identifier: ProPlan.yearly.productID)
+        await store.refreshEntitlements(adding: bought)
+        #expect(store.isPro)
+        #expect(store.activePlan == .yearly)
+        #expect(store.renewalDate != nil)
+        // The answer is remembered for the next launch.
+        #expect(ProStore(defaults: defaults, updatesWidgets: false).isPro)
+
+        // StoreKit's own list catches up; once the purchase is gone, so is Pro.
+        try await waitUntil { await store.refreshEntitlements(); return store.activePlan == .yearly }
+        session.clearTransactions()
+        try await waitUntil { await store.refreshEntitlements(); return !store.isPro }
+        #expect(store.activePlan == nil)
+    }
+
+    /// StoreKit's test store updates in the background; give it up to three seconds.
+    private func waitUntil(_ condition: () async -> Bool) async throws {
+        for _ in 0..<30 {
+            if await condition() { return }
+            try await Task.sleep(for: .milliseconds(100))
+        }
+        Issue.record("StoreKit didn't catch up in time")
     }
 }

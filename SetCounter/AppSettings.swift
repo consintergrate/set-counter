@@ -33,6 +33,12 @@ enum ThemeChoice: String, CaseIterable, Identifiable {
         }
     }
 
+    /// Light and dark are Pro; without it the app follows the system.
+    @MainActor
+    static func effective(_ raw: String) -> ThemeChoice {
+        ProStore.shared.isPro ? ThemeChoice(rawValue: raw) ?? .system : .system
+    }
+
     var colorScheme: ColorScheme? {
         switch self {
         case .system: nil
@@ -46,6 +52,12 @@ enum AccentChoice: String, CaseIterable, Identifiable {
     case blue, orange, green, purple, pink, red
 
     var id: String { rawValue }
+
+    /// Accent colors are Pro; without it the app stays blue.
+    @MainActor
+    static func effective(_ raw: String) -> AccentChoice {
+        ProStore.shared.isPro ? AccentChoice(rawValue: raw) ?? .blue : .blue
+    }
 
     var color: Color {
         switch self {
@@ -130,6 +142,9 @@ enum AppInfo {
 
     /// Public privacy policy page, also entered in App Store Connect.
     static let privacyPolicyURL = URL(string: "https://claude.ai/artifact/VDeB6HUQK9HHy9namQKzAQ")!
+
+    /// Apple's standard license agreement, which covers the Pro subscriptions.
+    static let termsURL = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
 
     /// Numeric App Store ID (from App Store Connect, after the app record is created).
     /// Until it's set, "앱 리뷰 남기기" falls back to the system review prompt.

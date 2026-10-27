@@ -4,6 +4,8 @@ import WidgetKit
 struct DietEntry: TimelineEntry {
     let date: Date
     let snapshot: DietSnapshot
+    /// The calorie widget is Pro; the gallery always shows it unlocked.
+    var isPro = true
 }
 
 struct DietProvider: TimelineProvider {
@@ -12,7 +14,8 @@ struct DietProvider: TimelineProvider {
     }
 
     func getSnapshot(in context: Context, completion: @escaping (DietEntry) -> Void) {
-        completion(DietEntry(date: Date(), snapshot: DietSnapshot.read() ?? .placeholder))
+        completion(DietEntry(date: Date(), snapshot: DietSnapshot.read() ?? .placeholder,
+                             isPro: context.isPreview || ProStatus.isUnlocked))
     }
 
     /// The app refreshes this whenever it reads Health; the midnight entry resets the day.
@@ -20,7 +23,9 @@ struct DietProvider: TimelineProvider {
         let snapshot = DietSnapshot.read() ?? .placeholder
         let now = Date()
         let midnight = Calendar.current.nextDate(after: now, matching: DateComponents(hour: 0, minute: 0), matchingPolicy: .nextTime) ?? now.addingTimeInterval(86_400)
-        completion(Timeline(entries: [DietEntry(date: now, snapshot: snapshot), DietEntry(date: midnight, snapshot: snapshot)],
+        let isPro = ProStatus.isUnlocked
+        completion(Timeline(entries: [DietEntry(date: now, snapshot: snapshot, isPro: isPro),
+                                      DietEntry(date: midnight, snapshot: snapshot, isPro: isPro)],
                             policy: .after(midnight)))
     }
 }
@@ -38,6 +43,8 @@ struct DietWidgetView: View {
 
     var body: some View {
         switch family {
+        case _ where !entry.isPro:
+            ProLockedWidgetView()
         case .accessoryRectangular:
             VStack(alignment: .leading, spacing: 2) {
                 Text(isOver ? "칼로리 초과" : "남은 칼로리").font(.caption2).foregroundStyle(.secondary)

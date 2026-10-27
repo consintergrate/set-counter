@@ -22,7 +22,7 @@ struct WorkoutView: View {
     @State private var newBadges: [BadgeDefinition] = []
 
     private var isAlarming: Bool { session.phase == .alarming }
-    private var accentColor: Color { (AccentChoice(rawValue: accent) ?? .blue).color }
+    private var accentColor: Color { AccentChoice.effective(accent).color }
 
     var body: some View {
         VStack(spacing: 20) {

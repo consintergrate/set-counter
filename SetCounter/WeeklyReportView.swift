@@ -9,9 +9,16 @@ struct WeeklyReportView: View {
     @Environment(\.dismiss) private var dismiss
 
     /// On a week's first day there's little to show yet, so open on the week just finished.
-    @State private var weekOffset = Calendar.current.component(.weekday, from: Date()) == Calendar.current.firstWeekday ? -1 : 0
+    @State private var weekOffset = Self.defaultOffset
+    @State private var paywall: ProFeature?
+
+    /// The week the report opens on, also the oldest one without Pro.
+    private static var defaultOffset: Int {
+        Calendar.current.component(.weekday, from: Date()) == Calendar.current.firstWeekday ? -1 : 0
+    }
 
     private let health = HealthData.shared
+    private let store = ProStore.shared
     private var calendar: Calendar { .current }
     private let oldestOffset = -11
 
@@ -109,6 +116,7 @@ struct WeeklyReportView: View {
             }
             .background(Color(.systemGroupedBackground))
             .navigationTitle("주간 리포트")
+            .proPaywall($paywall)
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) { Button("닫기") { dismiss() } }
@@ -128,7 +136,10 @@ struct WeeklyReportView: View {
                 subtitle: weekOffset == 0 ? String(localized: "이번 주") : weekOffset == -1 ? String(localized: "지난주") : nil,
                 canGoBack: weekOffset > oldestOffset,
                 canGoForward: weekOffset < 0,
-                onBack: { weekOffset -= 1 },
+                backIsLocked: !store.isPro && weekOffset <= Self.defaultOffset,
+                onBack: {
+                    if store.isPro || weekOffset > Self.defaultOffset { weekOffset -= 1 } else { paywall = .reports }
+                },
                 onForward: { weekOffset += 1 }
             )
 
@@ -153,6 +164,24 @@ struct WeeklyReportView: View {
                            progress: stats.averageEaten.map { Double($0) / Double(max(target, 1)) }, color: .orange,
                            goalIsLimit: true,
                            delta: delta(stats.averageEaten, previous.averageEaten, upIsGood: false) { "\($0.formatted())kcal" })
+            }
+
+            if !store.isPro {
+                Button {
+                    paywall = .reports
+                } label: {
+                    HStack(spacing: 6) {
+                        Image(systemName: "lock.fill").foregroundStyle(.orange)
+                        Text("지난주와 비교해 보기")
+                        Spacer()
+                        ProBadge()
+                    }
+                    .font(.subheadline.weight(.semibold))
+                    .padding(.horizontal, 14)
+                    .padding(.vertical, 10)
+                    .background(Color(.secondarySystemGroupedBackground), in: RoundedRectangle(cornerRadius: 12))
+                }
+                .buttonStyle(.plain)
             }
 
             dayStrip(stats, week: week)
@@ -268,7 +297,8 @@ struct WeeklyReportView: View {
     }
 
     private func delta(_ value: Int?, _ previous: Int?, upIsGood: Bool = true, format: (Int) -> String) -> ReportTile.Delta? {
-        guard let value, let previous, value != previous else { return nil }
+        // Comparing with the week before is Pro.
+        guard store.isPro, let value, let previous, value != previous else { return nil }
         return ReportTile.Delta(text: format(abs(value - previous)), isUp: value > previous, upIsGood: upIsGood)
     }
 

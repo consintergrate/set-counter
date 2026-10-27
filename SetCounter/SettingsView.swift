@@ -29,6 +29,14 @@ struct SettingsView: View {
             Form {
                 Section {
                     NavigationLink {
+                        ProPaywallView(isSheet: false)
+                    } label: {
+                        ProSettingsLabel()
+                    }
+                }
+
+                Section {
+                    NavigationLink {
                         WorkoutManagementView()
                     } label: {
                         SettingsLabel("운동 관리", systemImage: "dumbbell.fill", color: .blue)
@@ -46,7 +54,7 @@ struct SettingsView: View {
                     NavigationLink {
                         ThemeSettingsView()
                     } label: {
-                        SettingsLabel("테마", systemImage: "paintpalette.fill", color: .purple, value: (ThemeChoice(rawValue: theme) ?? .system).title)
+                        SettingsLabel("테마", systemImage: "paintpalette.fill", color: .purple, value: ThemeChoice.effective(theme).title)
                     }
                 }
 
@@ -279,6 +287,17 @@ struct WidgetSettingsView: View {
             } footer: {
                 Text("위젯은 오늘의 루틴과 이번 주 목표 진행도를 보여줘요. 운동을 마치면 자동으로 갱신돼요.")
             }
+
+            Section {
+                if ProStore.shared.isPro {
+                    Label("칼로리 위젯과 잠금 화면 위젯을 쓸 수 있어요", systemImage: "checkmark.seal.fill")
+                        .foregroundStyle(.orange)
+                } else {
+                    ProLockedButton(title: "칼로리 위젯 · 잠금 화면 위젯", systemImage: "lock.fill", feature: .personalize)
+                }
+            } footer: {
+                Text("칼로리 위젯은 오늘 먹은 칼로리와 남은 양을, 잠금 화면 위젯은 오늘의 루틴과 칼로리를 보여줘요.")
+            }
         }
         .navigationTitle("위젯")
     }
@@ -356,29 +375,54 @@ struct LanguageSettingsView: View {
 struct ThemeSettingsView: View {
     @AppStorage("theme") private var theme = ThemeChoice.system.rawValue
     @AppStorage("accent") private var accent = AccentChoice.blue.rawValue
+    @State private var paywall: ProFeature?
+
+    private let store = ProStore.shared
+
+    /// Without Pro only the defaults can be picked; the rest open the paywall.
+    private var themeSelection: Binding<String> {
+        Binding(
+            get: { ThemeChoice.effective(theme).rawValue },
+            set: { newValue in
+                if store.isPro || newValue == ThemeChoice.system.rawValue { theme = newValue } else { paywall = .personalize }
+            }
+        )
+    }
 
     var body: some View {
+        let current = AccentChoice.effective(accent)
         Form {
-            Section("화면 모드") {
-                Picker("화면 모드", selection: $theme) {
+            Section {
+                Picker("화면 모드", selection: themeSelection) {
                     ForEach(ThemeChoice.allCases) { Text($0.title).tag($0.rawValue) }
                 }
                 .pickerStyle(.segmented)
                 .labelsHidden()
+            } header: {
+                HStack {
+                    Text("화면 모드")
+                    if !store.isPro { ProBadge() }
+                }
+            } footer: {
+                if !store.isPro {
+                    Text("Pro가 없으면 iPhone의 라이트·다크 설정을 따라가요.")
+                }
             }
 
-            Section("강조 색상") {
+            Section {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: 6), spacing: 12) {
                     ForEach(AccentChoice.allCases) { choice in
                         Button {
-                            accent = choice.rawValue
+                            if store.isPro || choice == .blue { accent = choice.rawValue } else { paywall = .personalize }
                         } label: {
                             Circle()
                                 .fill(choice.color.gradient)
                                 .frame(width: 36, height: 36)
                                 .overlay {
-                                    if accent == choice.rawValue {
+                                    if current == choice {
                                         Image(systemName: "checkmark").font(.footnote.bold()).foregroundStyle(.white)
+                                    } else if !store.isPro, choice != .blue {
+                                        Image(systemName: "lock.fill").font(.caption2.bold()).foregroundStyle(.white.opacity(0.9))
                                     }
                                 }
                         }
@@ -387,9 +431,15 @@ struct ThemeSettingsView: View {
                     }
                 }
                 .padding(.vertical, 4)
+            } header: {
+                HStack {
+                    Text("강조 색상")
+                    if !store.isPro { ProBadge() }
+                }
             }
         }
         .navigationTitle("테마")
+        .proPaywall($paywall)
     }
 }
 

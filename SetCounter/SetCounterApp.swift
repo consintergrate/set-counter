@@ -76,13 +76,17 @@ struct RootView: View {
                 showingOnboarding = false
             }
         }
-        .tint((AccentChoice(rawValue: accent) ?? .blue).color)
-        .preferredColorScheme((ThemeChoice(rawValue: theme) ?? .system).colorScheme)
+        .tint(AccentChoice.effective(accent).color)
+        .preferredColorScheme(ThemeChoice.effective(theme).colorScheme)
         .task(id: records.count) {
             // Anything derived from records: reminders and the home screen widget.
             await RoutineNotifications.reschedule(records: records)
             WidgetSnapshot.write(records: records)
             BadgeCenter.shared.update(records: records, health: HealthData.shared)
+        }
+        // The widget's accent follows Pro.
+        .onChange(of: ProStore.shared.isPro) {
+            WidgetSnapshot.write(records: records)
         }
         // Cardio, meals, and weight arrive from Health; they can earn badges too.
         .onChange(of: HealthData.shared.lastRefresh) {

@@ -20,6 +20,7 @@ struct HomeView: View {
     @State private var showingFood = false
     @State private var showingGuide = false
     @State private var editingRoutine = false
+    @State private var paywall: ProFeature?
     // Read so the routine card refreshes after the editor saves.
     @AppStorage(RoutinePlans.key) private var plansRaw = ""
     // Snapshots of the settings, refreshed whenever a default changes (goals, body weight…).
@@ -27,11 +28,12 @@ struct HomeView: View {
     @State private var profile = BodyProfile.saved
 
     private let health = HealthData.shared
+    private let store = ProStore.shared
     /// Diet cards wait for the first Health read so they don't flash zeros.
     private var hasHealth: Bool { health.isAvailable && !health.needsAuthorization && health.lastRefresh != nil }
 
     private var calendar: Calendar { .current }
-    private var accentColor: Color { (AccentChoice(rawValue: accent) ?? .blue).color }
+    private var accentColor: Color { AccentChoice.effective(accent).color }
     private var routineNames: [String] { Routine.names(from: routineRaw) }
 
     // Reads the override keys so the card refreshes when today's part is changed.
@@ -76,10 +78,13 @@ struct HomeView: View {
                     let _ = plansRaw
                     RecommendedRoutineCard(
                         part: todayName,
-                        suggestions: Coach.recommendedRoutine(for: todayName, records: records, profiles: profiles),
+                        suggestions: Coach.recommendedRoutine(for: todayName, records: records, profiles: profiles,
+                                                              progresses: store.isPro),
                         isCustom: RoutinePlans.plan(for: todayName) != nil,
+                        isPro: store.isPro,
                         onSelect: prefill,
-                        onEdit: { editingRoutine = true }
+                        onEdit: { if store.isPro { editingRoutine = true } else { paywall = .routines } },
+                        onUpgrade: { paywall = .routines }
                     )
                     if hasHealth {
                         NavigationLink {
@@ -131,6 +136,7 @@ struct HomeView: View {
                     suggestions: Coach.recommendedRoutine(for: todayName, records: records, profiles: profiles)
                 )
             }
+            .proPaywall($paywall)
             .refreshable { await health.refresh() }
             .onReceive(NotificationCenter.default.publisher(for: UserDefaults.didChangeNotification)) { _ in
                 goals = .saved

@@ -30,6 +30,7 @@ struct StatsView: View {
     @State private var period = Period.week
 
     private let health = HealthData.shared
+    private let store = ProStore.shared
 
     private var unit: WeightUnit { WeightUnit(rawValue: unitRaw) ?? .kg }
 
@@ -61,7 +62,8 @@ struct StatsView: View {
                     .padding(.top, 40)
                 } else {
                     let buckets = buckets
-                    SummaryGrid(period: period, current: buckets.last, previous: buckets.dropLast().last, unit: unit)
+                    SummaryGrid(period: period, current: buckets.last, previous: buckets.dropLast().last, unit: unit,
+                                showsChange: store.isPro)
 
                     ChartCard(title: "운동한 날") {
                         BucketBarChart(period: period, buckets: buckets, goal: period == .week ? weeklyGoal : nil) {
@@ -77,31 +79,37 @@ struct StatsView: View {
                         } format: {
                             "\(Int($0).formatted())\(unit.symbol)"
                         }
+                        .proLocked(.stats)
                     }
 
                     ChartCard(title: "운동 잔디") {
                         ActivityHeatmap(records: records, weeklyGoal: weeklyGoal)
+                            .proLocked(.stats)
                     }
 
                     ChartCard(title: "최근 7일 부위 균형") {
                         // A rolling week, so the check isn't empty every Monday morning.
                         let since = Calendar.current.date(byAdding: .day, value: -7, to: Date()) ?? Date()
                         BalanceChart(records: records.filter { $0.date > since })
+                            .proLocked(.stats)
                     }
 
                     ChartCard(title: "개인 기록") {
                         PRBoardSummary(records: records)
+                            .proLocked(.stats)
                     }
                 }
 
                 if !health.cardio.isEmpty {
                     ChartCard(title: "유산소") {
                         CardioChart(period: period, health: health, weeklyGoal: cardioGoal)
+                            .proLocked(.stats)
                     }
                 }
                 if !health.weights.isEmpty {
                     ChartCard(title: "체중") {
                         WeightTrendCard(health: health, goalWeight: goalWeight)
+                            .proLocked(.diet)
                     }
                 }
             }
@@ -132,6 +140,8 @@ private struct SummaryGrid: View {
     let current: StatsView.Bucket?
     let previous: StatsView.Bucket?
     let unit: WeightUnit
+    /// Change against the previous period is a Pro comparison.
+    let showsChange: Bool
 
     var body: some View {
         let columns = [GridItem(.flexible()), GridItem(.flexible())]
@@ -159,7 +169,7 @@ private struct SummaryGrid: View {
     }
 
     private func delta(_ now: Double?, _ before: Double?) -> Int? {
-        guard let now, now > 0, let before, before > 0 else { return nil }
+        guard showsChange, let now, now > 0, let before, before > 0 else { return nil }
         return Int(((now - before) / before * 100).rounded())
     }
 }
