@@ -102,7 +102,7 @@ struct WeightTrendCard: View {
                         let change = last.kg - first.kg
                         Text("3개월 \(change > 0 ? "+" : "")\(formatMass(change))")
                             .font(.subheadline)
-                            .foregroundStyle(change <= 0 ? .green : .orange)
+                            .foregroundStyle(change <= 0 ? Color.green.readable : Color.orange.readable)
                     }
                     Spacer()
                     Image(systemName: "chevron.right").font(.caption.bold()).foregroundStyle(.tertiary)

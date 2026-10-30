@@ -124,6 +124,7 @@ final class ProStore {
         let productID: String
         var expiration: Date?
         var revoked = false
+        var transactionID: UInt64?
     }
 
     enum PurchaseOutcome { case purchased, pending, cancelled }
@@ -140,6 +141,8 @@ final class ProStore {
     private(set) var activePlan: ProPlan?
     /// When the current subscription renews or ends.
     private(set) var renewalDate: Date?
+    /// The purchase behind Pro, for the refund request sheet.
+    private(set) var transactionID: UInt64?
     /// nil until the App Store has answered, or for lifetime.
     private(set) var willRenew: Bool?
     private(set) var products: [ProPlan: Product] = [:]
@@ -248,19 +251,20 @@ final class ProStore {
         }
         let best = Self.bestPlan(owned)
         activePlan = best?.plan
-        renewalDate = best?.expiration
+        renewalDate = best?.entitlement.expiration
+        transactionID = best?.entitlement.transactionID
         defaults.set(best != nil, forKey: Self.cacheKey)
         publish()
         await updateRenewal()
     }
 
     /// The plan that unlocks Pro: refunded and lapsed purchases don't count.
-    static func bestPlan(_ owned: [Entitlement], now: Date = Date()) -> (plan: ProPlan, expiration: Date?)? {
+    static func bestPlan(_ owned: [Entitlement], now: Date = Date()) -> (plan: ProPlan, entitlement: Entitlement)? {
         owned
-            .compactMap { item -> (plan: ProPlan, expiration: Date?)? in
+            .compactMap { item -> (plan: ProPlan, entitlement: Entitlement)? in
                 guard !item.revoked, let plan = ProPlan(productID: item.productID) else { return nil }
                 if let expiration = item.expiration, expiration <= now { return nil }
-                return (plan, item.expiration)
+                return (plan, item)
             }
             .max { $0.plan.rank < $1.plan.rank }
     }
@@ -298,6 +302,6 @@ final class ProStore {
 extension ProStore.Entitlement {
     init(_ transaction: StoreKit.Transaction) {
         self.init(productID: transaction.productID, expiration: transaction.expirationDate,
-                  revoked: transaction.revocationDate != nil)
+                  revoked: transaction.revocationDate != nil, transactionID: transaction.id)
     }
 }

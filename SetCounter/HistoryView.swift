@@ -52,8 +52,8 @@ struct HistoryView: View {
                 let strengthDays = workoutDays.filter { calendar.isDate($0, equalTo: month, toGranularity: .month) }.count
                 let cardioCount = health.cardio.filter { $0.isCardio && calendar.isDate($0.start, equalTo: month, toGranularity: .month) }.count
                 HStack(spacing: 12) {
-                    Label(String(localized: "근력 \(strengthDays)일"), systemImage: "circle.fill").foregroundStyle(.orange)
-                    Label(String(localized: "유산소 \(cardioCount)회"), systemImage: "circle.fill").foregroundStyle(.teal)
+                    Label(String(localized: "근력 \(strengthDays)일"), systemImage: "circle.fill").foregroundStyle(Color.orange.readable)
+                    Label(String(localized: "유산소 \(cardioCount)회"), systemImage: "circle.fill").foregroundStyle(Color.teal.readable)
                     Spacer()
                     Text("\(Int(monthRecords.reduce(0) { $0 + $1.calories }).formatted())kcal")
                         .monospacedDigit()
@@ -141,11 +141,13 @@ private struct MonthCalendar: View {
         VStack(spacing: 12) {
             HStack {
                 Button { shiftMonth(-1) } label: { Image(systemName: "chevron.left") }
+                    .accessibilityLabel("이전 달")
                 Spacer()
                 Text(month.formatted(.dateTime.year().month(.wide)))
                     .font(.headline)
                 Spacer()
                 Button { shiftMonth(1) } label: { Image(systemName: "chevron.right") }
+                    .accessibilityLabel("다음 달")
             }
             .buttonStyle(.borderless)
 

@@ -153,7 +153,7 @@ struct BadgeDetailSheet: View {
             if let earned {
                 Label(earned.earnedAt.formatted(date: .long, time: .omitted), systemImage: "checkmark.seal.fill")
                     .font(.headline)
-                    .foregroundStyle(.green)
+                    .foregroundStyle(Color.green.readable)
             } else {
                 VStack(spacing: 6) {
                     ProgressView(value: progress.fraction(goal: badge.goal)).tint(.orange)

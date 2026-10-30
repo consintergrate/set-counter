@@ -2,10 +2,13 @@ import StoreKit
 import SwiftUI
 
 enum ProStyle {
-    static let colors: [Color] = [.orange, .pink]
+    /// Deep orange to deep pink: white text on either end stays above 5:1.
+    static let colors: [Color] = [Color(hex: 0xC2410C), Color(hex: 0xBE185D)]
     static var gradient: LinearGradient {
         LinearGradient(colors: colors, startPoint: .topLeading, endPoint: .bottomTrailing)
     }
+    /// For orange text and small icons on the light cards.
+    static let text = Color.orange.readable
 }
 
 /// Small "PRO" tag next to anything that needs Pro.
@@ -52,12 +55,13 @@ private struct ProLockModifier: ViewModifier {
                         Image(systemName: "lock.fill")
                             .font(.title3)
                             .foregroundStyle(ProStyle.gradient)
+                            .accessibilityHidden(true)
                         Text(feature.title).font(.subheadline.bold())
                         Button("Pro로 보기") { showingPaywall = true }
                             .font(.subheadline.bold())
                             .buttonStyle(.borderedProminent)
                             .buttonBorderShape(.capsule)
-                            .tint(.orange)
+                            .tint(ProStyle.colors[0])
                     }
                     .padding(.horizontal, 20)
                     .padding(.vertical, 14)
@@ -113,7 +117,7 @@ struct ProSettingsLabel: View {
             }
             if store.isPro {
                 Spacer()
-                Image(systemName: "checkmark.seal.fill").foregroundStyle(.orange)
+                Image(systemName: "checkmark.seal.fill").foregroundStyle(ProStyle.text).accessibilityHidden(true)
             }
         }
     }
@@ -132,6 +136,7 @@ struct ProPaywallView: View {
     @State private var purchasing = false
     @State private var restoring = false
     @State private var managingSubscription = false
+    @State private var requestingRefund = false
     @State private var message: String?
     @State private var purchasedCount = 0
 
@@ -180,6 +185,7 @@ struct ProPaywallView: View {
             if store.products.isEmpty { await store.loadProducts() }
         }
         .manageSubscriptionsSheet(isPresented: $managingSubscription)
+        .refundRequestSheet(for: store.transactionID ?? 0, isPresented: $requestingRefund)
         .sensoryFeedback(trigger: purchasedCount) { _, _ in hapticsOn ? .success : nil }
         .alert("세트 카운터 Pro", isPresented: Binding(get: { message != nil }, set: { if !$0 { message = nil } })) {
             Button("확인", role: .cancel) {}
@@ -198,6 +204,7 @@ struct ProPaywallView: View {
                 .frame(width: 72, height: 72)
                 .background(ProStyle.gradient, in: RoundedRectangle(cornerRadius: 18))
                 .shadow(color: .pink.opacity(0.3), radius: 12, y: 6)
+                .accessibilityHidden(true)
             Text("세트 카운터 Pro").font(.title.bold())
             Text(store.isPro
                  ? "Pro를 쓰고 있어요. 응원해 줘서 고마워요!"
@@ -216,8 +223,9 @@ struct ProPaywallView: View {
                 .foregroundStyle(feature.color)
                 .frame(width: 48, height: 48)
                 .background(feature.color.opacity(0.14), in: RoundedRectangle(cornerRadius: 12))
+                .accessibilityHidden(true)
             VStack(alignment: .leading, spacing: 3) {
-                Text("Pro에서 쓸 수 있는 기능이에요").font(.caption.bold()).foregroundStyle(.orange)
+                Text("Pro에서 쓸 수 있는 기능이에요").font(.caption.bold()).foregroundStyle(ProStyle.text)
                 Text(feature.title).font(.headline)
                 Text(feature.detail).font(.caption).foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
@@ -238,6 +246,7 @@ struct ProPaywallView: View {
                         .foregroundStyle(item.color)
                         .frame(width: 32, height: 32)
                         .background(item.color.opacity(0.12), in: Circle())
+                        .accessibilityHidden(true)
                     VStack(alignment: .leading, spacing: 2) {
                         Text(item.title).font(.subheadline.bold())
                         Text(item.detail).font(.caption).foregroundStyle(.secondary)
@@ -246,6 +255,7 @@ struct ProPaywallView: View {
                     Spacer(minLength: 0)
                     if store.isPro {
                         Image(systemName: "checkmark.circle.fill").foregroundStyle(.green)
+                            .accessibilityLabel(Text("사용 중"))
                     }
                 }
                 .accessibilityElement(children: .combine)
@@ -260,7 +270,7 @@ struct ProPaywallView: View {
         VStack(spacing: 12) {
             Label(activeTitle, systemImage: "checkmark.seal.fill")
                 .font(.headline)
-                .foregroundStyle(.orange)
+                .foregroundStyle(ProStyle.text)
             if let date = store.renewalDate {
                 Text(store.willRenew == false
                      ? String(localized: "\(date.formatted(date: .long, time: .omitted))에 끝나요")
@@ -268,10 +278,15 @@ struct ProPaywallView: View {
                     .font(.subheadline)
                     .foregroundStyle(.secondary)
             }
-            if store.activePlan?.isSubscription == true {
-                Button("구독 관리") { managingSubscription = true }
-                    .buttonStyle(.bordered)
+            HStack(spacing: 10) {
+                if store.activePlan?.isSubscription == true {
+                    Button("구독 관리") { managingSubscription = true }
+                }
+                if store.transactionID != nil {
+                    Button("환불 요청") { requestingRefund = true }
+                }
             }
+            .buttonStyle(.bordered)
         }
         .padding(16)
         .frame(maxWidth: .infinity)
@@ -295,7 +310,8 @@ struct ProPaywallView: View {
             HStack(spacing: 12) {
                 Image(systemName: isSelected ? "checkmark.circle.fill" : "circle")
                     .font(.title3)
-                    .foregroundStyle(isSelected ? AnyShapeStyle(Color.orange) : AnyShapeStyle(.tertiary))
+                    .foregroundStyle(isSelected ? AnyShapeStyle(ProStyle.text) : AnyShapeStyle(.tertiary))
+                    .accessibilityHidden(true)
                 VStack(alignment: .leading, spacing: 4) {
                     Text(plan.title).font(.headline)
                     let tags = tags(for: plan)
@@ -304,7 +320,7 @@ struct ProPaywallView: View {
                             ForEach(tags, id: \.self) { tag in
                                 Text(tag)
                                     .font(.caption2.bold())
-                                    .foregroundStyle(.orange)
+                                    .foregroundStyle(ProStyle.text)
                                     .padding(.horizontal, 6)
                                     .padding(.vertical, 2)
                                     .background(Color.orange.opacity(0.14), in: Capsule())
@@ -380,8 +396,8 @@ struct ProPaywallView: View {
                 Task { await restore() }
             }
             .disabled(restoring)
-            Link("이용약관", destination: AppInfo.termsURL)
-            Link("개인정보 처리방침", destination: AppInfo.privacyPolicyURL)
+            NavigationLink("이용약관") { LegalDocumentView(document: .terms) }
+            NavigationLink("개인정보 처리방침") { LegalDocumentView(document: .privacy) }
         }
         .font(.caption.weight(.semibold))
     }
@@ -409,7 +425,8 @@ struct ProPaywallView: View {
             var tags: [String] = []
             if store.trialEligible { tags.append(String(localized: "7일 무료")) }
             if let savings = ProPlan.yearlySavings(yearly: price(.yearly), monthly: price(.monthly)) {
-                tags.append(String(localized: "\(savings)% 할인"))
+                // Against paying monthly for a year, not a sale price.
+                tags.append(String(localized: "월간보다 \(savings)% 저렴"))
             }
             return tags
         case .monthly, .lifetime:

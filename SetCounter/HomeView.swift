@@ -462,7 +462,7 @@ private struct WeekCard: View {
                     if weekStreak > 0 {
                         Label("\(weekStreak)주 연속 운동 중", systemImage: "flame.fill")
                             .font(.subheadline)
-                            .foregroundStyle(.orange)
+                            .foregroundStyle(Color.orange.readable)
                     } else {
                         Text("이번 주 첫 운동을 시작해보세요").font(.subheadline).foregroundStyle(.secondary)
                     }

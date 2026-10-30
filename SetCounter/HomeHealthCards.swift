@@ -220,7 +220,7 @@ struct ActivityRingsCard: View {
             VStack(alignment: .leading, spacing: 10) {
                 ForEach(rings) { ring in
                     VStack(alignment: .leading, spacing: 1) {
-                        Text(ring.title).font(.caption.weight(.semibold)).foregroundStyle(ring.color)
+                        Text(ring.title).font(.caption.weight(.semibold)).foregroundStyle(ring.color.readable)
                         Text(ring.value).font(.subheadline.bold()).monospacedDigit()
                     }
                     .accessibilityElement(children: .combine)
@@ -281,7 +281,7 @@ struct CalorieCard: View {
                 Text(Int(abs(budget.remaining)).formatted())
                     .font(.system(size: 34, weight: .bold, design: .rounded))
                     .monospacedDigit()
-                    .foregroundStyle(budget.remaining < 0 ? .red : .primary)
+                    .foregroundStyle(budget.remaining < 0 ? Color.red.readable : .primary)
                 Text(budget.remaining < 0 ? "kcal 초과" : "kcal 남음")
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(.secondary)
@@ -483,7 +483,7 @@ struct CardioCard: View {
                 Text("\(minutes)/\(goals.cardioWeeklyMinutes)분")
                     .font(.subheadline.bold())
                     .monospacedDigit()
-                    .foregroundStyle(minutes >= goal ? .green : .teal)
+                    .foregroundStyle(minutes >= goal ? Color.green.readable : Color.teal.readable)
             }
             ProgressView(value: Double(min(minutes, goal)), total: Double(goal))
                 .tint(minutes >= goal ? .green : .teal)

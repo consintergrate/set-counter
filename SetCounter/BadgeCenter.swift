@@ -18,6 +18,9 @@ final class BadgeCenter {
 
     private(set) var earned: [String: EarnedBadge] = [:]
     private(set) var progress: [String: BadgeProgress] = [:]
+    /// Set by an erase: screens can still hold the old records for a moment and would
+    /// earn everything again, so nothing is earned until the next launch.
+    @ObservationIgnored private var erased = false
 
     init() {
         earned = Self.load()
@@ -31,6 +34,7 @@ final class BadgeCenter {
     /// were actually reached. Returns the ids earned by this call.
     @discardableResult
     func update(records: [WorkoutRecord], health: HealthData, now: Date = Date()) -> [String] {
+        guard !erased else { return [] }
         let input = BadgeInput(
             workouts: records.map {
                 BadgeInput.Workout(date: $0.date, exercise: $0.exercise, sets: $0.sets, volume: $0.volume,
@@ -73,6 +77,14 @@ final class BadgeCenter {
 
     /// Picks up badges restored from a backup.
     func reload() { earned = Self.load() }
+
+    /// Forgets every badge, for "모든 데이터 삭제".
+    func erase() {
+        erased = true
+        earned = [:]
+        progress = [:]
+        UserDefaults.standard.removeObject(forKey: Self.storageKey)
+    }
 
     private static func load() -> [String: EarnedBadge] {
         guard let data = UserDefaults.standard.string(forKey: storageKey)?.data(using: .utf8),

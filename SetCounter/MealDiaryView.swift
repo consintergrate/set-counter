@@ -78,7 +78,7 @@ struct MealDiaryView: View {
                              ? String(localized: "\(Int(eaten - allowance).formatted())kcal 초과")
                              : String(localized: "\(Int(allowance - eaten).formatted())kcal 남음"))
                             .font(.subheadline.bold())
-                            .foregroundStyle(eaten > allowance ? .red : .green)
+                            .foregroundStyle(eaten > allowance ? Color.red.readable : Color.green.readable)
                     }
                     ProgressView(value: min(eaten, allowance), total: max(allowance, 1))
                         .tint(eaten > allowance ? .red : .orange)

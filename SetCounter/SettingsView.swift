@@ -97,7 +97,7 @@ struct SettingsView: View {
                 } footer: {
                     if notificationsDenied {
                         Text("알림 권한이 꺼져 있어요. 설정 앱 → 세트 카운터 → 알림에서 켜주세요.")
-                            .foregroundStyle(.red)
+                            .foregroundStyle(Color.red.readable)
                     } else {
                         Text("운동하는 날 아침에 \"오늘은 OO 하는 날이에요\" 알림을, 한 주의 마지막 날 저녁 8시에 주간 리포트를 보내드려요.")
                     }
@@ -242,7 +242,7 @@ struct WorkoutManagementView: View {
                 WheelPickerRow(title: "키", values: Array(stride(from: 130.0, through: 220, by: 1)), selection: $heightCm) {
                     "\(Int($0))cm"
                 }
-                WheelPickerRow(title: "나이", values: Array(10...90), selection: $age) {
+                WheelPickerRow(title: "나이", values: Array(14...90), selection: $age) {
                     String(localized: "\($0)세")
                 }
                 Picker("성별", selection: $isMale) {
@@ -253,7 +253,7 @@ struct WorkoutManagementView: View {
             } header: {
                 Text("내 정보")
             } footer: {
-                Text("칼로리는 심박수가 있으면 심박수·몸무게·나이·성별로, 없으면 근력 운동 평균 강도로 추정해요. 건강 앱에 체중이 기록되면 최신 체중으로 자동으로 바뀌어요.")
+                Text("칼로리는 심박수가 있으면 심박수·몸무게·나이·성별로, 없으면 근력 운동 평균 강도로 추정해요. 건강 앱에 체중이 기록되면 최신 체중으로 자동으로 바뀌어요. 이 정보는 iPhone에만 저장되고 칼로리와 목표 계산에만 쓰여요.")
             }
         }
         .navigationTitle("운동 관리")
@@ -291,7 +291,7 @@ struct WidgetSettingsView: View {
             Section {
                 if ProStore.shared.isPro {
                     Label("칼로리 위젯과 잠금 화면 위젯을 쓸 수 있어요", systemImage: "checkmark.seal.fill")
-                        .foregroundStyle(.orange)
+                        .foregroundStyle(Color.orange.readable)
                 } else {
                     ProLockedButton(title: "칼로리 위젯 · 잠금 화면 위젯", systemImage: "lock.fill", feature: .personalize)
                 }
@@ -568,14 +568,28 @@ struct AboutView: View {
             }
 
             Section {
-                Label("모든 운동 기록은 이 iPhone에만 저장돼요. 건강 앱 저장은 직접 허용한 경우에만 해요.", systemImage: "lock.shield")
-                    .font(.footnote)
-                    .foregroundStyle(.secondary)
-                Link(destination: AppInfo.privacyPolicyURL) {
-                    Label("개인정보 처리방침", systemImage: "doc.text")
+                ForEach(LegalDocument.allCases) { document in
+                    NavigationLink {
+                        LegalDocumentView(document: document)
+                    } label: {
+                        Label(document.title, systemImage: document.systemImage)
+                    }
                 }
             } header: {
-                Text("개인정보")
+                Text("약관 및 정책")
+            } footer: {
+                Text("모든 운동 기록은 이 iPhone에만 저장돼요. 건강 앱 저장은 직접 허용한 경우에만 해요. 광고, 분석 도구, 쿠키는 쓰지 않아요.")
+            }
+
+            Section("개발자 정보") {
+                if let name = AppInfo.sellerName { LabeledContent("상호", value: name) }
+                if let name = AppInfo.representative { LabeledContent("대표자", value: name) }
+                if let number = AppInfo.businessNumber { LabeledContent("사업자등록번호", value: number) }
+                if let number = AppInfo.mailOrderNumber { LabeledContent("통신판매업 신고번호", value: number) }
+                if let address = AppInfo.businessAddress { LabeledContent("주소", value: address) }
+                LabeledContent("이메일") {
+                    Text(AppInfo.supportEmail).textSelection(.enabled)
+                }
             }
         }
         .navigationTitle("정보")

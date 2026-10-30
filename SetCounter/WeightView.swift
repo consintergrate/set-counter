@@ -140,7 +140,7 @@ struct WeightView: View {
                         .lineStyle(StrokeStyle(lineWidth: 1.5, dash: [5, 4]))
                         .foregroundStyle(.green)
                         .annotation(position: .top, alignment: .leading) {
-                            Text("목표 \(formatMass(goalWeight, unit: unit))").font(.caption2.bold()).foregroundStyle(.green)
+                            Text("목표 \(formatMass(goalWeight, unit: unit))").font(.caption2.bold()).foregroundStyle(Color.green.readable)
                         }
                 }
             }

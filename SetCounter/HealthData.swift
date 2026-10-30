@@ -292,6 +292,22 @@ final class HealthData {
         await refresh()
     }
 
+    /// Removes what Set Counter (the iPhone or Watch app) saved to Health: workouts and
+    /// their energy, body weight, and meals. Other apps' data is left alone.
+    func deleteOwnSamples() async {
+        let prefix = Bundle.main.bundleIdentifier ?? "com.andykim.SetCounter"
+        let types: [HKSampleType] = [
+            HKObjectType.workoutType(), HKQuantityType(.activeEnergyBurned),
+            HKQuantityType(.bodyMass), HKQuantityType(.dietaryEnergyConsumed),
+        ]
+        for type in types {
+            let sources = (try? await HKSourceQueryDescriptor(predicate: .sample(type: type)).result(for: store)) ?? []
+            let own = sources.filter { $0.bundleIdentifier.hasPrefix(prefix) }
+            guard !own.isEmpty else { continue }
+            _ = try? await store.deleteObjects(of: type, predicate: HKQuery.predicateForObjects(from: Set(own)))
+        }
+    }
+
     func meals(on day: Date) -> [MealEntry] {
         meals.filter { Calendar.current.isDate($0.date, inSameDayAs: day) }
     }

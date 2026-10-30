@@ -237,6 +237,36 @@
         }
       }
     },
+    "%@ 반 인분 늘리기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Add half a serving of %@"
+          }
+        }
+      }
+    },
+    "%@ 반 인분 줄이기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove half a serving of %@"
+          }
+        }
+      }
+    },
+    "%@ 빼기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Remove %@"
+          }
+        }
+      }
+    },
     "%@ 신기록 %@": {
       "localizations": {
         "en": {
@@ -511,16 +541,6 @@
           "stringUnit": {
             "state": "translated",
             "value": "%lld%%"
-          }
-        }
-      }
-    },
-    "%lld%% 할인": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Save %lld%%"
           }
         }
       }
@@ -1049,6 +1069,56 @@
         }
       }
     },
+    "1. 결제와 환불은 Apple이 처리합니다": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1. Apple handles payments and refunds"
+          }
+        }
+      }
+    },
+    "1. 기기에 저장되는 정보": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1. What stays on your iPhone"
+          }
+        }
+      }
+    },
+    "1. 적용": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "1. Scope"
+          }
+        }
+      }
+    },
+    "10. 방침 변경": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "10. Changes"
+          }
+        }
+      }
+    },
+    "11. 연락처": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "11. Contact"
+          }
+        }
+      }
+    },
     "1개월": {
       "localizations": {
         "en": {
@@ -1069,6 +1139,36 @@
         }
       }
     },
+    "2. 건강 앱(HealthKit) 데이터": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2. Health (HealthKit) data"
+          }
+        }
+      }
+    },
+    "2. 서비스": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2. The service"
+          }
+        }
+      }
+    },
+    "2. 환불 요청 방법": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "2. How to request a refund"
+          }
+        }
+      }
+    },
     "2주 동안 %@ 늘었어요": {
       "localizations": {
         "en": {
@@ -1085,6 +1185,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Down %@ in 2 weeks"
+          }
+        }
+      }
+    },
+    "3. Pro 결제와 자동 갱신": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3. Pro payments and auto-renewal"
+          }
+        }
+      }
+    },
+    "3. 무료 체험과 해지": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3. Free trial and canceling"
+          }
+        }
+      }
+    },
+    "3. 블루투스와 Apple Watch": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "3. Bluetooth and Apple Watch"
           }
         }
       }
@@ -1115,6 +1245,106 @@
         }
       }
     },
+    "4. 건강 정보 안내": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4. Health information"
+          }
+        }
+      }
+    },
+    "4. 알림과 알람": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4. Notifications and alarms"
+          }
+        }
+      }
+    },
+    "4. 환불된 뒤": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "4. After a refund"
+          }
+        }
+      }
+    },
+    "5. 결제했는데 Pro가 켜지지 않을 때": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5. If you paid but Pro isn't on"
+          }
+        }
+      }
+    },
+    "5. 데이터 내보내기와 삭제": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5. Export and deletion"
+          }
+        }
+      }
+    },
+    "5. 데이터 보관": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "5. Keeping your data"
+          }
+        }
+      }
+    },
+    "6. 앱 내 구매 (세트 카운터 Pro)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6. In-app purchases (Set Counter Pro)"
+          }
+        }
+      }
+    },
+    "6. 책임": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "6. Liability"
+          }
+        }
+      }
+    },
+    "7. 광고, 분석 도구, 쿠키": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7. Ads, analytics, and cookies"
+          }
+        }
+      }
+    },
+    "7. 약관 변경": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "7. Changes to these terms"
+          }
+        }
+      }
+    },
     "7일 무료": {
       "localizations": {
         "en": {
@@ -1141,6 +1371,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Start 7-Day Free Trial"
+          }
+        }
+      }
+    },
+    "8. 문의": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "8. Contact"
+          }
+        }
+      }
+    },
+    "8. 문의 메일": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "8. Support email"
+          }
+        }
+      }
+    },
+    "9. 만 14세 미만 아동": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "9. Children under 14"
           }
         }
       }
@@ -1225,6 +1485,16 @@
         }
       }
     },
+    "Apple 표준 사용권 계약(EULA)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple Standard License Agreement (EULA)"
+          }
+        }
+      }
+    },
     "BMI": {
       "localizations": {
         "en": {
@@ -1301,6 +1571,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "English"
+          }
+        }
+      }
+    },
+    "HealthKit 데이터는 광고나 마케팅에 사용하지 않고, 판매하지 않으며, iCloud나 외부 서버에 저장하지 않습니다. 권한은 언제든지 iPhone 설정 → 건강 → 데이터 접근 및 기기에서 끌 수 있습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "HealthKit data is never used for advertising or marketing, never sold, and never stored in iCloud or on any server. You can turn off access anytime in Settings → Health → Data Access & Devices."
           }
         }
       }
@@ -1693,6 +1973,16 @@
         }
       }
     },
+    "reportaproblem.apple.com": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "reportaproblem.apple.com"
+          }
+        }
+      }
+    },
     "v%@": {
       "localizations": {
         "en": {
@@ -1746,6 +2036,196 @@
           "stringUnit": {
             "state": "translated",
             "value": "Add ‘%@’"
+          }
+        }
+      }
+    },
+    "• 7일 무료 체험이 끝나기 24시간 전까지 해지하면 결제되지 않습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Cancel at least 24 hours before the 7-day free trial ends and you won't be charged."
+          }
+        }
+      }
+    },
+    "• Apple이 요청을 검토해 환불 여부를 정하고, 결과를 Apple 계정 이메일로 알려 줍니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Apple reviews the request, decides on the refund, and emails the result to your Apple Account address."
+          }
+        }
+      }
+    },
+    "• 가격은 연간 ₩22,000(처음 7일 무료 체험), 월간 ₩2,900, 평생 ₩49,000이며, 실제 금액은 결제 화면에 표시되는 가격이 기준입니다. 숨겨진 추가 요금은 없습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Prices are ₩22,000 a year (with a 7-day free trial), ₩2,900 a month, or ₩49,000 for lifetime. The price shown on the purchase screen is what you pay. There are no hidden extra charges."
+          }
+        }
+      }
+    },
+    "• 같은 화면의 '모든 데이터 삭제'로 운동 기록, 신체 정보, 목표, 설정, 배지, 내 음식을 한 번에 지울 수 있고, 원하면 세트 카운터가 건강 앱에 저장한 기록도 함께 지울 수 있습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Delete All Data on the same screen erases workout records, body info, goals, settings, badges, and My Foods at once, and can also remove what Set Counter saved to the Health app."
+          }
+        }
+      }
+    },
+    "• 결제는 Apple 계정으로 이뤄집니다. 구독은 해지하지 않으면 기간이 끝날 때 같은 금액으로 자동 갱신됩니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Payment is charged to your Apple Account. Subscriptions renew automatically at the same price at the end of each period unless canceled."
+          }
+        }
+      }
+    },
+    "• 구독 가격이 바뀌면 Apple이 미리 알리며, 필요한 경우 사용자의 동의를 받습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• If the subscription price changes, Apple lets you know in advance and asks for your consent where required."
+          }
+        }
+      }
+    },
+    "• 구독을 해지하면 다음 갱신부터 결제되지 않고, 이미 결제한 기간은 끝날 때까지 쓸 수 있습니다. 남은 기간에 대한 부분 환불은 Apple이 승인한 경우에만 이뤄집니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• After you cancel, you aren't charged at the next renewal and keep Pro until the paid period ends. Partial refunds for the remaining time happen only if Apple approves them."
+          }
+        }
+      }
+    },
+    "• 무료 체험이나 구독은 끝나기 24시간 전까지 iPhone 설정 → Apple 계정 → 구독에서 해지하면 더 결제되지 않습니다. 해지해도 이미 결제한 기간이 끝날 때까지 Pro를 쓸 수 있습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Cancel a trial or subscription at least 24 hours before it ends in Settings → Apple Account → Subscriptions and you won't be charged again. You keep Pro until the paid period ends."
+          }
+        }
+      }
+    },
+    "• 설정 → 데이터 관리에서 운동 기록을 백업 파일이나 CSV 파일로 내보낼 수 있습니다. 파일은 사용자가 직접 고른 곳으로만 공유됩니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• In Settings → Data you can export your records as a backup file or a CSV file, shared only where you choose."
+          }
+        }
+      }
+    },
+    "• 신체 정보와 목표: 몸무게, 키, 나이, 성별, 목표 체중, 걸음·활동·유산소 목표 (칼로리와 목표 계산에만 사용)": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Body info and goals: weight, height, age, sex, goal weight, and step, activity, and cardio goals (used only for calorie and goal calculations)"
+          }
+        }
+      }
+    },
+    "• 심박수와 칼로리: 운동 중 측정·계산된 평균/최대 심박수와 추정 칼로리": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Heart rate and calories: average and maximum heart rate and estimated calories from your workouts"
+          }
+        }
+      }
+    },
+    "• 쓰기: 마친 근력 운동과 소모 칼로리, 사용자가 직접 기록한 체중과 식사(음식 이름, 섭취 칼로리, 메모)를 건강 앱에 저장합니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Write: finished strength workouts and calories burned, plus the body weight and meals you log (food names, calories, and memo), are saved to the Health app."
+          }
+        }
+      }
+    },
+    "• 앱 설정: 루틴, 목표, 알림 시간, 테마 등": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• App settings such as routine, goals, reminder time, and theme"
+          }
+        }
+      }
+    },
+    "• 앱을 삭제하면 앱 안의 데이터도 모두 삭제됩니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Deleting the app removes all of its data."
+          }
+        }
+      }
+    },
+    "• 앱의 설정 → 세트 카운터 Pro → '환불 요청'을 누르거나, reportaproblem.apple.com에서 신청할 수 있습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Tap Request a Refund in Settings → Set Counter Pro, or go to reportaproblem.apple.com."
+          }
+        }
+      }
+    },
+    "• 운동 기록: 운동 이름, 무게, 반복 횟수, 세트 수, 운동 시간, 루틴 부위": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Workout records: exercise, weight, reps, sets, duration, and routine body part"
+          }
+        }
+      }
+    },
+    "• 읽기: 심박수, 걸음 수, 활동 칼로리, 걷기·달리기·사이클·수영 거리, 체중, 섭취 칼로리, 그리고 다른 앱(나이키 런 클럽, 피트니스 등)이 저장한 운동 기록. 운동 중 칼로리 계산, 하루 칼로리·활동 목표, 유산소 기록, 코치 안내와 리포트를 기기 안에서 계산하고 보여주는 데에만 사용합니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Read: heart rate, steps, active energy, walking/running/cycling/swimming distance, body weight, dietary energy, and workouts saved by other apps (such as Nike Run Club or Fitness). Used only on the device to estimate workout calories and to show daily calories, activity goals, cardio history, coaching tips, and reports."
+          }
+        }
+      }
+    },
+    "• 평생 이용권은 한 번 결제로 계속 쓸 수 있고, 같은 Apple 계정의 기기에서 '구매 복원'으로 다시 받을 수 있습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Lifetime is paid once and kept. On other devices with the same Apple Account, use Restore Purchases."
+          }
+        }
+      }
+    },
+    "• 환불은 환불 정책을 따릅니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "• Refunds follow the refund policy."
           }
         }
       }
@@ -1930,22 +2410,42 @@
         }
       }
     },
+    "개발자 정보": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Developer"
+          }
+        }
+      }
+    },
+    "개발자는 사용자의 데이터를 갖고 있지 않으므로, 위 방법으로 지우면 남는 데이터가 없습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The developer holds none of your data, so nothing is left once you delete it this way."
+          }
+        }
+      }
+    },
+    "개발자는 앱을 안정적으로 제공하려고 노력합니다. 다만 기기나 운영체제의 문제, 사용자의 설정, 추정치를 그대로 따라 생긴 결과에 대해서는 개발자의 고의나 중대한 과실이 없는 한 책임지지 않습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The developer works to keep the app reliable. Unless caused by the developer's intent or gross negligence, the developer is not liable for problems from your device or operating system, your settings, or results of following the estimates as they are."
+          }
+        }
+      }
+    },
     "개인 기록": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
             "value": "Personal Records"
-          }
-        }
-      }
-    },
-    "개인정보": {
-      "localizations": {
-        "en": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Privacy"
           }
         }
       }
@@ -2016,6 +2516,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Adds up run, walk, and ride distance saved to Health over the past year."
+          }
+        }
+      }
+    },
+    "건강 앱에 저장한 기록까지 삭제": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Also Delete Saved Health Data"
           }
         }
       }
@@ -2156,6 +2666,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Handful of nuts"
+          }
+        }
+      }
+    },
+    "결제 화면의 '구매 복원'을 먼저 눌러 보시고, 그래도 안 되면 아래 이메일로 알려 주세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Try Restore Purchases on the purchase screen first. If that doesn't help, email us at the address below."
           }
         }
       }
@@ -2484,6 +3004,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "One file holds your records, every set's weight and reps, body parts, and settings. Save it to Files or iCloud Drive to restore on a new iPhone or after reinstalling."
+          }
+        }
+      }
+    },
+    "기록은 사용자의 iPhone에만 저장되고 개발자 서버에 백업되지 않습니다. 기기를 잃어버리거나 앱을 지우면 복구할 수 없으니, 설정 → 데이터 관리에서 백업 파일을 만들어 두세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Your records are stored only on your iPhone and are not backed up to any developer server. They can't be recovered if you lose the device or delete the app, so make a backup file in Settings → Data."
           }
         }
       }
@@ -2844,6 +3374,16 @@
         }
       }
     },
+    "다음 달": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Next Month"
+          }
+        }
+      }
+    },
     "다음: %@ · %@": {
       "localizations": {
         "en": {
@@ -2956,6 +3496,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Rough values per serving. Check the nutrition label for exact numbers."
+          }
+        }
+      }
+    },
+    "대표자": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Representative"
           }
         }
       }
@@ -3490,6 +4040,36 @@
         }
       }
     },
+    "모든 데이터 삭제": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete All Data"
+          }
+        }
+      }
+    },
+    "모든 데이터를 삭제할까요?": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete all data?"
+          }
+        }
+      }
+    },
+    "모든 데이터를 삭제했어요. 앱을 다시 열면 처음 설치한 상태로 시작해요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "All data deleted. The app starts fresh the next time you open it."
+          }
+        }
+      }
+    },
     "모든 배지를 모았어요!": {
       "localizations": {
         "en": {
@@ -3500,12 +4080,12 @@
         }
       }
     },
-    "모든 운동 기록은 이 iPhone에만 저장돼요. 건강 앱 저장은 직접 허용한 경우에만 해요.": {
+    "모든 운동 기록은 이 iPhone에만 저장돼요. 건강 앱 저장은 직접 허용한 경우에만 해요. 광고, 분석 도구, 쿠키는 쓰지 않아요.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "All workout records stay on this iPhone. Workouts are saved to Health only if you allow it."
+            "value": "All workout records stay on this iPhone. Saving to Health happens only if you allow it. No ads, analytics, or cookies."
           }
         }
       }
@@ -4248,6 +4828,16 @@
         }
       }
     },
+    "블루투스 심박 센서(가슴 스트랩 등)에서 심박수를 받을 때만 블루투스를 사용합니다. Apple Watch 앱은 운동 중 심박수와 세트 진행 상황을 사용자의 iPhone과 직접 주고받으며, 워치에서 잰 근력 운동을 건강 앱에 저장합니다. 이 정보는 사용자의 기기 사이에서만 오가고 외부로 전송되지 않습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Bluetooth is used only to receive heart rate from a Bluetooth heart rate sensor such as a chest strap. The Apple Watch app exchanges workout heart rate and set progress directly with your iPhone and saves the strength workout it measures to the Health app. This stays between your own devices and is never sent anywhere else."
+          }
+        }
+      }
+    },
     "비빔밥 1그릇": {
       "localizations": {
         "en": {
@@ -4308,6 +4898,26 @@
         }
       }
     },
+    "사업자등록번호": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Business Registration No."
+          }
+        }
+      }
+    },
+    "사용 중": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Active"
+          }
+        }
+      }
+    },
     "사용 중이에요": {
       "localizations": {
         "en": {
@@ -4324,6 +4934,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "How to Use"
+          }
+        }
+      }
+    },
+    "사용자가 허용한 경우에만 다음을 이용합니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Only if you allow it, the app uses the following."
           }
         }
       }
@@ -4368,6 +4988,16 @@
         }
       }
     },
+    "삭제한 데이터는 되돌릴 수 없어요. 건강 앱에서는 세트 카운터가 저장한 운동·체중·식사만 지우고, 다른 앱의 기록은 그대로 둬요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Deleted data can't be recovered. In Health, only the workouts, weight, and meals Set Counter saved are removed; other apps' data stays."
+          }
+        }
+      }
+    },
     "삼각김밥 1개": {
       "localizations": {
         "en": {
@@ -4404,6 +5034,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Upper Body"
+          }
+        }
+      }
+    },
+    "상호": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Business Name"
           }
         }
       }
@@ -4560,6 +5200,36 @@
         }
       }
     },
+    "세트 카운터 Pro 구독과 평생 이용권은 Apple의 App Store가 결제를 처리합니다. 앱과 개발자는 카드 번호 같은 결제 정보를 받지 않습니다. 앱은 Pro를 쓸 수 있는지 확인하려고 App Store가 기기에 보관하는 구매 기록을 기기 안에서만 확인하며, 이 정보를 외부로 보내지 않습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Counter Pro subscriptions and the lifetime purchase are processed by Apple through the App Store. The app and the developer never receive your payment details. To check whether Pro is unlocked, the app reads the purchase record the App Store keeps on your device, on the device only, and never sends it anywhere."
+          }
+        }
+      }
+    },
+    "세트 카운터 Pro는 App Store를 통해 판매되며, 결제와 환불은 Apple의 정책을 따릅니다. 개발자는 결제 정보를 볼 수 없고 직접 환불해 드릴 수 없습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Counter Pro is sold through the App Store, and payments and refunds follow Apple's policies. The developer can't see payment details and can't issue refunds directly."
+          }
+        }
+      }
+    },
+    "세트 카운터 Pro는 App Store에서 결제되고, 환불도 Apple이 처리합니다. 앱의 '환불 요청'이나 reportaproblem.apple.com에서 신청할 수 있습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Counter Pro is paid through the App Store, and Apple handles refunds. Request one with Request a Refund in the app or at reportaproblem.apple.com."
+          }
+        }
+      }
+    },
     "세트 카운터 Pro에서 쓸 수 있어요": {
       "localizations": {
         "en": {
@@ -4586,6 +5256,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "This isn't a Set Counter backup file."
+          }
+        }
+      }
+    },
+    "세트 카운터는 개인정보를 수집하지 않고, 어떤 정보도 외부 서버로 보내지 않습니다. 모든 운동 기록은 사용자의 iPhone 안에만 저장됩니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Set Counter does not collect personal information or send anything to a server. All workout records stay on your iPhone."
           }
         }
       }
@@ -4900,6 +5580,16 @@
         }
       }
     },
+    "시행일 %@": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Effective %@"
+          }
+        }
+      }
+    },
     "식단 · 체중": {
       "localizations": {
         "en": {
@@ -5080,6 +5770,16 @@
         }
       }
     },
+    "아래 정보는 사용자의 iPhone 안에만 저장되며, 개발자나 제3자에게 전송되지 않습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The following is stored only on your device and is never sent to the developer or any third party."
+          }
+        }
+      }
+    },
     "아래 추천 루틴을 누르면 바로 준비 화면으로 가요.": {
       "localizations": {
         "en": {
@@ -5230,6 +5930,16 @@
         }
       }
     },
+    "앱 데이터만 삭제": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Delete App Data Only"
+          }
+        }
+      }
+    },
     "앱 리뷰 남기기": {
       "localizations": {
         "en": {
@@ -5250,6 +5960,26 @@
         }
       }
     },
+    "앱에는 광고, 분석 도구, 외부 SDK가 없고, 쿠키를 쓰지 않으며, 다른 앱이나 웹사이트에서 사용자를 추적하지 않습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app has no ads, analytics, or third-party SDKs, uses no cookies, and does not track you across other apps or websites."
+          }
+        }
+      }
+    },
+    "앱은 세트 카운트, 휴식 타이머, 운동·식단·체중 기록과 통계를 제공합니다. 운동을 기록하는 기능, 백업, 배지는 무료입니다. 자세한 통계, 지난 리포트, Apple Watch 앱, 루틴 편집, 일부 위젯과 테마는 세트 카운터 Pro(유료)에서 쓸 수 있으며, 앱 안에 'PRO' 표시와 자물쇠로 표시합니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app offers a set counter, rest timer, and workout, meal, and weight logs with stats. Logging workouts, backups, and badges are free. Detailed stats, past reports, the Apple Watch app, routine editing, and some widgets and themes need Set Counter Pro (paid), and are marked with a PRO tag or a lock in the app."
+          }
+        }
+      }
+    },
     "앱을 다시 열면 새 언어로 보여요.": {
       "localizations": {
         "en": {
@@ -5266,6 +5996,46 @@
           "stringUnit": {
             "state": "translated",
             "value": "Applies after you fully close and reopen the app."
+          }
+        }
+      }
+    },
+    "앱의 \"지원 및 피드백\"에서 메일을 보내면 본문에 앱 버전, 기기 모델, iOS 버전이 자동으로 들어갑니다. 보내기 전에 확인하고 지울 수 있으며, 받은 메일은 답변에만 사용합니다. 앱은 광고나 홍보 메일을 보내지 않습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Emails sent from \"Support & Feedback\" include the app version, device model, and iOS version, which you can review or remove before sending. They are used only to reply to you. The app never sends advertising or promotional email."
+          }
+        }
+      }
+    },
+    "앱이 보여주는 칼로리, 기초대사량, 심박수, 추천 무게·횟수는 공식과 기기 측정값으로 계산한 추정치이며, 의학적 진단이나 조언이 아닙니다. 운동 중 통증이나 어지러움이 있으면 바로 멈추고, 질환이 있거나 식단을 크게 바꾸려면 의사나 전문가와 상의하세요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Calories, basal metabolic rate, heart rate, and suggested weights and reps are estimates from formulas and device readings, not medical diagnosis or advice. Stop right away if you feel pain or dizziness while exercising, and talk to a doctor or professional if you have a health condition or plan a big change to your diet."
+          }
+        }
+      }
+    },
+    "약관 및 정책": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Terms & Policies"
+          }
+        }
+      }
+    },
+    "약관을 바꾸면 앱과 웹 페이지에 새 시행일과 함께 게시합니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changes to these terms will be posted in the app and on the web page with a new effective date."
           }
         }
       }
@@ -5816,6 +6586,16 @@
         }
       }
     },
+    "운동 기록, 내 정보, 목표, 설정, 배지, 내 음식을 모두 지우고 처음 설치한 상태로 돌려요. 개발자는 데이터를 갖고 있지 않아서, 여기서 지우면 남는 데이터가 없어요. Pro 구매는 Apple 계정에 그대로 남아요.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Erases workout records, body info, goals, settings, badges, and My Foods, as if freshly installed. The developer holds none of your data, so nothing is left after this. Pro purchases stay with your Apple Account."
+          }
+        }
+      }
+    },
     "운동 기록, 캘린더, 통계": {
       "localizations": {
         "en": {
@@ -5916,6 +6696,16 @@
         }
       }
     },
+    "운동 알림과 휴식 종료 알람은 iPhone 안에서 예약되고 울리며, 이 과정에서 외부로 보내는 정보는 없습니다. 알림은 설정에서 언제든 끌 수 있습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Workout reminders and rest alarms are scheduled and delivered on the device, and nothing is sent off the device. You can turn reminders off in Settings anytime."
+          }
+        }
+      }
+    },
     "운동 완료!": {
       "localizations": {
         "en": {
@@ -6012,6 +6802,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "How many times you beat an exercise's best weight (best reps for bodyweight)."
+          }
+        }
+      }
+    },
+    "운동을 기록하는 기능은 무료이고, 일부 기능은 세트 카운터 Pro(유료)에서 쓸 수 있습니다. 앱이 보여주는 칼로리와 추천 값은 추정치이며 의학적 조언이 아닙니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Logging workouts is free, and some features need Set Counter Pro (paid). Calories and suggestions in the app are estimates, not medical advice."
           }
         }
       }
@@ -6152,6 +6952,26 @@
           "stringUnit": {
             "state": "translated",
             "value": "Monthly plan"
+          }
+        }
+      }
+    },
+    "월간보다 %lld%% 저렴": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "%lld%% less than monthly"
+          }
+        }
+      }
+    },
+    "웹에서 보기": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "View on the Web"
           }
         }
       }
@@ -6414,6 +7234,36 @@
         }
       }
     },
+    "이 방침이 바뀌면 앱과 웹 페이지에 새 시행일과 함께 게시합니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Changes to this policy will be posted in the app and on the web page with a new effective date."
+          }
+        }
+      }
+    },
+    "이 앱은 만 14세 이상을 위한 앱이며, 나이는 14세부터 입력할 수 있습니다. 개발자는 아동을 포함해 누구의 개인정보도 수집하지 않습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "The app is meant for people 14 and older, and ages start at 14. The developer does not collect anyone's personal information, including children's."
+          }
+        }
+      }
+    },
+    "이 약관은 세트 카운터 앱(이하 \"앱\")을 이용할 때 적용됩니다. App Store에서 받은 앱에는 Apple의 표준 사용권 계약(EULA)도 함께 적용되며, 이 약관과 다른 부분은 EULA를 따릅니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "These terms apply when you use the Set Counter app (\"the app\"). Apple's Standard License Agreement (EULA) also applies to apps from the App Store, and the EULA prevails where it differs from these terms."
+          }
+        }
+      }
+    },
     "이 위젯은 Pro에서 쓸 수 있어요. 눌러서 앱을 열어 보세요.": {
       "localizations": {
         "en": {
@@ -6470,6 +7320,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "With a name, it's saved to My Foods so you can pick it next time."
+          }
+        }
+      }
+    },
+    "이메일": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Email"
           }
         }
       }
@@ -6650,6 +7510,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Previous · Pro feature"
+          }
+        }
+      }
+    },
+    "이전 달": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Previous Month"
           }
         }
       }
@@ -7042,6 +7912,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Weekly Cardio"
+          }
+        }
+      }
+    },
+    "주소": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Address"
           }
         }
       }
@@ -7858,12 +8738,12 @@
         }
       }
     },
-    "칼로리는 심박수가 있으면 심박수·몸무게·나이·성별로, 없으면 근력 운동 평균 강도로 추정해요. 건강 앱에 체중이 기록되면 최신 체중으로 자동으로 바뀌어요.": {
+    "칼로리는 심박수가 있으면 심박수·몸무게·나이·성별로, 없으면 근력 운동 평균 강도로 추정해요. 건강 앱에 체중이 기록되면 최신 체중으로 자동으로 바뀌어요. 이 정보는 iPhone에만 저장되고 칼로리와 목표 계산에만 쓰여요.": {
       "localizations": {
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Calories are estimated from heart rate, weight, age, and sex when heart rate is available, otherwise from typical strength-training intensity. When Health has a newer weight, it's used automatically."
+            "value": "Calories are estimated from heart rate, weight, age, and sex when heart rate is available, otherwise from average strength-training intensity. Your latest weight from Health is used automatically. This info stays on your iPhone and is used only for calorie and goal calculations."
           }
         }
       }
@@ -8024,6 +8904,16 @@
           "stringUnit": {
             "state": "translated",
             "value": "Stats"
+          }
+        }
+      }
+    },
+    "통신판매업 신고번호": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Mail-Order Business No."
           }
         }
       }
@@ -8594,6 +9484,36 @@
           "stringUnit": {
             "state": "translated",
             "value": "Checking…"
+          }
+        }
+      }
+    },
+    "환불 요청": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Request a Refund"
+          }
+        }
+      }
+    },
+    "환불 정책": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Refund Policy"
+          }
+        }
+      }
+    },
+    "환불되면 Pro 기능이 다시 잠기지만, 운동 기록과 데이터는 그대로 남습니다.": {
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "After a refund, Pro features lock again, but your workout records and data stay."
           }
         }
       }

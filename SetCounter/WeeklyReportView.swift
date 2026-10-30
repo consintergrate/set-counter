@@ -171,7 +171,7 @@ struct WeeklyReportView: View {
                     paywall = .reports
                 } label: {
                     HStack(spacing: 6) {
-                        Image(systemName: "lock.fill").foregroundStyle(.orange)
+                        Image(systemName: "lock.fill").foregroundStyle(Color.orange.readable)
                         Text("지난주와 비교해 보기")
                         Spacer()
                         ProBadge()
@@ -201,7 +201,7 @@ struct WeeklyReportView: View {
                 ForEach(stats.records, id: \.name) { item in
                     Label("\(item.name) \(item.value)", systemImage: "trophy.fill")
                         .font(.subheadline.bold())
-                        .foregroundStyle(.orange)
+                        .foregroundStyle(Color.orange.readable)
                 }
             }
 
@@ -287,9 +287,9 @@ struct WeeklyReportView: View {
             }
             .frame(height: 160, alignment: .bottom)
             HStack(spacing: 12) {
-                Label("활동 칼로리", systemImage: "circle.fill").foregroundStyle(.pink)
-                Label("근력", systemImage: "circle.fill").foregroundStyle(.orange)
-                Label("유산소", systemImage: "circle.fill").foregroundStyle(.teal)
+                Label("활동 칼로리", systemImage: "circle.fill").foregroundStyle(Color.pink.readable)
+                Label("근력", systemImage: "circle.fill").foregroundStyle(Color.orange.readable)
+                Label("유산소", systemImage: "circle.fill").foregroundStyle(Color.teal.readable)
             }
             .labelStyle(LegendLabelStyle())
             .font(.caption)

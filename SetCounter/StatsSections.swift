@@ -211,7 +211,7 @@ struct BalanceChart: View {
                                 .padding(.horizontal, 5)
                                 .padding(.vertical, 1)
                                 .background(status.color.opacity(0.18), in: Capsule())
-                                .foregroundStyle(status.color)
+                                .foregroundStyle(status.color.readable)
                         }
                         .font(.caption)
                         .foregroundStyle(.secondary)
@@ -315,7 +315,7 @@ private struct PRRow: View {
                             .padding(.horizontal, 5)
                             .padding(.vertical, 1)
                             .background(Color.orange.opacity(0.2), in: Capsule())
-                            .foregroundStyle(.orange)
+                            .foregroundStyle(Color.orange.readable)
                     }
                 }
                 Text(detail).font(.caption).foregroundStyle(.secondary).monospacedDigit()

@@ -119,10 +119,10 @@ struct WorkoutView: View {
         VStack(spacing: 4) {
             HStack(spacing: 24) {
                 Label(session.heartRate.map { "\($0)" } ?? "--", systemImage: "heart.fill")
-                    .foregroundStyle(isAlarming ? .white : .red)
+                    .foregroundStyle(isAlarming ? .white : Color.red.readable)
                     .symbolEffect(.pulse, isActive: session.heartRate != nil)
                 Label("\(Int(session.calories).formatted()) kcal", systemImage: "flame.fill")
-                    .foregroundStyle(isAlarming ? .white : .orange)
+                    .foregroundStyle(isAlarming ? .white : Color.orange.readable)
             }
             .font(.title3.bold())
             .monospacedDigit()

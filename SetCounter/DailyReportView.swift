@@ -121,7 +121,7 @@ struct DailyReportView: View {
                 ForEach(bests, id: \.name) { item in
                     Label("\(item.name) 신기록 \(item.value)", systemImage: "trophy.fill")
                         .font(.subheadline.bold())
-                        .foregroundStyle(.orange)
+                        .foregroundStyle(Color.orange.readable)
                 }
             }
         }
@@ -145,7 +145,7 @@ struct DailyReportView: View {
                     Text("\(Int(abs(remaining)).formatted())kcal")
                         .font(.subheadline.bold())
                         .monospacedDigit()
-                        .foregroundStyle(remaining >= 0 ? Color.primary : Color.red)
+                        .foregroundStyle(remaining >= 0 ? Color.primary : Color.red.readable)
                 }
             }
             if health.dailyEaten[day] == nil {

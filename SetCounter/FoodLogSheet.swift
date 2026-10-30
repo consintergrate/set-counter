@@ -245,6 +245,7 @@ struct FoodLogSheet: View {
                     .frame(width: 34, height: 30)
                     .contentShape(Rectangle())
             }
+            .accessibilityLabel(line.wrappedValue.amount <= 0.5 ? Text("\(line.wrappedValue.food.name) 빼기") : Text("\(line.wrappedValue.food.name) 반 인분 줄이기"))
             Text("×\(line.wrappedValue.amount.formatted())")
                 .font(.subheadline.bold())
                 .monospacedDigit()
@@ -254,6 +255,7 @@ struct FoodLogSheet: View {
             } label: {
                 Image(systemName: "plus").frame(width: 34, height: 30).contentShape(Rectangle())
             }
+            .accessibilityLabel(Text("\(line.wrappedValue.food.name) 반 인분 늘리기"))
         }
         .buttonStyle(.borderless)
         .background(Color(.tertiarySystemFill), in: Capsule())

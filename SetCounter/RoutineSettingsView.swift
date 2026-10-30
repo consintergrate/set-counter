@@ -138,7 +138,7 @@ struct WeeklyGoalGauge: View {
                 }
                 .monospacedDigit()
                 .bold()
-                .foregroundStyle(done >= goal ? Color.green : Color.primary)
+                .foregroundStyle(done >= goal ? Color.green.readable : Color.primary)
             }
             ProgressView(value: Double(min(done, goal)), total: Double(max(goal, 1)))
                 .tint(done >= goal ? .green : nil)

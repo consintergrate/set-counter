@@ -14,7 +14,7 @@ struct HeartRateSettingsView: View {
                 TimelineView(.periodic(from: .now, by: 1)) { context in
                     LabeledContent("현재 심박수") {
                         if let bpm = monitor.currentBPM(at: context.date) {
-                            Text("\(bpm) bpm").monospacedDigit().bold().foregroundStyle(.red)
+                            Text("\(bpm) bpm").monospacedDigit().bold().foregroundStyle(Color.red.readable)
                         } else {
                             Text("신호 없음").foregroundStyle(.secondary)
                         }
@@ -46,7 +46,7 @@ struct HeartRateSettingsView: View {
             Section {
                 if let connected = bluetooth.connected {
                     LabeledContent(connected.name ?? String(localized: "심박 센서")) {
-                        Text("연결됨").foregroundStyle(.green)
+                        Text("연결됨").foregroundStyle(Color.green.readable)
                     }
                     Button("연결 해제", role: .destructive) { bluetooth.forget() }
                 } else if let connecting = bluetooth.connecting {

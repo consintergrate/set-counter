@@ -146,6 +146,17 @@ enum AppInfo {
     /// Apple's standard license agreement, which covers the Pro subscriptions.
     static let termsURL = URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!
 
+    /// Where App Store purchases are refunded.
+    static let reportProblemURL = URL(string: "https://reportaproblem.apple.com")!
+
+    /// Seller details shown in 정보 → 개발자 정보. Fill these in once registered as a
+    /// business (사업자등록·통신판매업 신고); rows that are nil are left out.
+    static let sellerName: String? = nil
+    static let representative: String? = nil
+    static let businessNumber: String? = nil
+    static let mailOrderNumber: String? = nil
+    static let businessAddress: String? = nil
+
     /// Numeric App Store ID (from App Store Connect, after the app record is created).
     /// Until it's set, "앱 리뷰 남기기" falls back to the system review prompt.
     static let appStoreID: String? = nil

@@ -11,7 +11,7 @@ struct ReportCard<Content: View>: View {
         VStack(alignment: .leading, spacing: 12) {
             Label(title, systemImage: systemImage)
                 .font(.headline)
-                .foregroundStyle(color)
+                .foregroundStyle(color.readable)
             content
         }
         .padding(16)
@@ -68,7 +68,7 @@ struct ReportTile: View {
                     Text("\(delta.isUp ? "▲" : "▼") \(delta.text)")
                         .font(.caption2.bold())
                         .monospacedDigit()
-                        .foregroundStyle(delta.isUp == delta.upIsGood ? .green : .orange)
+                        .foregroundStyle(delta.isUp == delta.upIsGood ? Color.green.readable : Color.orange.readable)
                 } else if let detail {
                     Text(detail).font(.caption2).foregroundStyle(.secondary).lineLimit(1)
                 } else {
@@ -104,7 +104,7 @@ struct PeriodSwitcher: View {
                         if backIsLocked {
                             Image(systemName: "lock.fill")
                                 .font(.system(size: 9, weight: .bold))
-                                .foregroundStyle(.orange)
+                                .foregroundStyle(Color.orange.readable)
                                 .offset(x: -6, y: 8)
                         }
                     }

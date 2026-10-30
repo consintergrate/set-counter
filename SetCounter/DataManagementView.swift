@@ -11,6 +11,8 @@ struct DataManagementView: View {
     private enum ImportKind { case backup, csv }
 
     @State private var confirmingDelete = false
+    @State private var confirmingErase = false
+    @State private var erasing = false
     @State private var csvURL: URL?
     @State private var backupURL: URL?
     @State private var importKind: ImportKind?
@@ -74,6 +76,23 @@ struct DataManagementView: View {
             } footer: {
                 Text("앱 안의 운동 기록만 지워져요. 건강 앱에 저장된 운동은 그대로 남아요.")
             }
+
+            Section {
+                Button(role: .destructive) {
+                    confirmingErase = true
+                } label: {
+                    HStack {
+                        Label("모든 데이터 삭제", systemImage: "person.crop.circle.badge.xmark")
+                        if erasing {
+                            Spacer()
+                            ProgressView()
+                        }
+                    }
+                }
+                .disabled(erasing)
+            } footer: {
+                Text("운동 기록, 내 정보, 목표, 설정, 배지, 내 음식을 모두 지우고 처음 설치한 상태로 돌려요. 개발자는 데이터를 갖고 있지 않아서, 여기서 지우면 남는 데이터가 없어요. Pro 구매는 Apple 계정에 그대로 남아요.")
+            }
         }
         .navigationTitle("데이터 관리")
         .task(id: records.count) {
@@ -108,6 +127,12 @@ struct DataManagementView: View {
             Button("확인", role: .cancel) {}
         } message: {
             Text(resultMessage ?? "")
+        }
+        .confirmationDialog("모든 데이터를 삭제할까요?", isPresented: $confirmingErase, titleVisibility: .visible) {
+            Button("앱 데이터만 삭제", role: .destructive) { erase(includingHealth: false) }
+            Button("건강 앱에 저장한 기록까지 삭제", role: .destructive) { erase(includingHealth: true) }
+        } message: {
+            Text("삭제한 데이터는 되돌릴 수 없어요. 건강 앱에서는 세트 카운터가 저장한 운동·체중·식사만 지우고, 다른 앱의 기록은 그대로 둬요.")
         }
         .confirmationDialog("모든 운동 기록을 삭제할까요?", isPresented: $confirmingDelete, titleVisibility: .visible) {
             Button("\(records.count)개 기록 삭제", role: .destructive) {
@@ -148,6 +173,15 @@ struct DataManagementView: View {
             }
         } catch {
             resultMessage = error.localizedDescription
+        }
+    }
+
+    private func erase(includingHealth: Bool) {
+        erasing = true
+        Task {
+            await DataEraser.eraseAll(context: modelContext, includingHealth: includingHealth)
+            erasing = false
+            resultMessage = String(localized: "모든 데이터를 삭제했어요. 앱을 다시 열면 처음 설치한 상태로 시작해요.")
         }
     }
 

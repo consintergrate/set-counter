@@ -66,13 +66,13 @@ struct ActivityDetailView: View {
                 ForEach(rows.indices, id: \.self) { index in
                     let row = rows[index]
                     VStack(spacing: 2) {
-                        Text(row.title).font(.caption.weight(.semibold)).foregroundStyle(row.color)
+                        Text(row.title).font(.caption.weight(.semibold)).foregroundStyle(row.color.readable)
                         Text(row.value).font(.headline).monospacedDigit()
                         Text("/ \(row.goal)").font(.caption2).foregroundStyle(.secondary).monospacedDigit()
                         Text("\(min(Int((row.progress * 100).rounded()), 999))%")
                             .font(.caption.bold())
                             .monospacedDigit()
-                            .foregroundStyle(row.progress >= 1 ? AnyShapeStyle(Color.green) : AnyShapeStyle(.secondary))
+                            .foregroundStyle(row.progress >= 1 ? AnyShapeStyle(Color.green.readable) : AnyShapeStyle(.secondary))
                     }
                     .frame(maxWidth: .infinity)
                     .accessibilityElement(children: .combine)
@@ -95,7 +95,7 @@ struct ActivityDetailView: View {
                 if minutes >= Double(goal) {
                     Label("목표 달성", systemImage: "checkmark.circle.fill")
                         .font(.subheadline.bold())
-                        .foregroundStyle(.green)
+                        .foregroundStyle(Color.green.readable)
                 } else {
                     Text(String(localized: "\(goal - Int(minutes))분 남음"))
                         .font(.subheadline.bold())

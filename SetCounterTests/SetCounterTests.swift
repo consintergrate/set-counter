@@ -1,6 +1,7 @@
 import Foundation
 import StoreKitTest
 import SwiftData
+import SwiftUI
 import Testing
 @testable import SetCounter
 
@@ -402,5 +403,34 @@ struct ProTests {
             try await Task.sleep(for: .milliseconds(100))
         }
         Issue.record("StoreKit didn't catch up in time")
+    }
+}
+
+@Suite("Readable colors")
+struct ReadableColorTests {
+    private func contrastWithWhite(_ color: UIColor) -> CGFloat {
+        var red: CGFloat = 0, green: CGFloat = 0, blue: CGFloat = 0, alpha: CGFloat = 0
+        color.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+        func linear(_ value: CGFloat) -> CGFloat { value <= 0.039_28 ? value / 12.92 : pow((value + 0.055) / 1.055, 2.4) }
+        let luminance = 0.2126 * linear(red) + 0.7152 * linear(green) + 0.0722 * linear(blue)
+        return 1.05 / (luminance + 0.05)
+    }
+
+    @Test(arguments: [Color.orange, .green, .teal, .red, .pink, .cyan, .mint, .yellow])
+    func smallTextReachesFourAndAHalfToOneInLightMode(color: Color) {
+        let light = UIColor(color.readable).resolvedColor(with: UITraitCollection(userInterfaceStyle: .light))
+        #expect(contrastWithWhite(light) >= 4.5)
+    }
+
+    @Test func darkModeKeepsTheSystemColor() {
+        let traits = UITraitCollection(userInterfaceStyle: .dark)
+        let readable = UIColor(Color.orange.readable).resolvedColor(with: traits)
+        #expect(readable == UIColor.systemOrange.resolvedColor(with: traits))
+    }
+
+    @Test func proButtonsKeepWhiteTextReadable() {
+        for color in ProStyle.colors {
+            #expect(contrastWithWhite(UIColor(color)) >= 4.5)
+        }
     }
 }
